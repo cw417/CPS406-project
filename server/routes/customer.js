@@ -36,7 +36,7 @@ recipeRoutes.route('/customer/add').post(function (req, response) {
     password: req.body.password,
     address: req.body.address,
     accounts: {
-      cheqing: 0,
+      chequing: 0,
       savings: 0
     },
     transactionHistory: []
