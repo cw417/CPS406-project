@@ -18,6 +18,8 @@ import { useNavigate } from "react-router-dom";
 //}
 
 export default function Homepage() {
+
+  const ADMIN_PASSWORD = 'adminpw'
   
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -46,14 +48,18 @@ export default function Homepage() {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     // check given credentials
-    if (customers.map(customer => customer.email).includes(email)) { // check for matching email
-      const foundCustomer = customers.filter(customer => customer.email == email).at(0);
-      if (foundCustomer.password == password) { // check for matching password
-        navigate('/customerPage', {state: {customer: foundCustomer}});
+    if (email == 'admin' && password == ADMIN_PASSWORD) { // if user is admin
+      navigate('/admin', {state: {customers: customers}});
+    }
+    else {
+      if (customers.map(customer => customer.email).includes(email)) { // check for matching email
+        const foundCustomer = customers.filter(customer => customer.email == email).at(0);
+        if (foundCustomer.password == password) { // check for matching password
+          navigate('/customerPage', {state: {customer: foundCustomer}});
+        }
       }
     }
   }
-
 
   return (
     <div>

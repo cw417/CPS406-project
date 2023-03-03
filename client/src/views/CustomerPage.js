@@ -1,4 +1,5 @@
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 export default function CustomerPage({}) {
 
@@ -8,9 +9,12 @@ export default function CustomerPage({}) {
 
   return (
     <div>
-      <div>Accounts</div>
+      <Navbar />
+      <div className='title'>{customer.name}</div>
       <div>
-        {customer.name}
+        <div className='f2'>Accounts</div>
+        <div>Chequing: {customer.accounts.chequing}</div>
+        <div>Savings: {customer.accounts.savings}</div>
       </div>
     </div>
   )
