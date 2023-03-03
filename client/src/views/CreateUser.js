@@ -17,12 +17,7 @@ export default function CreateUser({}) {
       name: nameRef.current.value,
       address: addressRef.current.value,
       email: emailRef.current.value,
-      password: passwordRef.current.value,
-      accounts: {
-        chequing: 0,
-        savings: 0 
-      },
-      transactionHistory: []
+      password: passwordRef.current.value
     }
     createUser(newCustomer);
 
