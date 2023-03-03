@@ -32,8 +32,14 @@ recipeRoutes.route('/customer/add').post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
     name: req.body.name,
-    ingredients: req.body.ingredients,
-    instructions: req.body.instructions,
+    email: req.body.email,
+    password: req.body.password,
+    address: req.body.address,
+    accounts: {
+      cheqing: 0,
+      savings: 0
+    },
+    transactionHistory: []
   };
   db_connect.collection('customers').insertOne(myobj, function (err, res) {
     if (err) throw err;

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import Navbar from '../components/Navbar';
+import CustomerList from '../components/CustomerList';
 
 
 export default function Homepage({}) {
@@ -15,6 +16,7 @@ export default function Homepage({}) {
         <input placeholder='Username' type='text' ref={usernameRef} />
         <input placeholder='Password' type='text' ref={passwordRef} />
       </div>
+      <CustomerList />
     </div>
   )
 }
