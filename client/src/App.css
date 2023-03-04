@@ -15,6 +15,12 @@ html, body {
   font-size: 2rem;
 }
 
+.center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 /* Navbar */
 .nav {
   display: flex;

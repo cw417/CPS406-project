@@ -60,14 +60,25 @@ export default function Homepage() {
       }
     }
   }
+  
+  function handleKeyPress(event, func) {
+    /**
+     * Calls 'handleLogin()' when 'Enter' key is pressed.
+     * The keycode for 'Enter' is 13.
+     * @param event  Keypress event watching for 'Enter' key.
+     */
+    if (event.keyCode === 13 || event.which === 13) {
+      handleLogin();
+    }
+  }
 
   return (
     <div>
       <Navbar />
       <div className='title'>Homepage</div>
       <div className='login'>
-        <input placeholder='Email' type='text' ref={emailRef} />
-        <input placeholder='Password' type='text' ref={passwordRef} />
+        <input placeholder='Email' type='text' ref={emailRef} onKeyUp={handleKeyPress} />
+        <input placeholder='Password' type='text' ref={passwordRef} onKeyUp={handleKeyPress}/>
         <button type='submit' onClick={handleLogin}>Login</button>
       </div>
       <CustomerList customers={customers}/>

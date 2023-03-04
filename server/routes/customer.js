@@ -47,26 +47,33 @@ recipeRoutes.route('/customer/add').post(function (req, response) {
   });
 });
  
-//// Update a recipe by id.
-//recipeRoutes.route('/update/:id').post(function (req, response) {
-//  let db_connect = dbo.getDb();
-//  let myquery = { _id: ObjectId(req.params.id) };
-//  let newvalues = {
-//    $set: {
-//      name: req.body.name,
-//      ingredients: req.body.ingredients,
-//      instructions: req.body.instructions,
-//    },
-//  };
-//  db_connect
-//    .collection('recipes')
-//    .updateOne(myquery, newvalues, function (err, res) {
-//      if (err) throw err;
-//      console.log('1 document updated');
-//      response.json(res);
-//    });
-//});
-// 
+// Update a customer by id.
+recipeRoutes.route('/update/:id').post(function (req, response) {
+  console.log('editing')
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId(req.params.id) };
+  let newvalues = {
+    $set: {
+      name: req.body.name,
+      address: req.body.address,
+      email: req.body.email,
+      password: req.body.password,
+      accounts: {
+        chequing: req.body.accounts.chequing,
+        savings: req.body.accounts.savings 
+      },
+      transactionHistory: req.body.transactionHistory 
+    },
+  };
+  db_connect
+    .collection('customers')
+    .updateOne(myquery, newvalues, function (err, res) {
+      if (err) throw err;
+      console.log('1 document updated');
+      response.json(res);
+    });
+});
+ 
 //// Delete a recipe
 //recipeRoutes.route('/:id').delete((req, response) => {
 //  let db_connect = dbo.getDb();
