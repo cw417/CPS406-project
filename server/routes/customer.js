@@ -1,10 +1,10 @@
 const express = require('express');
-const recipeRoutes = express.Router();
+const routes = express.Router();
 const dbo = require('../db/conn');
 const ObjectId = require('mongodb').ObjectId;
  
 // Get a list of all the customers.
-recipeRoutes.route('/customer').get(function (req, res) {
+routes.route('/customer').get(function (req, res) {
   let db_connect = dbo.getDb('theReserve');
   db_connect
     .collection('customers')
@@ -16,7 +16,7 @@ recipeRoutes.route('/customer').get(function (req, res) {
 });
  
 // Get a single customer by id
-recipeRoutes.route('/customer/:id').get(function (req, res) {
+routes.route('/customer/:id').get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
   db_connect
@@ -28,7 +28,7 @@ recipeRoutes.route('/customer/:id').get(function (req, res) {
 });
  
 // Create a new customer.
-recipeRoutes.route('/customer/add').post(function (req, response) {
+routes.route('/customer/add').post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
     name: req.body.name,
@@ -48,7 +48,7 @@ recipeRoutes.route('/customer/add').post(function (req, response) {
 });
  
 // Update a customer by id.
-recipeRoutes.route('/update/:id').post(function (req, response) {
+routes.route('/update/:id').post(function (req, response) {
   console.log('editing')
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
@@ -75,7 +75,7 @@ recipeRoutes.route('/update/:id').post(function (req, response) {
 });
  
 //// Delete a recipe
-//recipeRoutes.route('/:id').delete((req, response) => {
+//routes.route('/:id').delete((req, response) => {
 //  let db_connect = dbo.getDb();
 //  let myquery = { _id: ObjectId(req.params.id) };
 //  db_connect.collection('recipes').deleteOne(myquery, function (err, obj) {
@@ -85,4 +85,4 @@ recipeRoutes.route('/update/:id').post(function (req, response) {
 //  });
 //});
 // 
-module.exports = recipeRoutes;
+module.exports = routes;
