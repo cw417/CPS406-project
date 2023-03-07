@@ -1,3 +1,5 @@
+import CustomerListEntry from "./CustomerListEntry"
+
 export default function CustomerList({ customers }) {
 
   function renderCustomerList() {
@@ -6,7 +8,7 @@ export default function CustomerList({ customers }) {
      */
     return customers.map((customer, index) => {
       return (
-        <div key={index}>{customer.name}: {customer.email}: {customer.password}</div>
+        <div key={index}><CustomerListEntry customer={customer} /></div>
       )
     })
   }
