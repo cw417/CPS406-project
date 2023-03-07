@@ -83,8 +83,8 @@ export default function CustomerPage({}) {
           <button onClick={toTransfer}>Make Transfer</button>
         </div>
 
-        <TransactionHistory customer={customer} />
       </div>
+      <TransactionHistory customer={customer} />
     </div>
   )
 }

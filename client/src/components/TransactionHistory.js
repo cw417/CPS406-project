@@ -8,7 +8,7 @@ export default function TransactionHistory({ customer }) {
      */
     return customer.transactionHistory.map((transaction, index) => {
       return (
-        <div key={index}>{transaction.amount}</div>
+        <div key={index}>{transaction.amount} Account: {transaction.accountType} To: {transaction.to} From: {transaction.from} </div>
       )
     })
   }

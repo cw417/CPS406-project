@@ -9,6 +9,8 @@ export default function Transfer() {
   const navigate = useNavigate();
   const [accountType, setAccountType] = useState('deposit');
   const amountRef = useRef();
+  const toRef = useRef();
+  const fromRef = useRef();
   
   async function transfer() {
     const amount = parseInt(amountRef.current.value);
@@ -16,9 +18,13 @@ export default function Transfer() {
     const updatedCustomer = { ...customer };
     if (accountType == 'chequing') {
       updatedCustomer.accounts.chequing -= amount;
+      const newTransaction = {amount: amount, accountType: 'Chequing', to: toRef.current.value, from: fromRef.current.value };
+      updatedCustomer.transactionHistory.push(newTransaction);
     }
     else {
       updatedCustomer.accounts.savings -= amount;
+      const newTransaction = {amount: amount, accountType: 'Savings', to: toRef.current.value, from: fromRef.current.value };
+      updatedCustomer.transactionHistory.push(newTransaction);
     }
     await fetch(`http://localhost:5000/update/${customer._id}`, {
       method: "POST",
@@ -40,10 +46,12 @@ export default function Transfer() {
       <Navbar />
       <div className='title'>Transfer</div>
       <div>
-          <input type='radio' id='chequing' name='accountType' value='chequing' onChange={handleChange} />
-          <label>Chequing</label>
-          <input type='radio' id='savings' name='accountType' value='savings' onChange={handleChange} />
-          <label>Savings</label>
+        <input type='radio' id='chequing' name='accountType' value='chequing' onChange={handleChange} />
+        <label>Chequing</label>
+        <input type='radio' id='savings' name='accountType' value='savings' onChange={handleChange} />
+        <label>Savings</label>
+        <input type='text' ref={toRef} placeholder='To' />
+        <input type='text' ref={fromRef} placeholder='From' />
         <input ref={amountRef} type='text' placeholder='Amount' />
         <button type='submit' onClick={transfer}>Transfer</button>
       </div>
