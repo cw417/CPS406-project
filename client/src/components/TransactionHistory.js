@@ -1,6 +1,11 @@
 import React from 'react'
+import TransactionHistoryEntry from './TransactionHistoryEntry'
 
 export default function TransactionHistory({ customer }) {
+
+  function removeTransaction(transaction) {
+    newCustomer = { ...customer };
+  }
 
   function renderTransactionHistory() {
     /**
@@ -8,7 +13,7 @@ export default function TransactionHistory({ customer }) {
      */
     return customer.transactionHistory.map((transaction, index) => {
       return (
-        <div key={index}>{transaction.amount} Account: {transaction.accountType} To: {transaction.to} From: {transaction.from} </div>
+        <div key={index}><TransactionHistoryEntry transaction={transaction} removeTransaction={removeTransaction} /></div>
       )
     })
   }
