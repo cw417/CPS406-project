@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import Navbar from '../components/Navbar'
 import CustomerAccounts from '../components/CustomerAccounts';
+import BackButton from '../components/BackButton';
 
 export default function Deposit() {
 
@@ -71,10 +72,6 @@ export default function Deposit() {
           <label>Savings</label>
           <button type='submit' onClick={deposit}>Deposit</button>
       </div>
-
-        <div>
-          <button onClick={() => navigate(-1)}>Back</button>
-        </div>
 
     </div>
   )

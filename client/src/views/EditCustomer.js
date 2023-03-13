@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar'
+import BackButton from '../components/BackButton';
 
 export default function EditCustomer() {
 
@@ -71,10 +72,6 @@ export default function EditCustomer() {
           <input type='text' placeholder='New password' ref={newPasswordRef} />
         </div>
         <button type='submit' onClick={updateCustomerInfo}>Update</button>
-      </div>
-
-      <div>
-        <button onClick={() => navigate(-1)}>Back</button>
       </div>
 
     </div>

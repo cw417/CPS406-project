@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
 import Navbar from '../components/Navbar';
+import BackButton from '../components/BackButton';
 
 export default function CreateUser({}) {
 
@@ -57,10 +58,6 @@ export default function CreateUser({}) {
         <input type='text' ref={addressRef} placeholder='Address'></input>
         <button type='submit' onClick={handleCreate}>Submit</button>
       </div>
-
-        <div>
-          <button onClick={() => navigate(-1)}>Back</button>
-        </div>
 
     </div>
   )

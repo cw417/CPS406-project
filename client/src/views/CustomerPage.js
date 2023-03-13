@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import CustomerTransactionHistory from '../components/CustomerTransactionHistory';
 import CustomerAccounts from '../components/CustomerAccounts';
+import BackButton from '../components/BackButton';
 
 export default function CustomerPage({}) {
 
@@ -24,10 +25,6 @@ export default function CustomerPage({}) {
           <button onClick={() => { navigate('/transfer', {state: { customer: customer } }); } }>Transfer</button>
           <button onClick={() => { navigate('/deposit', {state: { customer: customer } }); } }>Deposit</button>
           <button onClick={() => { navigate('/payBills', {state: { customer: customer } }); } }>Pay Bills</button>
-        </div>
-
-        <div>
-          <button onClick={() => navigate(-1)}>Back</button>
         </div>
 
       </div>

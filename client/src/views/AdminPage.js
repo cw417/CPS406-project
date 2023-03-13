@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar'
 import CustomerList from '../components/CustomerList'
 import { useLocation } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 
 export default function AdminPage() {
 

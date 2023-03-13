@@ -20,7 +20,6 @@ export default function PayBills() {
       <Navbar />
       <div className='title'>Pay Bills</div>
       <CustomerAccounts  chequing={customer.accounts.chequing} savings={customer.accounts.savings}/>
-      <BackButton />
     </div>
   )
 }
