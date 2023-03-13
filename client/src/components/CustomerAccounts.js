@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function CustomerAccounts({ chequing, savings }) {
   return (
     <div>

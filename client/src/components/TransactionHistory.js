@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import TransactionHistoryEntry from './TransactionHistoryEntry'
 
 export default function TransactionHistory({ customer }) {
