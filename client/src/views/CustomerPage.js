@@ -7,7 +7,7 @@ export default function CustomerPage({}) {
 
   // get the customer from React Router
   const location = useLocation();
-  const [customer, setCustomer] = useState(location.state.customer);
+  const customer = location.state.customer;
   const navigate = useNavigate();
   
   return (
