@@ -8,7 +8,6 @@ export default function TransactionHistoryEntry({ transaction, removeTransaction
   function handleRemoveTransaction() {
     console.log(transaction)
     removeTransaction(transaction.id);
-    window.location.refresh();
   }
 
   return (
