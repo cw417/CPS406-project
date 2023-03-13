@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Transfer() {
 
@@ -18,12 +19,12 @@ export default function Transfer() {
     const updatedCustomer = { ...customer };
     if (accountType == 'chequing') {
       updatedCustomer.accounts.chequing -= amount;
-      const newTransaction = {amount: amount, accountType: 'Chequing', to: toRef.current.value, from: fromRef.current.value };
+      const newTransaction = {id: uuidv4(), amount: amount, accountType: 'Chequing', to: toRef.current.value, from: fromRef.current.value };
       updatedCustomer.transactionHistory.push(newTransaction);
     }
     else {
       updatedCustomer.accounts.savings -= amount;
-      const newTransaction = {amount: amount, accountType: 'Savings', to: toRef.current.value, from: fromRef.current.value };
+      const newTransaction = {id: uuidv4(), amount: amount, accountType: 'Savings', to: toRef.current.value, from: fromRef.current.value };
       updatedCustomer.transactionHistory.push(newTransaction);
     }
     await fetch(`http://localhost:5000/update/${customer._id}`, {

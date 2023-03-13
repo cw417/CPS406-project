@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+
 import Navbar from '../components/Navbar'
 
 export default function Deposit() {
@@ -16,7 +18,7 @@ export default function Deposit() {
     // add transaction log to transactionHistory
     const newCustomer = { ...customer };
     newCustomer.accounts.chequing += amount;
-    newCustomer.transactionHistory.push({amount: amount, accountType: 'Chequing', to: 'Deposit', from: 'Deposit'});
+    newCustomer.transactionHistory.push({id: uuidv4(), amount: amount, accountType: 'Chequing', to: 'Deposit', from: 'Deposit'});
     setCustomer(newCustomer);
   }
 
@@ -25,7 +27,7 @@ export default function Deposit() {
     // add transaction log to transactionHistory
     const newCustomer = { ...customer };
     newCustomer.accounts.savings += amount;
-    newCustomer.transactionHistory.push({amount: amount, accountType: 'Savings', to: 'Deposit', from: 'Deposit'});
+    newCustomer.transactionHistory.push({id: uuidv4(), amount: amount, accountType: 'Savings', to: 'Deposit', from: 'Deposit'});
     setCustomer(newCustomer);
   }
 
