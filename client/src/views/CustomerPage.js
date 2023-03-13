@@ -2,7 +2,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import CustomerTransactionHistory from '../components/CustomerTransactionHistory';
 import CustomerAccounts from '../components/CustomerAccounts';
-import BackButton from '../components/BackButton';
 
 export default function CustomerPage({}) {
 

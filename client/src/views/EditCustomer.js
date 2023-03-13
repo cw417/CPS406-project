@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar'
-import BackButton from '../components/BackButton';
 
 export default function EditCustomer() {
 

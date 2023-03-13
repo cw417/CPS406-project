@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { v4 as uuidv4 } from 'uuid';
 import CustomerAccounts from '../components/CustomerAccounts';
-import BackButton from '../components/BackButton';
 
 export default function Transfer() {
 
