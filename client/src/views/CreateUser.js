@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { useNavigate } from 'react-router';
+import { v4 as uuidv4 } from 'uuid';
 import Navbar from '../components/Navbar';
 
 export default function CreateUser({}) {
@@ -14,6 +15,7 @@ export default function CreateUser({}) {
   function handleCreate() {
     console.log("creating new user");
     const newCustomer = {
+      id: uuidv4(),
       name: nameRef.current.value,
       address: addressRef.current.value,
       email: emailRef.current.value,

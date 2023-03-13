@@ -31,6 +31,7 @@ routes.route('/customer/:id').get(function (req, res) {
 routes.route('/customer/add').post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
+    id: req.body.id,
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
@@ -54,6 +55,7 @@ routes.route('/update/:id').post(function (req, response) {
   let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
     $set: {
+      id: req.body.id,
       name: req.body.name,
       address: req.body.address,
       email: req.body.email,
