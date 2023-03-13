@@ -2,6 +2,10 @@
 
 ## TODO
 
-- admin edit accounts and transaction history
-- Implement contacts per user
-  - array of emails?
+- OOP stuff
+  - encapsulation for customer account editing
+- customer edit account details
+- admin edit customer account details
+- user contact list for transactions
+- error handling
+  - mostly input checking
