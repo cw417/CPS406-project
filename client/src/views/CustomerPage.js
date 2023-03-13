@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import TransactionHistory from '../components/TransactionHistory';
+import CustomerTransactionHistory from '../components/CustomerTransactionHistory';
 
 export default function CustomerPage({}) {
 
@@ -31,7 +31,7 @@ export default function CustomerPage({}) {
         </div>
 
       </div>
-      <TransactionHistory customer={customer} />
+      <CustomerTransactionHistory customer={customer} />
     </div>
   )
 }
