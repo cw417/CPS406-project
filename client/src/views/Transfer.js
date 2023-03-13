@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 export default function Transfer() {
 
   const location = useLocation();
+  // does this need to be a useState hook, or could it just be a regular variable???
   const [customer, setCustomer] = useState(location.state.customer);
   const navigate = useNavigate();
   const [accountType, setAccountType] = useState('chequing');
