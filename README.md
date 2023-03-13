@@ -2,10 +2,10 @@
 
 ## TODO
 
-- OOP stuff
-  - encapsulation for customer account editing
-- customer edit account details
-- admin edit customer account details
+- admin edit transaction history
+  - fix implementation of account total editing
 - user contact list for transactions
 - error handling
   - mostly input checking
+- OOP stuff
+  - encapsulation for customer account editing
