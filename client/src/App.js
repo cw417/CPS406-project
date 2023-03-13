@@ -17,6 +17,7 @@ export default function App() {
         <Route path='/transfer' element={<Transfer />} />
         <Route path='/admin' element={<AdminPage />} />
         <Route path='/deposit' element={<Deposit />} />
+        <Route path='/editCustomer' element={<EditCustomer />} />
       </Routes>
     </div>
   );
