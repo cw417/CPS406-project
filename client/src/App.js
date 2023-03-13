@@ -6,6 +6,7 @@ import CustomerPage from './views/CustomerPage';
 import AdminPage from './views/AdminPage';
 import Transfer from './views/Transfer';
 import Deposit from './views/Deposit';
+import EditCustomer from './views/EditCustomer';
 
 export default function App() {
   return (

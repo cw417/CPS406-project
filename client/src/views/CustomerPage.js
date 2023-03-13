@@ -15,6 +15,9 @@ export default function CustomerPage({}) {
       <Navbar />
       <div className='title'>{customer.name}</div>
       <div className='center'>
+        <div>
+          <button onClick={() => { navigate('/editCustomer', {state: { customer: customer } }); } }>Edit Account Details</button>
+        </div>
         <CustomerAccounts chequing={customer.accounts.chequing} savings={customer.accounts.savings} />
 
         <div>
