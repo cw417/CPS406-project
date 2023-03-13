@@ -23,6 +23,7 @@ export default function CustomerPage({}) {
         <div>
           <button onClick={() => { navigate('/transfer', {state: { customer: customer } }); } }>Transfer</button>
           <button onClick={() => { navigate('/deposit', {state: { customer: customer } }); } }>Deposit</button>
+          <button onClick={() => { navigate('/payBills', {state: { customer: customer } }); } }>Pay Bills</button>
         </div>
 
         <div>

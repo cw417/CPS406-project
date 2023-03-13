@@ -7,6 +7,7 @@ import AdminPage from './views/AdminPage';
 import Transfer from './views/Transfer';
 import Deposit from './views/Deposit';
 import EditCustomer from './views/EditCustomer';
+import PayBills from './views/PayBills';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path='/admin' element={<AdminPage />} />
         <Route path='/deposit' element={<Deposit />} />
         <Route path='/editCustomer' element={<EditCustomer />} />
+        <Route path='/payBills' element={<PayBills />} />
       </Routes>
     </div>
   );
