@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import CustomerTransactionHistory from '../components/CustomerTransactionHistory';
+import CustomerAccounts from '../components/CustomerAccounts';
 
 export default function CustomerPage({}) {
 
@@ -15,11 +16,7 @@ export default function CustomerPage({}) {
       <Navbar />
       <div className='title'>{customer.name}</div>
       <div className='center'>
-        <div>
-          <div className='f2'>Accounts</div>
-          <div>Chequing: {customer.accounts.chequing}</div>
-          <div>Savings: {customer.accounts.savings}</div>
-        </div>
+        <CustomerAccounts chequing={customer.accounts.chequing} savings={customer.accounts.savings} />
 
         <div>
           <button onClick={() => { navigate('/transfer', {state: { customer: customer } }); } }>Transfer</button>

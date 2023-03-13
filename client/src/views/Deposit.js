@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import Navbar from '../components/Navbar'
+import CustomerAccounts from '../components/CustomerAccounts';
 
 export default function Deposit() {
 
@@ -61,6 +62,7 @@ export default function Deposit() {
     <div>
       <Navbar />
       <div className='title'>Deposit</div>
+      <CustomerAccounts chequing={customer.accounts.chequing} savings={customer.accounts.savings} />
       <div>
         <input ref={depositRef} type='text' placeholder={"Amount"} />
           <input type='radio' id='chequing' name='accountType' value='chequing' onChange={handleChangeAccountType} />

@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { v4 as uuidv4 } from 'uuid';
+import CustomerAccounts from '../components/CustomerAccounts';
 
 export default function Transfer() {
 
@@ -46,6 +47,7 @@ export default function Transfer() {
     <div>
       <Navbar />
       <div className='title'>Transfer</div>
+      <CustomerAccounts chequing={customer.accounts.chequing} savings={customer.accounts.savings} />
       <div>
         <input type='radio' id='chequing' name='accountType' value='chequing' onChange={handleChange} />
         <label>Chequing</label>
