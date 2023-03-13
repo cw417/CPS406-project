@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TransactionHistoryEntry from './TransactionHistoryEntry'
 
 export default function TransactionHistory({ customer }) {
 
-  function removeTransaction(transaction) {
-    newCustomer = { ...customer };
+  async function removeTransaction(id) {
+    const updatedCustomer = { 
+      ...customer, 
+      transactionHistory: customer.transactionHistory.filter(transaction => transaction.id !== id)
+    };
+    const transactions = customer.transactionHistory.filter(transaction => transaction.id === id);
+    const transaction = transactions[0];
+    if (transaction.accountType === 'Chequing') {updatedCustomer.accounts.chequing -= transaction.amount};
+    if (transaction.accountType === 'Savings') {updatedCustomer.accounts.savings -= transaction.amount};
+    await fetch(`http://localhost:5000/update/${customer._id}`, {
+      method: "POST",
+      body: JSON.stringify(updatedCustomer),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    
   }
 
   function renderTransactionHistory() {
@@ -17,6 +32,7 @@ export default function TransactionHistory({ customer }) {
       )
     })
   }
+
   return (
     <div>
       <div>Transaction History</div>

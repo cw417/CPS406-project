@@ -1,10 +1,16 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function TransactionHistoryEntry({ transaction, removeTransaction }) {
 
+  const navigate = useNavigate();
+
   function handleRemoveTransaction() {
-    removeTransaction()
+    console.log(transaction)
+    removeTransaction(transaction.id);
+    window.location.refresh();
   }
+
   return (
     <div>
       <div>
