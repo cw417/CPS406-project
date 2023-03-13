@@ -1,10 +1,11 @@
+import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Homepage from './views/Homepage';
 import CreateUser from './views/CreateUser';
 import CustomerPage from './views/CustomerPage';
 import AdminPage from './views/AdminPage';
 import Transfer from './views/Transfer';
-import './App.css';
+import Deposit from './views/Deposit';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path='/customerPage' element={<CustomerPage />} />
         <Route path='/transfer' element={<Transfer />} />
         <Route path='/admin' element={<AdminPage />} />
+        <Route path='/deposit' element={<Deposit />} />
       </Routes>
     </div>
   );

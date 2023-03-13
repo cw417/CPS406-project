@@ -7,7 +7,7 @@ export default function Transfer() {
   const location = useLocation();
   const [customer, setCustomer] = useState(location.state.customer);
   const navigate = useNavigate();
-  const [accountType, setAccountType] = useState('deposit');
+  const [accountType, setAccountType] = useState('chequing');
   const amountRef = useRef();
   const toRef = useRef();
   const fromRef = useRef();
