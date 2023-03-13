@@ -55,6 +55,11 @@ export default function CreateUser({}) {
         <input type='text' ref={addressRef} placeholder='Address'></input>
         <button type='submit' onClick={handleCreate}>Submit</button>
       </div>
+
+        <div>
+          <button onClick={() => navigate(-1)}>Back</button>
+        </div>
+
     </div>
   )
 }

@@ -67,6 +67,11 @@ export default function Deposit() {
           <label>Savings</label>
           <button type='submit' onClick={deposit}>Deposit</button>
       </div>
+
+        <div>
+          <button onClick={() => navigate(-1)}>Back</button>
+        </div>
+
     </div>
   )
 }

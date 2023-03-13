@@ -26,6 +26,10 @@ export default function CustomerPage({}) {
           <button onClick={() => { navigate('/deposit', {state: { customer: customer } }); } }>Deposit</button>
         </div>
 
+        <div>
+          <button onClick={() => navigate(-1)}>Back</button>
+        </div>
+
       </div>
       <TransactionHistory customer={customer} />
     </div>

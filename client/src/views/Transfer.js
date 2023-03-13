@@ -55,6 +55,11 @@ export default function Transfer() {
         <input ref={amountRef} type='text' placeholder='Amount' />
         <button type='submit' onClick={transfer}>Transfer</button>
       </div>
+
+        <div>
+          <button onClick={() => navigate(-1)}>Back</button>
+        </div>
+
     </div>
   )
 }
