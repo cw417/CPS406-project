@@ -36,7 +36,7 @@ export default function Deposit() {
   async function deposit() {
     const amount = parseInt(depositRef.current.value);
     console.log(accountType)
-    if (accountType == 'chequing') {
+    if (accountType === 'chequing') {
       addToChequing(amount);
     }
     else {

@@ -18,7 +18,7 @@ export default function PayBills() {
   async function handlePayBills() {
     const updatedCustomer = {...customer};
     const amount = parseInt(amountRef.current.value);
-    if (accountType == 'chequing') {
+    if (accountType === 'chequing') {
       updatedCustomer.accounts.chequing -= amount;
     }
     else {

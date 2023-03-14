@@ -18,7 +18,7 @@ export default function Transfer() {
     const amount = parseInt(amountRef.current.value);
     if (amount > customer.accounts.chequing) { return; }
     const updatedCustomer = { ...customer };
-    if (accountType == 'chequing') {
+    if (accountType === 'chequing') {
       updatedCustomer.accounts.chequing -= amount;
       const newTransaction = {id: uuidv4(), amount: amount, accountType: 'Chequing', to: toRef.current.value, from: fromRef.current.value };
       updatedCustomer.transactionHistory.push(newTransaction);

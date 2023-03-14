@@ -48,7 +48,7 @@ export default function Homepage() {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     // check given credentials
-    if (email == 'admin' && password == ADMIN_PASSWORD) { // if user is admin
+    if (email === 'admin' && password === ADMIN_PASSWORD) { // if user is admin
       navigate('/admin', {state: {customers: customers}});
     }
     else {
