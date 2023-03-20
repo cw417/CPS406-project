@@ -1,16 +1,27 @@
 import CustomerAccounts from '../comps/CustomerAccounts'
 import Navbar from '../comps/Navbar'
-import { useRef, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Customer from '../interfaces/Customer';
 import Transaction from '../interfaces/Transaction';
+import axios from 'axios'
 
 export default function PayBills() {
 
-  const location = useLocation();
-  const loc = location.state.customer;
-  const customer = new Customer(loc.name, loc.address, loc.email, loc.password, loc.accounts.chequing, loc.accounts.savings, loc.transactionHistory);
-  customer.setDBID(loc._id);
+  const [ customer, setCustomer ] = useState(null)
+  const userId = sessionStorage.getItem('userId')
+
+  function getCustomer() {
+    axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
+      console.log(response.data.accounts)
+      setCustomer(new Customer(response.data.name, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory))
+      customer.setDBID(response.data._id)
+    })
+  }
+
+  useEffect(() => {
+      getCustomer()
+  }, [])
 
   const navigate = useNavigate();
 
@@ -24,27 +35,34 @@ export default function PayBills() {
     const newTransaction = new Transaction(amount, accountType, toRef.current.value, customer.name);
     customer.transactionHistory.push(newTransaction);
     customer.updateCustomer();
-    navigate('/customerPage', {state: { customer: customer }});
+    navigate('/customerPage');
   }
 
   function handleChangeAccountType(event) {
     setAccountType(event.target.value);
   }
 
-  return (
-    <div>
-      <Navbar />
-      <div className='title'>Pay Bills</div>
-      <CustomerAccounts  chequing={customer.accounts.chequing} savings={customer.accounts.savings}/>
+  if (customer === null) {
+    return (
+    <>
+      <h1>Loading...</h1>
+    </>)
+  } else {
+    return (
       <div>
-        <input ref={toRef} type='text'  placeholder='Pay to'/>
-        <input ref={amountRef} type='text' placeholder='Amount' />
-          <input type='radio' id='chequing' name='accountType' value='Chequing' onChange={handleChangeAccountType} />
-          <label>Chequing</label>
-          <input type='radio' id='savings' name='accountType' value='Savings' onChange={handleChangeAccountType} />
-          <label>Savings</label>
-        <button type='submit' onClick={handlePayBills}>Pay Bills</button>
+        <Navbar />
+        <div className='title'>Pay Bills</div>
+        <CustomerAccounts  chequing={customer.accounts.chequing} savings={customer.accounts.savings}/>
+        <div>
+          <input ref={toRef} type='text'  placeholder='Pay to'/>
+          <input ref={amountRef} type='text' placeholder='Amount' />
+            <input type='radio' id='chequing' name='accountType' value='Chequing' onChange={handleChangeAccountType} />
+            <label>Chequing</label>
+            <input type='radio' id='savings' name='accountType' value='Savings' onChange={handleChangeAccountType} />
+            <label>Savings</label>
+          <button type='submit' onClick={handlePayBills}>Pay Bills</button>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }

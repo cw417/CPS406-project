@@ -1,17 +1,41 @@
 import Navbar from '../comps/Navbar'
 import CustomerList from '../comps/CustomerList'
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+import axios from "axios"
+import { useNavigate } from 'react-router-dom'
 
 export default function AdminPage() {
 
-  const location = useLocation();
-  const customers = location.state.customers;
+  const [ customers, setCustomers ] = useState(null)
+  const admin = sessionStorage.getItem('admin')
+  const navigate = useNavigate()
 
-  return (
-    <div>
-      <Navbar />
-      <div className='title'>Admin</div>
-      <CustomerList customers={customers}/>
-    </div>
-  )
+  function getCustomers() {
+    axios.get(`http://localhost:5000/customer/`).then(response => {
+      setCustomers(response.data)
+    })
+  }
+
+  useEffect(() => {
+      getCustomers()
+  }, [])
+
+  if (admin === "false") {
+    navigate('/login')
+  }
+
+  if (customers === null) {
+    return (
+    <>
+      <h1>Loading...</h1>
+    </>)
+  } else {
+    return (
+      <div>
+        <Navbar />
+        <div className='title'>Admin</div>
+        <CustomerList customers={customers}/>
+      </div>
+    )
+  }
 }

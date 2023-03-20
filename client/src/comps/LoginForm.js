@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom'
 
 export default function LoginForm() {
 
+    const navigate = useNavigate();
+
     const formik = useFormik({
         initialValues: {
             username:'',
@@ -27,13 +29,19 @@ export default function LoginForm() {
     async function onSubmit(values) {
         
         return axios.get("http://localhost:5000/customer").then(response => {
-            for (var i = 0; i < response.data.length; i++) {
-                if (response.data[i].name === values.username){
-                    if (values.password === response.data[i].password)
-                        sessionStorage.setItem('userId', response.data[i]._id)
-                        
-                }
-            }  
+            if (values.username === 'admin' && values.password === 'adminpw') {
+                sessionStorage.setItem('admin', "true")
+                navigate('/');
+            } else {
+                for (var i = 0; i < response.data.length; i++) {
+                    if (response.data[i].name === values.username){
+                        if (values.password === response.data[i].password)
+                            sessionStorage.setItem('admin', "false")
+                            sessionStorage.setItem('userId', response.data[i]._id)
+                            navigate('/customerPage');
+                    }
+                }  
+            }
         })
     }
 

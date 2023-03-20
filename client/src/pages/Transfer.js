@@ -1,17 +1,28 @@
-import { useState, useRef } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../comps/Navbar';
 import CustomerAccounts from '../comps/CustomerAccounts';
 import Customer from '../interfaces/Customer';
+import axios from 'axios'
 
 export default function Transfer() {
 
-  const location = useLocation();
-  const loc = location.state.customer;
-  const customer = new Customer(loc.name, loc.address, loc.email, loc.password, loc.accounts.chequing, loc.accounts.savings, loc.transactionHistory);
-  customer.setDBID(loc._id);
+  const [ customer, setCustomer ] = useState(null)
+  const userId = sessionStorage.getItem('userId')
+
+  function getCustomer() {
+    axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
+      console.log(response.data.accounts)
+      setCustomer(new Customer(response.data.name, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory))
+      customer.setDBID(response.data._id)
+    })
+  }
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+      getCustomer()
+  }, [])
 
   const [accountType, setAccountType] = useState('Chequing');
   const amountRef = useRef();
@@ -21,29 +32,37 @@ export default function Transfer() {
   function transfer() {
     const amount = parseInt(amountRef.current.value);
     customer.transfer(amount, accountType, toRef.current.value, fromRef.current.value);
-    navigate('/customerPage', {state: { customer: customer }});
+    navigate('/customerPage');
   }
 
   function handleChange(event) {
     setAccountType(event.target.value);
   }
 
-  return (
-    <div>
-      <Navbar />
-      <div className='title'>Transfer</div>
-      <CustomerAccounts chequing={customer.accounts.chequing} savings={customer.accounts.savings} />
+  if (customer === null) {
+    return (
+    <>
+      <h1>Loading...</h1>
+    </>
+    )
+  } else {
+    return (
       <div>
-        <input type='radio' id='chequing' name='accountType' value='Chequing' onChange={handleChange} />
-        <label>Chequing</label>
-        <input type='radio' id='savings' name='accountType' value='Savings' onChange={handleChange} />
-        <label>Savings</label>
-        <input type='text' ref={toRef} placeholder='To' />
-        <input type='text' ref={fromRef} placeholder='From' />
-        <input ref={amountRef} type='text' placeholder='Amount' />
-        <button type='submit' onClick={transfer}>Transfer</button>
+        <Navbar />
+        <div className='title'>Transfer</div>
+        <CustomerAccounts chequing={customer.accounts.chequing} savings={customer.accounts.savings} />
+        <div>
+          <input type='radio' id='chequing' name='accountType' value='Chequing' onChange={handleChange} />
+          <label>Chequing</label>
+          <input type='radio' id='savings' name='accountType' value='Savings' onChange={handleChange} />
+          <label>Savings</label>
+          <input type='text' ref={toRef} placeholder='To' />
+          <input type='text' ref={fromRef} placeholder='From' />
+          <input ref={amountRef} type='text' placeholder='Amount' />
+          <button type='submit' onClick={transfer}>Transfer</button>
+        </div>
+  
       </div>
-
-    </div>
-  )
+    )
+  }
 }

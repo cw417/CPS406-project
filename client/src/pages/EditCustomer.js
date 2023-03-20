@@ -1,14 +1,25 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../comps/Navbar'
 import Customer from '../interfaces/Customer';
+import axios from 'axios'
 
 export default function EditCustomer() {
 
-  const location = useLocation();
-  const loc = location.state.customer;
-  const customer = new Customer(loc.name, loc.address, loc.email, loc.password, loc.accounts.chequing, loc.accounts.savings, loc.transactionHistory);
-  customer.setDBID(loc._id);
+  const [ customer, setCustomer ] = useState(null)
+  const userId = sessionStorage.getItem('userId')
+
+  function getCustomer() {
+    axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
+      console.log(response.data.accounts)
+      setCustomer(new Customer(response.data.name, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory))
+      customer.setDBID(response.data._id)
+    })
+  }
+
+  useEffect(() => {
+      getCustomer()
+  }, [])
 
   const nameRef = useRef();
   const addressRef = useRef();
@@ -42,34 +53,41 @@ export default function EditCustomer() {
       }
     }
     customer.updateCustomer();
-    navigate('/customerPage', {state: { customer: customer } });
+    navigate('/customerPage');
   }
 
-  return (
-    <div>
-      <Navbar />
-      <div className='title'>Edit Account Details</div>
+  if (customer === null) {
+    return (
+    <>
+      <h1>Loading...</h1>
+    </>)
+  } else {
+    return (
       <div>
+        <Navbar />
+        <div className='title'>Edit Account Details</div>
         <div>
-          <label>Name: </label>
-          <input type='text' ref={nameRef} placeholder={customer.name} />
+          <div>
+            <label>Name: </label>
+            <input type='text' ref={nameRef} placeholder={customer.name} />
+          </div>
+          <div>
+            <label>Address: </label>
+            <input type='text' ref={addressRef} placeholder={customer.address} />
+          </div>
+          <div>
+            <label>Email: </label>
+            <input type='text' ref={emailRef} placeholder={customer.email} />
+          </div>
+          <button onClick={toggleChangePasswordDisplay}>Change Password</button>
+          <div style={{display: changePasswordDisplay}}>
+            <input type='text' placeholder='Old password' ref={oldPasswordRef} />
+            <input type='text' placeholder='New password' ref={newPasswordRef} />
+          </div>
+          <button type='submit' onClick={updateCustomerInfo}>Update</button>
         </div>
-        <div>
-          <label>Address: </label>
-          <input type='text' ref={addressRef} placeholder={customer.address} />
-        </div>
-        <div>
-          <label>Email: </label>
-          <input type='text' ref={emailRef} placeholder={customer.email} />
-        </div>
-        <button onClick={toggleChangePasswordDisplay}>Change Password</button>
-        <div style={{display: changePasswordDisplay}}>
-          <input type='text' placeholder='Old password' ref={oldPasswordRef} />
-          <input type='text' placeholder='New password' ref={newPasswordRef} />
-        </div>
-        <button type='submit' onClick={updateCustomerInfo}>Update</button>
-      </div>
 
-    </div>
-  )
+      </div>
+    )
+  }
 }
