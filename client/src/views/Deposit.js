@@ -1,56 +1,41 @@
 import { useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-
+import Customer from '../interfaces/Customer';
 import Navbar from '../components/Navbar'
 import CustomerAccounts from '../components/CustomerAccounts';
-import BackButton from '../components/BackButton';
 
 export default function Deposit() {
 
   const location = useLocation();
-  const [customer, setCustomer] = useState(location.state.customer);
+  const loc = location.state.customer;
+  const customer = new Customer(loc.name, loc.address, loc.email, loc.password, loc.accounts.chequing, loc.accounts.savings, loc.transactionHistory);
+  customer.setDBID(loc._id);
+
   const [accountType, setAccountType] = useState('chequing');
   const navigate = useNavigate();
   const depositRef = useRef();
-  const accountRef = useRef();
 
   function addToChequing(amount) {
     // add funds to selected account
     // add transaction log to transactionHistory
-    const newCustomer = { ...customer };
-    newCustomer.accounts.chequing += amount;
-    newCustomer.transactionHistory.push({id: uuidv4(), amount: amount, accountType: 'Chequing', to: 'Deposit', from: 'Deposit'});
-    setCustomer(newCustomer);
+    customer.accounts.chequing += amount;
+    customer.transactionHistory.push({id: uuidv4(), amount: amount, accountType: 'Chequing', to: 'Deposit', from: 'Deposit'});
   }
 
   function addToSavings(amount) {
     // add funds to selected account
     // add transaction log to transactionHistory
-    const newCustomer = { ...customer };
-    newCustomer.accounts.savings += amount;
-    newCustomer.transactionHistory.push({id: uuidv4(), amount: amount, accountType: 'Savings', to: 'Deposit', from: 'Deposit'});
-    setCustomer(newCustomer);
+    customer.accounts.savings += amount;
+    customer.transactionHistory.push({id: uuidv4(), amount: amount, accountType: 'Savings', to: 'Deposit', from: 'Deposit'});
   }
 
-  async function deposit() {
+  function deposit() {
     const amount = parseInt(depositRef.current.value);
-    console.log(accountType)
-    if (accountType === 'chequing') {
-      addToChequing(amount);
-    }
-    else {
-      addToSavings(amount);
-    }
+    console.log(accountType);
+    accountType === 'chequing' ? addToChequing(amount) : addToSavings(amount);
     depositRef.current.value = null;
-    const updatedCustomer = {...customer};
-    await fetch(`http://localhost:5000/update/${customer._id}`, {
-      method: "POST",
-      body: JSON.stringify(updatedCustomer),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
+    customer.updateCustomer();
     navigate('/customerPage', {state: { customer: customer } });
   }
 

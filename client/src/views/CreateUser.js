@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
 import Navbar from '../components/Navbar';
+import Customer from '../interfaces/Customer'
 
 export default function CreateUser({}) {
 
@@ -13,16 +14,15 @@ export default function CreateUser({}) {
   const addressRef = useRef();
 
   function handleCreate() {
+    /**
+     * Create a new customer object with the current input values, and add it to the database.
+     * Chequing accounts is set to 0.
+     * Savings account is set to 0.
+     * Transaction history is set to an empty array.
+     */
     console.log("creating new user");
-    const newCustomer = {
-      id: uuidv4(),
-      name: nameRef.current.value,
-      address: addressRef.current.value,
-      email: emailRef.current.value,
-      password: passwordRef.current.value
-    }
+    const newCustomer = new Customer(nameRef.current.value, addressRef.current.value, emailRef.current.value, passwordRef.current.value, 0, 0, [])
     createUser(newCustomer);
-
   }
 
   async function createUser(newCustomer) {

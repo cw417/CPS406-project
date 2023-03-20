@@ -1,18 +1,23 @@
 import { useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar'
+import Customer from '../interfaces/Customer';
 
 export default function EditCustomer() {
 
   const location = useLocation();
-  const customer = location.state.customer;
-  const navigate = useNavigate();
+  const loc = location.state.customer;
+  const customer = new Customer(loc.name, loc.address, loc.email, loc.password, loc.accounts.chequing, loc.accounts.savings, loc.transactionHistory);
+  customer.setDBID(loc._id);
+
   const nameRef = useRef();
   const addressRef = useRef();
   const emailRef = useRef();
   const oldPasswordRef = useRef();
   const newPasswordRef = useRef();
   const [changePasswordDisplay, setChangePasswordDisplay] = useState('none');
+
+  const navigate = useNavigate();
 
   function toggleChangePasswordDisplay() {
     if (changePasswordDisplay === 'none') {
@@ -23,29 +28,21 @@ export default function EditCustomer() {
     }
   }
 
-  async function updateCustomerInfo() {
+  function updateCustomerInfo() {
 
-    const updatedCustomer = { ...customer };
-    if (nameRef.current.value) { updatedCustomer.name = nameRef.current.value; }
-    if (addressRef.current.value) { updatedCustomer.address = addressRef.current.value; }
-    if (emailRef.current.value) { updatedCustomer.email = emailRef.current.value; }
+    if (nameRef.current.value) { customer.name = nameRef.current.value; }
+    if (addressRef.current.value) { customer.address = addressRef.current.value; }
+    if (emailRef.current.value) { customer.email = emailRef.current.value; }
     if (newPasswordRef.current.value) { 
       if (oldPasswordRef.current.value !== customer.password) {
         console.log('Current password does not match given password.');
       }
       else {
-        updatedCustomer.password = newPasswordRef.current.value;
+        customer.password = newPasswordRef.current.value;
       }
     }
-
-    await fetch(`http://localhost:5000/update/${customer._id}`, {
-      method: "POST",
-      body: JSON.stringify(updatedCustomer),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
-    navigate('/customerPage', {state: { customer: updatedCustomer } });
+    customer.updateCustomer();
+    navigate('/customerPage', {state: { customer: customer } });
   }
 
   return (

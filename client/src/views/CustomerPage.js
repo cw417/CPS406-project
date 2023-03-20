@@ -9,6 +9,8 @@ export default function CustomerPage({}) {
   const location = useLocation();
   const customer = location.state.customer;
   const navigate = useNavigate();
+
+  console.log(customer);
   
   return (
     <div>

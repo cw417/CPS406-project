@@ -3,35 +3,32 @@ import Navbar from '../components/Navbar'
 import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import Customer from '../interfaces/Customer';
 
 
 export default function PayBills() {
 
   const location = useLocation();
-  const customer = location.state.customer;
+  const loc = location.state.customer;
+  const customer = new Customer(loc.name, loc.address, loc.email, loc.password, loc.accounts.chequing, loc.accounts.savings, loc.transactionHistory);
+  customer.setDBID(loc._id);
+
   const navigate = useNavigate();
+
   const toRef = useRef();
   const amountRef = useRef();
   const [accountType, setAccountType] = useState('chequing');
 
-  
-  async function handlePayBills() {
-    const updatedCustomer = {...customer};
+  function handlePayBills() {
     const amount = parseInt(amountRef.current.value);
     if (accountType === 'chequing') {
-      updatedCustomer.accounts.chequing -= amount;
+      customer.accounts.chequing -= amount;
     }
     else {
-      updatedCustomer.accounts.savings -= amount;
+      customer.accounts.savings -= amount;
     }
-    updatedCustomer.transactionHistory.push({id: uuidv4(), amount: amount, accountType: accountType, to: toRef.current.value, from: customer.name});
-    await fetch(`http://localhost:5000/update/${customer._id}`, {
-      method: "POST",
-      body: JSON.stringify(updatedCustomer),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
+    customer.transactionHistory.push({id: uuidv4(), amount: amount, accountType: accountType, to: toRef.current.value, from: customer.name});
+    customer.updateCustomer();
     navigate('/customerPage', {state: { customer: customer }});
   }
 
