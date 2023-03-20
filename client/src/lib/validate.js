@@ -1,22 +1,13 @@
+import axios from "axios";
+
 export async function userCheck(user) {
-    const info = {username: user.toLowerCase()}
-    const JSONdata = JSON.stringify(info)
-    const endpoint = 'http://localhost:4000/customer/'
+    return axios.get("http://localhost:5000/customer").then(response => {
+        for (var i = 0; i < response.data.length; i++) {
+            if (response.data[i].name === user){
+                return true
+            }
+        }
+        return false   
+    })
 
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSONdata,
-    }
-
-    const response = await fetch(endpoint, options)
-    const result = await response.json()
-    console.log(result.data)
-
-    if (result.data == "Username Found") {
-        return true
-    }
-    return false
 }

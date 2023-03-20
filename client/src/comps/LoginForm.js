@@ -2,6 +2,7 @@ import styles from '../styles/LoginForm.module.css'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { userCheck } from '../lib/validate'
+import axios from "axios"
 
 export default function LoginForm() {
 
@@ -23,24 +24,15 @@ export default function LoginForm() {
     })
 
     async function onSubmit(values) {
-
-        const JSONdata = JSON.stringify(values)
-        console.log(JSONdata)
-
-        const endpoint = `http://localhost:4000/customer/${JSONdata.username}`
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSONdata,
-        }
-
-        const response = await fetch(endpoint, options)
-
-        const result = {temp: 'hi'}
         
+        return axios.get("http://localhost:5000/customer").then(response => {
+            for (var i = 0; i < response.data.length; i++) {
+                if (response.data[i].name === values.username){
+                    if (values.password === response.data[i].password)
+                        sessionStorage.setItem('userId', response.data[i]._id)
+                }
+            }  
+        })
     }
 
     return (
