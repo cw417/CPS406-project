@@ -3,15 +3,13 @@ import Navbar from '../components/Navbar';
 import CustomerTransactionHistory from '../components/CustomerTransactionHistory';
 import CustomerAccounts from '../components/CustomerAccounts';
 
-export default function CustomerPage({}) {
+export default function CustomerPage() {
 
   // get the customer from React Router
   const location = useLocation();
   const customer = location.state.customer;
   const navigate = useNavigate();
 
-  console.log(customer);
-  
   return (
     <div>
       <Navbar />
