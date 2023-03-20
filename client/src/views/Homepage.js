@@ -2,20 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import Navbar from '../components/Navbar';
 import CustomerList from '../components/CustomerList';
 import { useNavigate } from "react-router-dom";
-
-//function initialCustomers() {
-//  return [{
-//    name: 'test',
-//    address: 'trst',
-//    email: 'test',
-//    password: 'test',
-//    accounts: {
-//      chequing: 0,
-//      savings: 0 
-//    },
-//    transactionHistory: []
-//  }]
-//}
+import Bank from '../interfaces/Bank';
 
 export default function Homepage() {
 
@@ -23,7 +10,8 @@ export default function Homepage() {
   
   const emailRef = useRef();
   const passwordRef = useRef();
-  const [customers, setCustomers] = useState([]);
+  const bank = new Bank('The Reserve');
+  const [customers, setCustomers] = useState(bank.customers);
   const navigate = useNavigate();
 
   // get the list of customers from the database
@@ -53,8 +41,8 @@ export default function Homepage() {
     }
     else {
       if (customers.map(customer => customer.email).includes(email)) { // check for matching email
-        const foundCustomer = customers.filter(customer => customer.email == email).at(0);
-        if (foundCustomer.password == password) { // check for matching password
+        const foundCustomer = customers.filter(customer => customer.email === email).at(0);
+        if (foundCustomer.password === password) { // check for matching password
           navigate('/customerPage', {state: {customer: foundCustomer}});
         }
       }
