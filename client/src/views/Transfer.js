@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import { v4 as uuidv4 } from 'uuid';
 import CustomerAccounts from '../components/CustomerAccounts';
 import Customer from '../interfaces/Customer';
+import Transaction from '../interfaces/Transaction';
 
 export default function Transfer() {
 
@@ -14,7 +14,7 @@ export default function Transfer() {
 
   const navigate = useNavigate();
 
-  const [accountType, setAccountType] = useState('chequing');
+  const [accountType, setAccountType] = useState('Chequing');
   const amountRef = useRef();
   const toRef = useRef();
   const fromRef = useRef();
@@ -22,23 +22,15 @@ export default function Transfer() {
   function transfer() {
     const amount = parseInt(amountRef.current.value);
     if (amount > customer.accounts.chequing) { return; }
-    if (accountType === 'chequing') {
-      customer.accounts.chequing -= amount;
-      const newTransaction = {id: uuidv4(), amount: amount, accountType: 'Chequing', to: toRef.current.value, from: fromRef.current.value };
-      customer.transactionHistory.push(newTransaction);
-    }
-    else {
-      customer.accounts.savings -= amount;
-      const newTransaction = {id: uuidv4(), amount: amount, accountType: 'Savings', to: toRef.current.value, from: fromRef.current.value };
-      customer.transactionHistory.push(newTransaction);
-    }
+    accountType === 'Chequing' ? customer.accounts.chequing -= amount : customer.accounts.savings -= amount;
+    const newTransaction = new Transaction(amount, accountType, toRef.current.value, fromRef.current.value);
+    customer.transactionHistory.push(newTransaction);
     customer.updateCustomer();
     navigate('/customerPage', {state: { customer: customer }});
   }
 
   function handleChange(event) {
     setAccountType(event.target.value);
-    console.log(accountType);
   }
 
   return (
@@ -47,9 +39,9 @@ export default function Transfer() {
       <div className='title'>Transfer</div>
       <CustomerAccounts chequing={customer.accounts.chequing} savings={customer.accounts.savings} />
       <div>
-        <input type='radio' id='chequing' name='accountType' value='chequing' onChange={handleChange} />
+        <input type='radio' id='chequing' name='accountType' value='Chequing' onChange={handleChange} />
         <label>Chequing</label>
-        <input type='radio' id='savings' name='accountType' value='savings' onChange={handleChange} />
+        <input type='radio' id='savings' name='accountType' value='Savings' onChange={handleChange} />
         <label>Savings</label>
         <input type='text' ref={toRef} placeholder='To' />
         <input type='text' ref={fromRef} placeholder='From' />

@@ -2,9 +2,8 @@ import CustomerAccounts from '../components/CustomerAccounts'
 import Navbar from '../components/Navbar'
 import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import Customer from '../interfaces/Customer';
-
+import Transaction from '../interfaces/Transaction';
 
 export default function PayBills() {
 
@@ -17,24 +16,19 @@ export default function PayBills() {
 
   const toRef = useRef();
   const amountRef = useRef();
-  const [accountType, setAccountType] = useState('chequing');
+  const [accountType, setAccountType] = useState('Chequing');
 
   function handlePayBills() {
     const amount = parseInt(amountRef.current.value);
-    if (accountType === 'chequing') {
-      customer.accounts.chequing -= amount;
-    }
-    else {
-      customer.accounts.savings -= amount;
-    }
-    customer.transactionHistory.push({id: uuidv4(), amount: amount, accountType: accountType, to: toRef.current.value, from: customer.name});
+    accountType === 'Chequing' ? customer.accounts.chequing -= amount : customer.accounts.savings -= amount;
+    const newTransaction = new Transaction(amount, accountType, toRef.current.value, customer.name);
+    customer.transactionHistory.push(newTransaction);
     customer.updateCustomer();
     navigate('/customerPage', {state: { customer: customer }});
   }
 
   function handleChangeAccountType(event) {
     setAccountType(event.target.value);
-    console.log(accountType);
   }
 
   return (
@@ -45,9 +39,9 @@ export default function PayBills() {
       <div>
         <input ref={toRef} type='text'  placeholder='Pay to'/>
         <input ref={amountRef} type='text' placeholder='Amount' />
-          <input type='radio' id='chequing' name='accountType' value='chequing' onChange={handleChangeAccountType} />
+          <input type='radio' id='chequing' name='accountType' value='Chequing' onChange={handleChangeAccountType} />
           <label>Chequing</label>
-          <input type='radio' id='savings' name='accountType' value='savings' onChange={handleChangeAccountType} />
+          <input type='radio' id='savings' name='accountType' value='Savings' onChange={handleChangeAccountType} />
           <label>Savings</label>
         <button type='submit' onClick={handlePayBills}>Pay Bills</button>
       </div>
