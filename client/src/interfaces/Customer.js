@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import Transaction from './Transaction';
 
 export default class Customer {
   constructor(name, address, email, password, chequing, savings, transactionHistory) {
@@ -41,6 +42,17 @@ export default class Customer {
 
   setDBID(id) {
     this.dbID = id;
+  }
+
+  deposit(amount, accountType) {
+    /**
+     * @param {number} amount             Amount to deposit.
+     * @param {string} accountType        Either 'Chequing' or 'Savings'.
+     */
+    accountType === 'Chequing' ? this.accounts.chequing += amount : this.accounts.savings += amount;
+    const transaction = new Transaction(amount, accountType, 'Deposit', 'Deposit');
+    this.transactionHistory.push(transaction);
+    this.updateCustomer();
   }
 
   async updateCustomer() {

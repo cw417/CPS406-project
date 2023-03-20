@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar'
 import CustomerAccounts from '../components/CustomerAccounts';
 import Customer from '../interfaces/Customer';
-import Transaction from '../interfaces/Transaction';
 
 export default function Deposit() {
 
@@ -18,10 +17,7 @@ export default function Deposit() {
 
   function deposit() {
     const amount = parseInt(depositRef.current.value);
-    accountType === 'Chequing' ? customer.accounts.chequing += amount : customer.accounts.savings += amount;
-    const transaction = new Transaction(amount, accountType, 'Deposit', 'Deposit');
-    customer.transactionHistory.push(transaction);
-    customer.updateCustomer();
+    customer.deposit(amount, accountType)
     navigate('/customerPage', {state: { customer: customer } });
   }
 
