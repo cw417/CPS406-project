@@ -1,5 +1,5 @@
-import CustomerAccounts from '../components/CustomerAccounts'
-import Navbar from '../components/Navbar'
+import CustomerAccounts from '../comps/CustomerAccounts'
+import Navbar from '../comps/Navbar'
 import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Customer from '../interfaces/Customer';

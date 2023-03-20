@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar'
-import CustomerAccounts from '../components/CustomerAccounts';
+import Navbar from '../comps/Navbar'
+import CustomerAccounts from '../comps/CustomerAccounts';
 import Customer from '../interfaces/Customer';
 
 export default function Deposit() {

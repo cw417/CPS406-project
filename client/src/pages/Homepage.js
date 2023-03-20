@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
-import Navbar from '../components/Navbar';
-import CustomerList from '../components/CustomerList';
+import Navbar from '../comps/Navbar';
+import CustomerList from '../comps/CustomerList';
 import { useNavigate } from "react-router-dom";
 import Bank from '../interfaces/Bank';
 
