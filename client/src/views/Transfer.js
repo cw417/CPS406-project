@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import CustomerAccounts from '../components/CustomerAccounts';
 import Customer from '../interfaces/Customer';
-import Transaction from '../interfaces/Transaction';
 
 export default function Transfer() {
 
@@ -21,11 +20,7 @@ export default function Transfer() {
   
   function transfer() {
     const amount = parseInt(amountRef.current.value);
-    if (amount > customer.accounts.chequing) { return; }
-    accountType === 'Chequing' ? customer.accounts.chequing -= amount : customer.accounts.savings -= amount;
-    const newTransaction = new Transaction(amount, accountType, toRef.current.value, fromRef.current.value);
-    customer.transactionHistory.push(newTransaction);
-    customer.updateCustomer();
+    customer.transfer(amount, accountType, toRef.current.value, fromRef.current.value);
     navigate('/customerPage', {state: { customer: customer }});
   }
 

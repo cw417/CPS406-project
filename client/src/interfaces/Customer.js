@@ -55,6 +55,35 @@ export default class Customer {
     this.updateCustomer();
   }
 
+  transfer(amount, accountType, to, from) {
+    /**
+     * @param {number} amount             Amount to deposit.
+     * @param {string} accountType        Either 'Chequing' or 'Savings'.
+     * @param {string} to                 Sender of the transfer.
+     * @param {string} from               Recipient of the transfer.
+     */
+    // check to make sure that amount is less or equal to amount in account.
+    if (accountType === 'Chequing') {
+      if (amount <= this.accounts.chequing) {
+        return;
+      } 
+      else {
+        this.accounts.chequing -= amount;
+      }
+    }
+    else {
+      if (amount <= this.accounts.savings) {
+        return;
+      } 
+      else {
+        this.accounts.savings -= amount;
+      }
+    }
+    const transaction = new Transaction(amount, accountType, to, from);
+    this.transactionHistory.push(transaction);
+    this.updateCustomer();
+  }
+
   async updateCustomer() {
     await fetch(`http://localhost:5000/update/${this.dbID}`, {
       method: "POST",
