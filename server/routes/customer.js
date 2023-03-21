@@ -32,7 +32,9 @@ routes.route('/customer/add').post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
     id: req.body.id,
-    name: req.body.name,
+    username: req.body.username,
+    first: req.body.first,
+    last: req.body.last,
     email: req.body.email,
     password: req.body.password,
     address: req.body.address,
@@ -56,7 +58,9 @@ routes.route('/update/:id').post(function (req, response) {
   let newvalues = {
     $set: {
       id: req.body.id,
-      name: req.body.name,
+      username: req.body.name,
+      first: req.body.first,
+      last: req.body.last,
       address: req.body.address,
       email: req.body.email,
       password: req.body.password,

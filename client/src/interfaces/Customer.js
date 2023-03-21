@@ -2,10 +2,12 @@ import { v4 as uuidv4 } from 'uuid';
 import Transaction from './Transaction';
 
 export default class Customer {
-  constructor(name, address, email, password, chequing, savings, transactionHistory, dbID = "") {
+  constructor(username, first, last, address, email, password, chequing, savings, transactionHistory, dbID = "") {
     this.dbID = dbID; // ID given by MongoDB; will be set after adding to database and pulling
-    this.id = uuidv4();
-    this.name = name;
+    this.id = uuidv4(); //May Be Redundant
+    this.username = username;
+    this.first = first;
+    this.last = last;
     this.address = address;
     this.email = email;
     this.password = password;
@@ -21,7 +23,7 @@ export default class Customer {
   }
 
   getInfo() {
-    return {name: this.name, address: this.address, email: this.email};
+    return {username: this.username, first: this.first, last: this.last, address: this.address, email: this.email};
   }
 
   getChequing() {
@@ -64,7 +66,7 @@ export default class Customer {
      */
     // check to make sure that amount is less or equal to amount in account.
     if (accountType === 'Chequing') {
-      if (amount <= this.accounts.chequing) {
+      if (amount > this.accounts.chequing) {
         return;
       } 
       else {
@@ -72,7 +74,7 @@ export default class Customer {
       }
     }
     else {
-      if (amount <= this.accounts.savings) {
+      if (amount > this.accounts.savings) {
         return;
       } 
       else {
@@ -89,7 +91,9 @@ export default class Customer {
       method: "POST",
       body: JSON.stringify({
         id: this.id,
-        name: this.name,
+        username: this.username,
+        first: this.first,
+        last: this.last,
         address: this.address,
         email: this.email,
         password: this.password,

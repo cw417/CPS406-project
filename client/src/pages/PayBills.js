@@ -13,7 +13,7 @@ export default function PayBills() {
 
   function getCustomer() {
     axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
-      setCustomer(new Customer(response.data.name, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory, response.data._id))
+      setCustomer(new Customer(response.data.username, response.data.first, response.data.last, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory, response.data._id))
     })
   }
 
@@ -30,6 +30,7 @@ export default function PayBills() {
   function handlePayBills() {
     const amount = parseInt(amountRef.current.value);
     accountType === 'Chequing' ? customer.accounts.chequing -= amount : customer.accounts.savings -= amount;
+    if (customer.accounts.chequing < 0 || customer.accounts.savings < 0) { return null }
     const newTransaction = new Transaction(amount, accountType, toRef.current.value, customer.name);
     customer.transactionHistory.push(newTransaction);
     customer.updateCustomer();

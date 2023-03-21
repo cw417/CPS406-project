@@ -34,7 +34,7 @@ export default function LoginForm() {
                 navigate('/');
             } else {
                 for (var i = 0; i < response.data.length; i++) {
-                    if (response.data[i].name === values.username){
+                    if (response.data[i].username === values.username){
                         if (values.password === response.data[i].password)
                             localStorage.setItem('admin', "false")
                             localStorage.setItem('userId', response.data[i]._id)

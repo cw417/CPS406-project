@@ -11,7 +11,7 @@ export default function Deposit() {
 
   function getCustomer() {
     axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
-      setCustomer(new Customer(response.data.name, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory, response.data._id))
+      setCustomer(new Customer(response.data.username, response.data.first, response.data.last, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory, response.data._id))
     })
   }
   

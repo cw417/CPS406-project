@@ -12,7 +12,7 @@ export default function EditCustomer() {
   function getCustomer() {
     axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
       console.log(response.data.accounts)
-      setCustomer(new Customer(response.data.name, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory, response.data._id))
+      setCustomer(new Customer(response.data.username, response.data.first, response.data.last, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory, response.data._id))
     })
   }
 
@@ -40,7 +40,7 @@ export default function EditCustomer() {
 
   function updateCustomerInfo() {
 
-    if (nameRef.current.value) { customer.name = nameRef.current.value; }
+    if (nameRef.current.value) { customer.username = nameRef.current.value; }
     if (addressRef.current.value) { customer.address = addressRef.current.value; }
     if (emailRef.current.value) { customer.email = emailRef.current.value; }
     if (newPasswordRef.current.value) { 
@@ -68,7 +68,7 @@ export default function EditCustomer() {
         <div>
           <div>
             <label>Name: </label>
-            <input type='text' ref={nameRef} placeholder={customer.name} />
+            <input type='text' ref={nameRef} placeholder={customer.first} />
           </div>
           <div>
             <label>Address: </label>

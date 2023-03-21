@@ -12,7 +12,7 @@ export default function Transfer() {
 
   function getCustomer() {
     axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
-      setCustomer(new Customer(response.data.name, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory, response.data._id))
+      setCustomer(new Customer(response.data.username, response.data.first, response.data.last, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory, response.data._id))
     })
   }
 
@@ -28,6 +28,7 @@ export default function Transfer() {
   const fromRef = useRef();
   
   function transfer() {
+    console.log("transfer")
     const amount = parseInt(amountRef.current.value);
     customer.transfer(amount, accountType, toRef.current.value, fromRef.current.value);
     navigate('/customerPage');
