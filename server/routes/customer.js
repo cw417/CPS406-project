@@ -58,7 +58,7 @@ routes.route('/update/:id').post(function (req, response) {
   let newvalues = {
     $set: {
       id: req.body.id,
-      username: req.body.name,
+      username: req.body.username,
       first: req.body.first,
       last: req.body.last,
       address: req.body.address,
