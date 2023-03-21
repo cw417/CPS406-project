@@ -29,4 +29,25 @@
 
 .right_navbar_item {
     font-weight: 500;
+    position: relative;
+    display: inline;
+}
+
+.right_navbar_item:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    bottom: 10px;
+    position: absolute;
+    background: #C3073f;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.right_navbar_item:hover:after { 
+    width: 100%; 
+    left: 0; 
 }
