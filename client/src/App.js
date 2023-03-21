@@ -17,12 +17,12 @@ export default function App() {
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/signup' element={<SignUp />} />
         <Route exact path='/' element={<Homepage />} />
-        <Route path='/customerPage' element={<CustomerPage />} />
+        <Route path='/accounts' element={<CustomerPage />} />
         <Route path='/transfer' element={<Transfer />} />
         <Route path='/admin' element={<AdminPage />} />
         <Route path='/deposit' element={<Deposit />} />
-        <Route path='/editCustomer' element={<EditCustomer />} />
-        <Route path='/payBills' element={<PayBills />} />
+        <Route path='/edit' element={<EditCustomer />} />
+        <Route path='/bills' element={<PayBills />} />
       </Routes>
     </div>
   );
