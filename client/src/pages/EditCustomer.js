@@ -51,7 +51,7 @@ export default function EditCustomer() {
       }
     }
     customer.updateCustomer();
-    navigate('/customerPage');
+    navigate('/accounts');
   }
 
   if (customer === null) {

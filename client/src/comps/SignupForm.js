@@ -175,7 +175,7 @@ export default function SignUp() {
 
                     <button type="submit" className={styles.submit}>Sign Up</button>
                     <div>
-                        Already Have An Account? {/*Add Link To Login Page */}
+                        Already Have An Account? <a onClick={navigate('/login')}>Login</a>
                     </div>
                 </form>
             </div>

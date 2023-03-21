@@ -31,7 +31,7 @@ export default function Transfer() {
     console.log("transfer")
     const amount = parseInt(amountRef.current.value);
     customer.transfer(amount, accountType, toRef.current.value, fromRef.current.value);
-    navigate('/customerPage');
+    navigate('/accounts');
   }
 
   function handleChange(event) {

@@ -27,7 +27,7 @@ export default function Deposit() {
   function deposit() {
     const amount = parseInt(depositRef.current.value);
     customer.deposit(amount, accountType)
-    navigate('/customerPage');
+    navigate('/accounts');
   }
 
   function handleChangeAccountType(event) {

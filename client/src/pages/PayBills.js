@@ -34,7 +34,7 @@ export default function PayBills() {
     const newTransaction = new Transaction(amount, accountType, toRef.current.value, customer.name);
     customer.transactionHistory.push(newTransaction);
     customer.updateCustomer();
-    navigate('/customerPage');
+    navigate('/accounts');
   }
 
   function handleChangeAccountType(event) {

@@ -38,7 +38,7 @@ export default function LoginForm() {
                         if (values.password === response.data[i].password)
                             localStorage.setItem('admin', "false")
                             localStorage.setItem('userId', response.data[i]._id)
-                            navigate('/customerPage');
+                            navigate('/accounts');
                     }
                 }  
             }
@@ -72,7 +72,7 @@ export default function LoginForm() {
                     <button type="submit" className={styles.submit}>Login</button>
 
                     <div>
-                        Don't Have An Account Yet? {/* Add Link To Sign Up Page */}
+                        Don't Have An Account Yet? <a onClick={navigate('/signup')}>Sign Up</a>
                     </div>
                 </form>
             </div>
