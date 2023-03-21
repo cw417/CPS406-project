@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../comps/Navbar'
 import CustomerAccounts from '../comps/CustomerAccounts';
 import Customer from '../interfaces/Customer';
@@ -11,14 +11,12 @@ export default function Deposit() {
 
   function getCustomer() {
     axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
-      console.log(response.data.accounts)
-      setCustomer(new Customer(response.data.name, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory))
-      customer.setDBID(response.data._id)
+      setCustomer(new Customer(response.data.name, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory, response.data._id))
     })
   }
-
+  
   useEffect(() => {
-      getCustomer()
+    if (userId != null) {getCustomer()}
   }, [])
 
   const [accountType, setAccountType] = useState('Chequing');

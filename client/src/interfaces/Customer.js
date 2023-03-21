@@ -2,8 +2,8 @@ import { v4 as uuidv4 } from 'uuid';
 import Transaction from './Transaction';
 
 export default class Customer {
-  constructor(name, address, email, password, chequing, savings, transactionHistory) {
-    this.dbID = ""; // ID given by MongoDB; will be set after adding to database and pulling
+  constructor(name, address, email, password, chequing, savings, transactionHistory, dbID = "") {
+    this.dbID = dbID; // ID given by MongoDB; will be set after adding to database and pulling
     this.id = uuidv4();
     this.name = name;
     this.address = address;

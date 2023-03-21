@@ -19,7 +19,7 @@ export default function CustomerPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-      getCustomer()
+    if (userId != null) {getCustomer()}
   }, [])
 
   if (customer === null) {

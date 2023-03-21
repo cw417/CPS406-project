@@ -17,7 +17,7 @@ export default function AdminPage() {
   }
 
   useEffect(() => {
-      getCustomers()
+    if (admin != null) {getCustomers()}
   }, [])
 
   if (admin === "false") {
