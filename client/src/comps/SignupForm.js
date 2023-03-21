@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import { emailCheck, userCheck } from '../lib/validate'
 import { useNavigate } from 'react-router-dom'
 import Customer from '../interfaces/Customer'
+import { NavLink } from 'react-router-dom'
 
 export default function SignUp() {
 
@@ -175,7 +176,7 @@ export default function SignUp() {
 
                     <button type="submit" className={styles.submit}>Sign Up</button>
                     <div>
-                        Already Have An Account? <a onClick={navigate('/login')}>Login</a>
+                        Already Have An Account? <NavLink to='/login'>Login</NavLink>
                     </div>
                 </form>
             </div>

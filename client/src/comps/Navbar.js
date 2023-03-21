@@ -43,11 +43,11 @@ export default function Navbar() {
                 <NavLink className={styles.right_navbar_item} to="/deposit">Deposit</NavLink>
                 <NavLink className={styles.right_navbar_item} to="/edit">Edit</NavLink>
                 <NavLink className={styles.right_navbar_item} to="/bills">Bills</NavLink>
-                <a className={styles.right_navbar_item} href="" onClick={signOut}>Sign Out</a>
+                <a className={styles.right_navbar_item} onClick={signOut}>Sign Out</a>
               </>
               :
               <>
-                <a className={styles.right_navbar_item} href="" onClick={navigate('/login')}>Login</a>
+                <NavLink className={styles.right_navbar_item} to="/login">Login</NavLink>
               </>
               }
             </div>

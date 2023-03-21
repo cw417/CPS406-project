@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import { userCheck } from '../lib/validate'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export default function LoginForm() {
 
@@ -72,7 +73,7 @@ export default function LoginForm() {
                     <button type="submit" className={styles.submit}>Login</button>
 
                     <div>
-                        Don't Have An Account Yet? <a onClick={navigate('/signup')}>Sign Up</a>
+                        Don't Have An Account Yet? <NavLink to='/signup'>Sign Up</NavLink>
                     </div>
                 </form>
             </div>
