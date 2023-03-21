@@ -7,7 +7,7 @@ import axios from 'axios'
 
 export default function Deposit() {
   const [ customer, setCustomer ] = useState(null)
-  const userId = sessionStorage.getItem('userId')
+  const userId = localStorage.getItem('userId')
 
   function getCustomer() {
     axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
@@ -15,12 +15,13 @@ export default function Deposit() {
     })
   }
   
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (userId != null) {getCustomer()}
+    if (userId != null) {getCustomer()} else {navigate('/login')}
   }, [])
 
   const [accountType, setAccountType] = useState('Chequing');
-  const navigate = useNavigate();
   const depositRef = useRef();
 
   function deposit() {

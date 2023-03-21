@@ -9,20 +9,19 @@ import axios from 'axios'
 export default function PayBills() {
 
   const [ customer, setCustomer ] = useState(null)
-  const userId = sessionStorage.getItem('userId')
+  const userId = localStorage.getItem('userId')
 
   function getCustomer() {
     axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
-      console.log(response.data.accounts)
       setCustomer(new Customer(response.data.name, response.data.address, response.data.email, response.data.password, response.data.accounts.chequing, response.data.accounts.savings, response.data.transactionHistory, response.data._id))
     })
   }
 
-  useEffect(() => {
-    if (userId != null) {getCustomer()}
-  }, [])
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userId != null) {getCustomer()} else {navigate('/login')}
+  }, [])
 
   const toRef = useRef();
   const amountRef = useRef();

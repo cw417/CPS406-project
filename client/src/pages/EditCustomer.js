@@ -7,7 +7,7 @@ import axios from 'axios'
 export default function EditCustomer() {
 
   const [ customer, setCustomer ] = useState(null)
-  const userId = sessionStorage.getItem('userId')
+  const userId = localStorage.getItem('userId')
 
   function getCustomer() {
     axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
@@ -16,8 +16,10 @@ export default function EditCustomer() {
     })
   }
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (userId != null) {getCustomer()}
+    if (userId != null) {getCustomer()} else {navigate('/login')}
   }, [])
 
   const nameRef = useRef();
@@ -26,8 +28,6 @@ export default function EditCustomer() {
   const oldPasswordRef = useRef();
   const newPasswordRef = useRef();
   const [changePasswordDisplay, setChangePasswordDisplay] = useState('none');
-
-  const navigate = useNavigate();
 
   function toggleChangePasswordDisplay() {
     if (changePasswordDisplay === 'none') {

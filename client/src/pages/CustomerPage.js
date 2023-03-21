@@ -8,7 +8,7 @@ import axios from 'axios'
 export default function CustomerPage() {
 
   const [customer, setCustomer] = useState(null)
-  const userId = sessionStorage.getItem('userId')
+  const userId = localStorage.getItem('userId')
 
   async function getCustomer() {
     axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
@@ -19,7 +19,7 @@ export default function CustomerPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userId != null) {getCustomer()}
+    if (userId != null) {getCustomer()} else {navigate('/login')}
   }, [])
 
   if (customer === null) {
