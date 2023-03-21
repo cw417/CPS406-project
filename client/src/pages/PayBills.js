@@ -1,7 +1,7 @@
 import CustomerAccounts from '../comps/CustomerAccounts'
 import Navbar from '../comps/Navbar'
 import { useRef, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Customer from '../interfaces/Customer';
 import Transaction from '../interfaces/Transaction';
 import axios from 'axios'

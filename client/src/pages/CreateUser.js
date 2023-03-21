@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { useNavigate } from 'react-router';
-import { v4 as uuidv4 } from 'uuid';
 import Navbar from '../comps/Navbar';
 import Customer from '../interfaces/Customer'
 
