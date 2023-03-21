@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../comps/Navbar'
 import CustomerAccounts from '../comps/CustomerAccounts';
 import Customer from '../interfaces/Customer';
