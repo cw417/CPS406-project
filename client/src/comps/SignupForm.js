@@ -86,7 +86,7 @@ export default function SignUp() {
           return;
         });
       
-        navigate('/');
+        navigate('/login');
       }
 
     return (

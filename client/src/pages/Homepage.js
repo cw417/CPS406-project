@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
 import Navbar from '../comps/Navbar';
-import CustomerList from '../comps/CustomerList';
 import { useNavigate } from "react-router-dom";
 import Bank from '../interfaces/Bank';
 
@@ -37,13 +36,13 @@ export default function Homepage() {
     const password = passwordRef.current.value;
     // check given credentials
     if (email === 'admin' && password === ADMIN_PASSWORD) { // if user is admin
-      navigate('/admin', {state: {customers: customers}});
+      navigate('/admin');
     }
     else {
       if (customers.map(customer => customer.email).includes(email)) { // check for matching email
         const foundCustomer = customers.filter(customer => customer.email === email).at(0);
         if (foundCustomer.password === password) { // check for matching password
-          navigate('/customerPage', {state: {customer: foundCustomer}});
+          navigate('/customerPage');
         }
       }
     }
@@ -69,7 +68,6 @@ export default function Homepage() {
         <input placeholder='Password' type='text' ref={passwordRef} onKeyUp={handleKeyPress}/>
         <button type='submit' onClick={handleLogin}>Login</button>
       </div>
-      <CustomerList customers={customers}/>
     </div>
   )
 }
