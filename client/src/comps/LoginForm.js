@@ -9,9 +9,7 @@ import { NavLink } from 'react-router-dom'
 export default function LoginForm() {
 
     const navigate = useNavigate();
-    const handleButtonClick = () => {
-        navigate('/Signup');
-      };
+
     const formik = useFormik({
         initialValues: {
             username:'',
@@ -41,7 +39,7 @@ export default function LoginForm() {
                         if (values.password === response.data[i].password)
                             localStorage.setItem('admin', "false")
                             localStorage.setItem('userId', response.data[i]._id)
-                            navigate('/accounts');
+                            navigate('/dashboard');
                     }
                 }  
             }
@@ -74,9 +72,9 @@ export default function LoginForm() {
 
                     <button type="submit" className={styles.submit}>Login</button>
 
-                    <div>
-                        Don't Have An Account Yet? 
-                     <button onclick="handleButtonClick()" className={styles.butt}> Sign Up   </button></div>
+                    <div className={styles.signup}>
+                        Don't Have An Account Yet? <NavLink to='/Signup' className={styles.button}>Sign Up</NavLink>
+                    </div>
                 </form>
             </div>
         </>

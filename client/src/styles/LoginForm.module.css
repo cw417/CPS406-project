@@ -38,22 +38,23 @@
 .error {
     color: red;
 }
-.butt{
-
+.button{
     position: relative;
     display: inline-block;
-    padding: 5px 5px;
+    padding: 5px;
     background-color: white;
     color: #0e0101;
-    
     border: none;
     outline: none;
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s ease-in-out;
     margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+}
 
-
+.signup {
+    display: flex;
+    align-items: center;
 }
