@@ -5,20 +5,10 @@ import Navbar from '../comps/Navbar'
 export default function Login() {
     return(
         <>
-        
-        <div >
-             <Navbar />
-            
-            
-      
-        </div>
-        <div className={styles.log}>
-            <LoginForm/>
-
-        </div>
-        
+            <Navbar />     
+            <div className={styles.log}>
+                <LoginForm/>
+            </div>
         </>
-        
-        
     )
 }
