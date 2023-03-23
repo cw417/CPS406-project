@@ -51,7 +51,7 @@ export default function AccountsOverview(props) {
                 {savingAccounts.map(sAccount => {
                     return(
                         <>
-                            <div key={sAccount.id}>
+                            <div className={styles.account} key={sAccount.id}>
                                 <p>{sAccount.id}</p>
                                 <p>${sAccount.accountBalance}</p>
                             </div>
@@ -68,7 +68,7 @@ export default function AccountsOverview(props) {
                 {chequingAccounts.map(cAccount => {
                     return(
                         <>
-                            <div key={cAccount.id}>
+                            <div className={styles.account} key={cAccount.id}>
                                 <p>{cAccount.id}</p>
                                 <p>${cAccount.accountBalance}</p>
                             </div>

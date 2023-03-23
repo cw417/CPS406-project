@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../comps/Navbar';
 import AccountsOverview from '../comps/AccountsOverview';
+import QuickActions from '../comps/QuickActions';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Customer from '../interfaces/Customer';
+import styles from "../styles/Dashboard.module.css"
 
 export default function Dashboard() {
 
@@ -34,9 +36,12 @@ export default function Dashboard() {
   }
   
   return (
-    <div>
+    <>
       <Navbar />
-      <AccountsOverview customer={customer}/>
-    </div>
+      <div className={styles.container}>
+        <AccountsOverview customer={customer}/>
+        <QuickActions />
+      </div>
+    </>
   )
 }

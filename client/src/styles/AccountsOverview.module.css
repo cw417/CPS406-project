@@ -29,3 +29,9 @@
     font-size: x-small;
     height: 150px;
 }
+
+.account {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0 5px 0;
+}
