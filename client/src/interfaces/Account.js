@@ -19,8 +19,8 @@ export default class Account {
     this.accountBalance = newVal;
   }
   
-  addTransaction(transaction) { 
-    this.transactionHistory.push(transaction);
+  addTransaction(transaction) {
+    this.transactionHistory.push(transaction.getInfo());
   }
 
   getId() {
@@ -38,6 +38,8 @@ export default class Account {
   }
 
   async updateAccount() {
+    console.log('Update')
+    console.log(this.transactionHistory)
     await fetch(`http://localhost:5000/account/update/${this.id}`, {
       method: "POST",
       body: JSON.stringify({

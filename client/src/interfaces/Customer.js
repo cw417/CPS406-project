@@ -59,7 +59,6 @@ export default class Customer {
   }
 
   async getAccounts(){
-    console.log("inside")
     return fetch(`http://localhost:5000/account/${this.id}`).then(response => response.json())
     .then((data) => {
         var cAccounts = []
