@@ -40,7 +40,7 @@ export default function Dashboard() {
       <Navbar />
       <div className={styles.container}>
         <AccountsOverview customer={customer}/>
-        <QuickActions />
+        <QuickActions customer={customer}/>
       </div>
     </>
   )

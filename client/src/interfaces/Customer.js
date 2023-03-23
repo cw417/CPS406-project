@@ -58,6 +58,27 @@ export default class Customer {
     this.updateCustomer()
   }
 
+  async getAccounts(){
+    console.log("inside")
+    return fetch(`http://localhost:5000/account/${this.id}`).then(response => response.json())
+    .then((data) => {
+        var cAccounts = []
+        var sAccounts = []
+        data.forEach((account) => {
+            if (account.accountType === 'Chequing'){
+                var tempAccount1 = new Account(account._id, account.accountType, account.customerId,
+                    account.accountBalance, account.maxTransferAmount, account.transactionHistory)
+                cAccounts.push(tempAccount1)
+            } else {
+                var tempAccount2 = new Account(account._id, account.accountType, account.customerId,
+                    account.accountBalance, account.maxTransferAmount, account.transactionHistory)
+                sAccounts.push(tempAccount2)
+            }
+        })
+        return {cAccounts, sAccounts}
+    })
+  }
+
   async updateCustomer() {
     await fetch(`http://localhost:5000/update/${this.id}`, {
       method: "POST",

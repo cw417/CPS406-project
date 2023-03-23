@@ -1,6 +1,5 @@
 import styles from '../styles/AccountsOverview.module.css';
 import { useState, useEffect } from 'react';
-import Account from '../interfaces/Account';
 
 export default function AccountsOverview(props) {
 
@@ -13,25 +12,11 @@ export default function AccountsOverview(props) {
     }
 
     async function getAccounts(){
-        fetch(`http://localhost:5000/account/${customer.id}`).then(response => response.json())
-        .then((data) => {
-            var cAccounts = []
-            var sAccounts = []
-            data.forEach((account) => {
-                if (account.accountType === 'Chequing'){
-                    var tempAccount1 = new Account(account._id, account.accountType, account.customerId,
-                        account.accountBalance, account.maxTransferAmount, account.transactionHistory)
-                    cAccounts.push(tempAccount1)
-                } else {
-                    var tempAccount2 = new Account(account._id, account.accountType, account.customerId,
-                        account.accountBalance, account.maxTransferAmount, account.transactionHistory)
-                    sAccounts.push(tempAccount2)
-                }
-            })
-            setChequingAccounts(cAccounts)
-            setSavingAccounts(sAccounts)
+        customer.getAccounts().then((accounts) => {
+            setChequingAccounts(accounts.cAccounts)
+            setSavingAccounts(accounts.sAccounts)
         })
-    }
+    }  
 
     useEffect(() => {
         getAccounts()
