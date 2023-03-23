@@ -72,9 +72,9 @@ export default function LoginForm() {
 
                     <button type="submit" className={styles.submit}>Login</button>
 
-                    <div>
-                        Don't Have An Account Yet? 
-                     <button onClick={navigate('/Signup')} className={styles.butt}>Sign Up</button></div>
+                    <div className={styles.signup}>
+                        Don't Have An Account Yet? <NavLink onClick={navigate('/Signup')} className={styles.button}> Sign Up</NavLink>
+                    </div>
                 </form>
             </div>
         </>

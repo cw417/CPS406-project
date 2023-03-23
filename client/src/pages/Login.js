@@ -1,5 +1,5 @@
 import LoginForm from "../comps/LoginForm"
-import styles from '../styles/login.module.css'
+import styles from '../styles/Login.module.css'
 import Navbar from '../comps/Navbar'
 
 export default function Login() {
