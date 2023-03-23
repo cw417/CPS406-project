@@ -1,3 +1,5 @@
+import Account from "./Account";
+
 export default class Customer {
   constructor(username, first, last, address, email, password, chequing, savings, id = "") {
     this.id = id;
@@ -31,6 +33,29 @@ export default class Customer {
 
   getSavings() {
     return this.accounts.savings;
+  }
+
+  async openAccount(type) {
+    const data = {accountType: type}
+
+    await fetch(`http://localhost:5000/account/add/${this.id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then(response => response.json()).then((data) => {
+      if (type === 'Chequing') {
+        this.accounts.chequing.push(data.insertedId)
+      } else {
+        this.accounts.savings.push(data.insertedId)
+      }
+    })
+    .catch(error => {
+      window.alert(error);
+      return;
+    });
+    this.updateCustomer()
   }
 
   async updateCustomer() {

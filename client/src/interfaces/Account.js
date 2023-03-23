@@ -4,14 +4,14 @@ export default class Account {
     accountType,
     customerId,
     accountBalance,
-    maxTransferAccount,
+    maxTransferAmount,
     transactionHistory
   ) {
     this.id = id;
     this.accountType = accountType;
     this.customerId = customerId;
     this.accountBalance = accountBalance;
-    this.maxTransferAccount = maxTransferAccount;
+    this.maxTransferAmount = maxTransferAmount;
     this.transactionHistory = transactionHistory;
   }
 
@@ -32,7 +32,7 @@ export default class Account {
       accountType: this.accountType,
       customerId: this.customerId,
       accountBalance: this.accountBalance,
-      maxTransferAccount: this.maxTransferAccount,
+      maxTransferAmount: this.maxTransferAmount,
       transactionHistory: this.transactionHistory,
     };
   }
@@ -44,7 +44,7 @@ export default class Account {
         accountType: this.accountType,
         customerId: this.customerId,
         accountBalance: this.accountBalance,
-        maxTransferAccount: this.maxTransferAccount,
+        maxTransferAmount: this.maxTransferAmount,
         transactionHistory: this.transactionHistory,
       }),
       headers: {

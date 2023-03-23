@@ -33,7 +33,7 @@ export default function Navbar() {
       <nav>
         <div className={styles.navbar}>
             <div className={styles.left_navbar}>
-                <NavLink href="/"><img src={logo} height='50' alt='The Reserve'/></NavLink>
+                <NavLink to="/"><img src={logo} height='50' alt='The Reserve'/></NavLink>
             </div>
             <div className={styles.right_navbar}>
               {customer !== null ? 

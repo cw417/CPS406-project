@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../comps/Navbar';
+import AccountsOverview from '../comps/AccountsOverview';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Customer from '../interfaces/Customer';
 
 export default function Dashboard() {
 
@@ -10,7 +12,11 @@ export default function Dashboard() {
 
   async function getCustomer() {
     axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
-      setCustomer(response.data)
+      var data = response.data
+      var custObject = new Customer(data.username, data.first, data.last, 
+        data.address, data.email, data.password, data.accounts.chequing, data.accounts.savings,
+        userId)
+      setCustomer(custObject)
     })
   }
 
@@ -30,7 +36,7 @@ export default function Dashboard() {
   return (
     <div>
       <Navbar />
-
+      <AccountsOverview customer={customer}/>
     </div>
   )
 }

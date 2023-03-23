@@ -1,0 +1,31 @@
+.container {
+    background-color: #950740;
+    width: 600px;
+    min-height: 400px;
+    height: fit-content;
+    margin: 25px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.main_header {
+    font-size: small;
+}
+
+.header {
+    font-size: x-small;
+    display: flex;
+    justify-content: space-between;
+}
+
+.savings {
+    margin: 10px 0 10px 0;
+    font-size: x-small;
+    height: 150px;
+}
+
+.chequing {
+    margin: 10px 0 10px 0;
+    font-size: x-small;
+    height: 150px;
+}
