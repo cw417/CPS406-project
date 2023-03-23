@@ -1,10 +1,6 @@
-import { v4 as uuidv4 } from 'uuid';
-import Transaction from './Transaction';
-
 export default class Customer {
-  constructor(username, first, last, address, email, password, chequing, savings, transactionHistory, dbID = "") {
-    this.dbID = dbID; // ID given by MongoDB; will be set after adding to database and pulling
-    this.id = uuidv4(); //May Be Redundant
+  constructor(username, first, last, address, email, password, chequing, savings, id = "") {
+    this.id = id;
     this.username = username;
     this.first = first;
     this.last = last;
@@ -15,7 +11,10 @@ export default class Customer {
       chequing: chequing,
       savings: savings
     }
-    this.transactionHistory = transactionHistory;
+  }
+
+  setId(id) {
+    this.id = id;
   }
 
   getId() {
@@ -34,63 +33,10 @@ export default class Customer {
     return this.accounts.savings;
   }
 
-  getTransactionHistory() {
-    return this.transactionHistory;
-  }
-
-  getDBID() {
-    return this.dbID;
-  }
-
-  setDBID(id) {
-    this.dbID = id;
-  }
-
-  deposit(amount, accountType) {
-    /**
-     * @param {number} amount             Amount to deposit.
-     * @param {string} accountType        Either 'Chequing' or 'Savings'.
-     */
-    accountType === 'Chequing' ? this.accounts.chequing += amount : this.accounts.savings += amount;
-    const transaction = new Transaction(amount, accountType, 'Deposit', 'Deposit');
-    this.transactionHistory.push(transaction);
-    this.updateCustomer();
-  }
-
-  transfer(amount, accountType, to, from) {
-    /**
-     * @param {number} amount             Amount to deposit.
-     * @param {string} accountType        Either 'Chequing' or 'Savings'.
-     * @param {string} to                 Sender of the transfer.
-     * @param {string} from               Recipient of the transfer.
-     */
-    // check to make sure that amount is less or equal to amount in account.
-    if (accountType === 'Chequing') {
-      if (amount > this.accounts.chequing) {
-        return;
-      } 
-      else {
-        this.accounts.chequing -= amount;
-      }
-    }
-    else {
-      if (amount > this.accounts.savings) {
-        return;
-      } 
-      else {
-        this.accounts.savings -= amount;
-      }
-    }
-    const transaction = new Transaction(amount, accountType, to, from);
-    this.transactionHistory.push(transaction);
-    this.updateCustomer();
-  }
-
   async updateCustomer() {
-    await fetch(`http://localhost:5000/update/${this.dbID}`, {
+    await fetch(`http://localhost:5000/update/${this.id}`, {
       method: "POST",
       body: JSON.stringify({
-        id: this.id,
         username: this.username,
         first: this.first,
         last: this.last,
@@ -100,8 +46,7 @@ export default class Customer {
         accounts: {
           chequing: this.accounts.chequing,
           savings: this.accounts.savings
-        },
-      transactionHistory: this.transactionHistory
+        }
       }),
       headers: {
         'Content-Type': 'application/json'

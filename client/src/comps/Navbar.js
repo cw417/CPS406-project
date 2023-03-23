@@ -38,11 +38,7 @@ export default function Navbar() {
             <div className={styles.right_navbar}>
               {customer !== null ? 
               <>
-                <NavLink className={styles.right_navbar_item} to="/accounts">Accounts</NavLink>
-                <NavLink className={styles.right_navbar_item} to="/transfer">Transfer</NavLink>
-                <NavLink className={styles.right_navbar_item} to="/deposit">Deposit</NavLink>
-                <NavLink className={styles.right_navbar_item} to="/edit">Edit</NavLink>
-                <NavLink className={styles.right_navbar_item} to="/bills">Bills</NavLink>
+                <NavLink className={styles.right_navbar_item} to="/dashboard">Dashboard</NavLink>
                 <a className={styles.right_navbar_item} onClick={signOut}>Sign Out</a>
               </>
               :

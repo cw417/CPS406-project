@@ -39,7 +39,7 @@ export default function LoginForm() {
                         if (values.password === response.data[i].password)
                             localStorage.setItem('admin', "false")
                             localStorage.setItem('userId', response.data[i]._id)
-                            navigate('/accounts');
+                            navigate('/dashboard');
                     }
                 }  
             }

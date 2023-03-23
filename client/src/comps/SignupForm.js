@@ -81,12 +81,14 @@ export default function SignUp() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(newCustomer),
+        }).then(response => response.json()).then((data) => {
+            newCustomer.setId(data.insertedId)
         })
         .catch(error => {
           window.alert(error);
           return;
         });
-      
+
         navigate('/login');
       }
 

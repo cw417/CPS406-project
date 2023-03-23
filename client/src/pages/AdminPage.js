@@ -1,5 +1,4 @@
 import Navbar from '../comps/Navbar'
-import CustomerList from '../comps/CustomerList'
 import { useEffect, useState } from 'react'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
@@ -34,7 +33,6 @@ export default function AdminPage() {
       <div>
         <Navbar />
         <div className='title'>Admin</div>
-        <CustomerList customers={customers}/>
       </div>
     )
   }
