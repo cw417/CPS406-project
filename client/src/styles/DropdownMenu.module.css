@@ -1,0 +1,14 @@
+.Trigger {
+    width: fit-content;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.Content {
+    width: 500px;
+}
+
+.Item {
+    display: flex;
+    justify-content: space-between;
+}
