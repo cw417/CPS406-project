@@ -52,10 +52,10 @@ routes.route("/account/update/:id").post(function (req, response) {
   let newvalues = {
     $set: {
       accountType: req.body.accountType,
-      customerId: req.body.id,
+      customerId: req.body.customerId,
       accountBalance: req.body.accountBalance,
       maxTransferAmount: req.body.maxTransferAmount,
-      transactionHistory: req.params.transactionHistory,
+      transactionHistory: req.body.transactionHistory,
     },
   };
   db_connect
