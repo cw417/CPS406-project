@@ -31,7 +31,6 @@ routes.route('/customer/:id').get(function (req, res) {
 routes.route('/customer/add').post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
-    id: req.body.id,
     username: req.body.username,
     first: req.body.first,
     last: req.body.last,
@@ -39,15 +38,15 @@ routes.route('/customer/add').post(function (req, response) {
     password: req.body.password,
     address: req.body.address,
     accounts: {
-      chequing: 0,
-      savings: 0
-    },
-    transactionHistory: []
+      chequing: [],
+      savings: []
+    }
   };
   db_connect.collection('customers').insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);
   });
+
 });
  
 // Update a customer by id.
@@ -57,7 +56,6 @@ routes.route('/update/:id').post(function (req, response) {
   let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
     $set: {
-      id: req.body.id,
       username: req.body.username,
       first: req.body.first,
       last: req.body.last,
@@ -67,8 +65,7 @@ routes.route('/update/:id').post(function (req, response) {
       accounts: {
         chequing: req.body.accounts.chequing,
         savings: req.body.accounts.savings 
-      },
-      transactionHistory: req.body.transactionHistory 
+      }
     },
   };
   db_connect
@@ -79,16 +76,5 @@ routes.route('/update/:id').post(function (req, response) {
       response.json(res);
     });
 });
- 
-//// Delete a recipe
-//routes.route('/:id').delete((req, response) => {
-//  let db_connect = dbo.getDb();
-//  let myquery = { _id: ObjectId(req.params.id) };
-//  db_connect.collection('recipes').deleteOne(myquery, function (err, obj) {
-//    if (err) throw err;
-//    console.log('1 document deleted');
-//    response.json(obj);
-//  });
-//});
-// 
+
 module.exports = routes;
