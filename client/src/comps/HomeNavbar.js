@@ -12,23 +12,22 @@ export default function HomeNavbar() {
               <img src={logo} height="50" alt="The Reserve" />
             </NavLink>
           </div>
+          <NavLink href="/">
+            <div className={styles.company_text}>The Reserve</div>
+          </NavLink>
+
           <div className={styles.right_navbar}>
-            {null === null ? (
-              <>
-                <NavLink className={styles.right_navbar_item} to="/dashboard">
-                  Dashboard
-                </NavLink>
-                <a className={styles.right_navbar_item}>
-                  Sign Out
-                </a>
-              </>
-            ) : (
-              <>
-                <NavLink className={styles.right_navbar_item} to="/login">
-                  Login
-                </NavLink>
-              </>
-            )}
+            <NavLink className={styles.right_navbar_item}>Our Products</NavLink>
+            <NavLink className={styles.right_navbar_item}>Features</NavLink>
+            <NavLink className={styles.right_navbar_item}>Pricing</NavLink>
+            <NavLink className={styles.right_navbar_item} to="/login">
+              Sign In
+            </NavLink>
+          </div>
+          <div className={styles.right_navbar}>
+            <NavLink className={styles.top_red_round_button} to="/signup">
+              Get Started
+            </NavLink>
           </div>
         </div>
       </nav>

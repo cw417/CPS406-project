@@ -13,6 +13,15 @@
     padding-left: 40px;
 }
 
+.company_text {
+    font-size: 30px;
+}
+
+.middle_navbar{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .right_navbar {
     padding-right: 20px;
     margin-left: auto;
@@ -50,4 +59,14 @@
 .right_navbar_item:hover:after { 
     width: 100%; 
     left: 0; 
+}
+
+.top_red_round_button {
+    background-color:#C3073F;
+    color: #fff;
+    border-radius:40px;
+}
+
+.top_red_round_button:hover {
+    background-color:#950740;
 }
