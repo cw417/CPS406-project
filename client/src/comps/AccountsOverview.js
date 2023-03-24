@@ -1,5 +1,6 @@
 import styles from '../styles/AccountsOverview.module.css';
 import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function AccountsOverview(props) {
 
@@ -37,7 +38,7 @@ export default function AccountsOverview(props) {
                     return(
                         <>
                             <div className={styles.account} key={sAccount.id}>
-                                <p>{sAccount.id}</p>
+                                <NavLink to={`/accounts/${sAccount.id}`}>{sAccount.id}</NavLink>
                                 <p>${sAccount.accountBalance}</p>
                             </div>
                         </>
@@ -54,7 +55,7 @@ export default function AccountsOverview(props) {
                     return(
                         <>
                             <div className={styles.account} key={cAccount.id}>
-                                <p>{cAccount.id}</p>
+                            <NavLink to={`/accounts/${cAccount.id}`}>{cAccount.id}</NavLink>
                                 <p>${cAccount.accountBalance}</p>
                             </div>
                         </>

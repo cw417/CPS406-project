@@ -1,7 +1,7 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import DropdownStyles from '../styles/DropdownMenu.module.css';
 import { useRef, useState } from 'react';
-import Transaction from '../interfaces/Transaction';
+import Transaction from '../objects/Transaction';
 
 export default function Transfer(props) {
 

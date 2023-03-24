@@ -2,7 +2,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import DropdownStyles from '../styles/DropdownMenu.module.css'
 import styles from "../styles/Deposit.module.css"
 import { useState } from 'react'
-import Transaction from '../interfaces/Transaction'
+import Transaction from '../objects/Transaction'
 
 export default function Deposit(props) {
 
