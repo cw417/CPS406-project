@@ -28,6 +28,15 @@ routes.route("/account/:id").get(function (req, res) {
     });
 });
 
+// Get a specific account back
+routes.route("/account/get/:id").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId(req.params.id)};
+  db_connect
+    .collection("accounts")
+    .findOne(myquery).then((data) => res.json(data))
+});
+
 // Create a new account. (The id is the customer's id that this account belongs to)
 routes.route("/account/add/:id").post(function (req, response) {
   let db_connect = dbo.getDb();

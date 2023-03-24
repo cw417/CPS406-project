@@ -3,7 +3,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { emailCheck, userCheck } from '../lib/validate'
 import { useNavigate } from 'react-router-dom'
-import Customer from '../interfaces/Customer'
+import Customer from '../objects/Customer'
 import { NavLink } from 'react-router-dom'
 
 export default function SignUp() {

@@ -2,11 +2,11 @@ import LoginForm from "../comps/LoginForm"
 import styles from '../styles/Login.module.css'
 import Navbar from '../comps/Navbar'
 import { useState, useEffect } from "react"
-import Bank from '../interfaces/Bank'
+import Bank from '../objects/Bank'
 
 export default function Login() {
 
-    const [bank, setBank] = useState(new Bank('The Reserve'));
+    const [bank, setBank] = useState(new Bank());
     
     useEffect(() => {
       async function getCustomers() {

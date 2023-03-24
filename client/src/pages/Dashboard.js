@@ -4,7 +4,7 @@ import AccountsOverview from '../comps/AccountsOverview';
 import QuickActions from '../comps/QuickActions';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import Customer from '../interfaces/Customer';
+import Customer from '../objects/Customer';
 import styles from "../styles/Dashboard.module.css"
 
 export default function Dashboard() {

@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import AdminPage from './pages/AdminPage';
 import SignUp from './pages/SignUp';
+import Account from './pages/Account';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route exact path='/' element={<Homepage />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/admin' element={<AdminPage />} />
+        <Route path='/accounts/:aNum' element={<Account />} />
       </Routes>
     </div>
   );
