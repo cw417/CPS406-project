@@ -18,13 +18,12 @@
   margin: 10px;
   grid-template-columns: auto auto auto;
   row-gap: 3px;
-  column-gap: 20px;
   padding-left: 100px;
   padding-right: 100px;
 }
 
 .grid_item1 {
-  font-size: 15px;
+  font-size: 12px;
   text-align: center;
   grid-column-start: 3;
   grid-column-end: 4;
@@ -76,6 +75,7 @@
 .third_box {
   width:650px;
   padding-left: 10px;
+  font-size: 23px;
 }
 
 .red_bold_text {
