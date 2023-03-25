@@ -15,12 +15,10 @@ export default function Deposit(props) {
     const [depositAmount, setDepositAmount] = useState(0);
     
     function makeDeposit() {
-        if (depositAmount > -1 && selectedAccount !== null) {
+        if (depositAmount > 0 && selectedAccount !== null) {
             const transaction = new Transaction(depositAmount, selectedAccount.accountType,
                 selectedAccount.id, "Cheque", "Deposit");
-            selectedAccount.setAccountBalance(Number(selectedAccount.accountBalance + parseFloat(depositAmount)));
-            selectedAccount.addTransaction(transaction);
-            selectedAccount.updateAccount();
+            selectedAccount.deposit(depositAmount, transaction)
         }
     }
 
@@ -42,7 +40,7 @@ export default function Deposit(props) {
                         })}
                     </DropdownMenu.Content>
                 </DropdownMenu.Root>
-                <input type="number" onChange={(event) => setDepositAmount(event.target.value)}/>
+                Amount: <input type="number" onChange={(event) => setDepositAmount(event.target.value)}/>
                 <button type="submit" onClick={makeDeposit}>Make Deposit</button>
             </div>
         </>

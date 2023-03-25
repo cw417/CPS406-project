@@ -15,6 +15,27 @@ export default class Account {
     this.transactionHistory = transactionHistory;
   }
 
+  deposit(amount, transaction) {
+    this.accountBalance += parseFloat(amount)
+    this.addTransaction(transaction);
+    this.updateAccount();
+  }
+
+  withdraw(amount, transaction) {
+    if (amount < this.accountBalance) {
+      this.accountBalance -= amount
+      this.addTransaction(transaction)
+      this.updateAccount()
+    }
+  }
+
+  transfer(sendTo, amount, transaction, sendTransaction) {
+    if (amount < this.accountBalance) {
+      this.withdraw(amount, transaction)
+      sendTo.deposit(amount, sendTransaction)
+    }
+  }
+
   setAccountBalance(newVal) {
     this.accountBalance = newVal;
   }
