@@ -98,7 +98,7 @@ export default function PayBills(props) {
             <label>Amount:</label>
           </div>
           <div>
-            <span>$</span>
+            <span>$ </span>
             <input
               type="number"
               onChange={(event) => setPayAmount(event.target.value)}

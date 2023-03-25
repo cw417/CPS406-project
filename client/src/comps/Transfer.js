@@ -118,7 +118,7 @@ export default function Transfer(props) {
             <span>$ </span>
             <input
               ref={amountRef}
-              type="text"
+              type="number"
               className={TransferStyles.FormInput}
               placeholder="0.00"
             />
