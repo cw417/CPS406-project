@@ -119,12 +119,12 @@ export default function Transfer(props) {
               placeholder="0.00"
             />
           </div>
-          <div>
+          <div className={TransferStyles.centerAlignDiv}>
             <button
               onClick={handleTransfer}
               className={TransferStyles.FormButton}
             >
-              Transfer
+              Finish
             </button>{" "}
           </div>
         </div>
