@@ -25,8 +25,8 @@ export default function AddPayee() {
         <p style={{ fontWeight: "bold", fontSize: "30px" }}>Add Payee</p>
       </div>
       <div>
-        <form onSubmit={handleSubmit}>
-          <label>
+        <form onSubmit={handleSubmit} className={styles.Form}>
+          <label className={styles.FormLabel}>
             Payee Name:
             <input
               type="text"
@@ -34,7 +34,7 @@ export default function AddPayee() {
               onChange={(e) => setPayeeName(e.target.value)}
             />
           </label>
-          <label>
+          <label className={styles.FormLabel}>
             Account Number:
             <input
               type="text"
@@ -42,7 +42,9 @@ export default function AddPayee() {
               onChange={(e) => setAccountNumber(e.target.value)}
             />
           </label>
-          <button type="submit">Complete</button>
+          <button className={styles.FormButton} type="submit">
+            Complete
+          </button>
         </form>
       </div>
     </div>

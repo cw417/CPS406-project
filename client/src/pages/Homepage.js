@@ -1,4 +1,6 @@
 import HomeNavbar from "../comps/HomeNavbar";
+import AddRecipient from "../comps/AddRecipient";
+import AddPayee from "../comps/AddPayee";
 import styles from "../styles/HomePage.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import desktopMan from "../images/man_on_desktop.png";
@@ -6,6 +8,8 @@ import desktopMan from "../images/man_on_desktop.png";
 export default function Homepage() {
   return (
     <div>
+      <AddPayee />
+      <AddRecipient/>
       <HomeNavbar />
       <div className={styles.outer_box}>
         <div className={styles.left_box}>

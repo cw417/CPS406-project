@@ -25,8 +25,8 @@ export default function AddPayee() {
         <p style={{ fontWeight: "bold", fontSize: "30px" }}>Add Recipient</p>
       </div>
       <div>
-        <form onSubmit={handleSubmit}>
-          <label>
+        <form onSubmit={handleSubmit} className={styles.Form}>
+          <label className={styles.FormLabel}>
             Name:
             <input
               type="text"
@@ -34,7 +34,7 @@ export default function AddPayee() {
               onChange={(e) => setName(e.target.value)}
             />
           </label>
-          <label>
+          <label className={styles.FormLabel}>
             Email:
             <input
               type="email"
@@ -42,7 +42,7 @@ export default function AddPayee() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
-          <label>
+          <label className={styles.FormLabel}>
             Confirm Email:
             <input
               type="email"
@@ -50,7 +50,7 @@ export default function AddPayee() {
               onChange={(e) => setConfirmEmail(e.target.value)}
             />
           </label>
-          <label>
+          <label className={styles.FormLabel}>
             Phone Number:
             <input
               type="tel"
@@ -58,7 +58,9 @@ export default function AddPayee() {
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </label>
-          <button type="submit">Complete</button>
+          <button className={styles.FormButton} type="submit">
+            Complete
+          </button>
         </form>
       </div>
     </div>
