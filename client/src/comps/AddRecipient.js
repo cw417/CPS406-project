@@ -1,4 +1,4 @@
-import styles from "../styles/AddPayee.module.css";
+import styles from "../styles/AddRecipient.module.css";
 import { useState } from "react";
 
 export default function AddPayee() {
@@ -22,7 +22,7 @@ export default function AddPayee() {
   return (
     <div className={styles.outerFrame}>
       <div style={{ textAlign: "center" }}>
-        <p style={{ fontWeight: "bold", fontSize: "30px" }}>Add Payee</p>
+        <p style={{ fontWeight: "bold", fontSize: "30px" }}>Add Recipient</p>
       </div>
       <div>
         <form onSubmit={handleSubmit}>
