@@ -5,25 +5,24 @@ import { useRef, useState } from "react";
 import Transaction from "../objects/Transaction";
 
 export default function Transfer(props) {
-  const [fromAccount, setFromAccount] = useState(null);
-  const [toAccount, setToAccount] = useState(null);
-  const [selectedFromAccount, setSelectedFromAccount] = useState(null);
-  const [selectedToAccount, setSelectedToAccount] = useState(null);
-  const sAccounts = props.sAccounts;
-  const cAccounts = props.cAccounts;
-  const accounts = sAccounts.concat(cAccounts);
-  const amountRef = useRef();
 
-  function handleTransfer() {
-    const amount = amountRef.current.value;
-    const newTransaction = new Transaction(
-      amount,
-      "TRANSFER",
-      toAccount,
-      fromAccount
-    );
-    console.log(amount);
-  }
+    const [fromAccount, setFromAccount] = useState(null);
+    const [selectedFromAccount, setSelectedFromAccount] = useState('Select Account');
+    const [toAccount, setToAccount] = useState(null);
+    const [selectedToAccount, setSelectedToAccount] = useState('Select Account');
+    const sAccounts = props.sAccounts
+    const cAccounts = props.cAccounts
+    const accounts = sAccounts.concat(cAccounts)
+    const amountRef = useRef();
+
+    function handleTransfer() {
+        const amount = amountRef.current.value;
+        if (amount > 0 && fromAccount !== null && toAccount !== null && fromAccount !== toAccount) {
+            const fromTransaction = new Transaction(amount, fromAccount.accountType, toAccount.id, fromAccount.id, "Transfer");
+            const toTransaction = new Transaction(amount, toAccount.accountType, toAccount.id, fromAccount.id, "Transfer");
+            fromAccount.transfer(toAccount, amount, fromTransaction, toTransaction);
+        }
+    }
 
   return (
     <>
@@ -36,8 +35,8 @@ export default function Transfer(props) {
           <DropdownMenu.Trigger className={DropdownStyles.Trigger}>
             {selectedFromAccount
               ? `${selectedFromAccount.accountType} Account - ${selectedFromAccount.id}`
-              : "Select Account"}
-          </DropdownMenu.Trigger>
+              : "{displayFromAccount"}
+          }</DropdownMenu.Trigger>
           <DropdownMenu.Content
             className={DropdownStyles.Content}
             align="start"
@@ -47,8 +46,7 @@ export default function Transfer(props) {
                 <DropdownMenu.Item
                   className={DropdownStyles.Item}
                   onSelect={() => {
-                    setFromAccount(account.id);
-                    setSelectedFromAccount(account);
+                    setFromAccount(account); setSelectedFromAccount(account.id);
                   }}
                 >
                   <p>
@@ -67,7 +65,7 @@ export default function Transfer(props) {
           <DropdownMenu.Trigger className={DropdownStyles.Trigger}>
             {selectedToAccount
               ? `${selectedToAccount.accountType} Account - ${selectedToAccount.id}`
-              : "Select Account"}
+              : "{displayToAccount"}
           </DropdownMenu.Trigger>
           <DropdownMenu.Content
             className={DropdownStyles.Content}
@@ -78,8 +76,7 @@ export default function Transfer(props) {
                 <DropdownMenu.Item
                   className={DropdownStyles.Item}
                   onSelect={() => {
-                    setToAccount(account.id);
-                    setSelectedToAccount(account);
+                    setToAccount(account); setSelectedToAccount(account.id);
                   }}
                 >
                   <p>
