@@ -31,7 +31,7 @@ routes.route("/account/:id").get(function (req, res) {
 // Get a specific account back
 routes.route("/account/get/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId(req.params.id)};
+  let myquery = { _id: req.params.id};
   db_connect
     .collection("accounts")
     .findOne(myquery).then((data) => res.json(data))
@@ -40,7 +40,10 @@ routes.route("/account/get/:id").get(function (req, res) {
 // Create a new account. (The id is the customer's id that this account belongs to)
 routes.route("/account/add/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
+  const randomNum = Math.random().toString().substr(2, 8);
+  const timestamp = Date.now().toString().substr(6, 10);
     let myobj = {
+      _id: randomNum + timestamp,
       accountType: req.body.accountType,
       customerId: req.params.id,
       accountBalance: 0.00,
@@ -57,7 +60,7 @@ routes.route("/account/add/:id").post(function (req, response) {
 routes.route("/account/update/:id").post(function (req, response) {
   console.log("editing");
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId(req.params.id) };
+  let myquery = { _id: req.params.id };
   let newvalues = {
     $set: {
       accountType: req.body.accountType,
