@@ -1,0 +1,36 @@
+.Form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.FormElement {
+  margin: 10px 0;
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.FormElement > div {
+  margin: 5px;
+}
+.FormInput[type="text"] {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100px;
+  text-align: right;
+}
+
+.FormButton {
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1a1a1d;
+  color: #fff;
+  cursor: pointer;
+}
+
+.FormButton:hover {
+  background-color: #c3073f;
+}
