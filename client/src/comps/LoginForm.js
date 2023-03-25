@@ -78,7 +78,7 @@ export default function LoginForm() {
                     <button type="submit" className={styles.submit}>Login</button>
 
                     <div className={styles.signup}>
-                        Don't Have An Account Yet? <NavLink to='/Signup' className={styles.button}>Sign Up</NavLink>
+                        Don't Have An Account Yet?<NavLink to='/Signup' className={styles.button}>Sign Up</NavLink>
                     </div>
                 </form>
             </div>

@@ -30,11 +30,13 @@
     border-radius: 8px;
     border: 1px solid black;
     font-size: medium;
-    background-color: #4E4E50;
+    background-color: #C3073F;
     color: white;
     padding: 8px;
 }
-
+.submit:hover{
+    background-color: #950740;
+}
 .error {
     color: red;
 }
@@ -49,7 +51,7 @@
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s ease-in-out;
-    margin: 4px 2px;
+    margin: 8px 2px;
     cursor: pointer;
     border-radius: 8px;
 }
