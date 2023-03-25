@@ -1,6 +1,7 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import DropdownStyles from "../styles/DropdownMenu.module.css";
 import TransferStyles from "../styles/Transfer.module.css";
+import { NavLink } from "react-router-dom";
 import { useRef, useState } from "react";
 import Transaction from "../objects/Transaction";
 
@@ -9,7 +10,9 @@ export default function Transfer(props) {
   const [displayFromAccount, setDisplayFromAccount] =
     useState("Select Account");
   const [toAccount, setToAccount] = useState(null);
-  const [displayToAccount, setDisplayToAccount] = useState("Select Account");
+  const [displayToAccount, setDisplayToAccount] = useState(
+    "Select Account/Recipient"
+  );
   const sAccounts = props.sAccounts;
   const cAccounts = props.cAccounts;
   const accounts = sAccounts.concat(cAccounts);
@@ -82,6 +85,7 @@ export default function Transfer(props) {
               <DropdownMenu.Trigger className={DropdownStyles.Trigger}>
                 {displayToAccount}
               </DropdownMenu.Trigger>
+              <NavLink to="/contacts">&emsp;Add Recipient</NavLink>
               <DropdownMenu.Content
                 className={DropdownStyles.Content}
                 align="start"
