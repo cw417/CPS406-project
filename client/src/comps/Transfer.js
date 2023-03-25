@@ -76,9 +76,10 @@ export default function Transfer(props) {
         </DropdownMenu.Root>
       </div>
       <div>
+        <span>To: </span>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger className={DropdownStyles.Trigger}>
-            To: {displayToAccount}
+            {displayToAccount}
           </DropdownMenu.Trigger>
           <DropdownMenu.Content
             className={DropdownStyles.Content}
