@@ -1,6 +1,6 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import DropdownStyles from "../styles/DropdownMenu.module.css";
-import TransferStyles from "../styles/Transfer.module.css";
+import styles from "../styles/Transfer.module.css";
 import { useRef, useState } from "react";
 import Transaction from "../objects/Transaction";
 
@@ -43,9 +43,6 @@ export default function Transfer(props) {
 
   return (
     <>
-      <div>
-        <h1>Transfer</h1>
-      </div>
       <div>
         <span>From: </span>
         <DropdownMenu.Root>

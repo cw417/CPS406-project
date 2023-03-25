@@ -26,7 +26,10 @@ export default function QuickActions(props) {
     return (
         <>
             <div className={styles.container}>
-                <h1>Quick Actions</h1>
+                <div className={styles.header}>
+                    <h1>Quick Actions</h1>
+                    <h1>{currentAction}</h1>
+                </div>
                 <div className={styles.options}>
                     <button className={styles.button} onClick={() => setCurrentAction('Transfer')}>Transfer</button>
                     <button className={styles.button} onClick={() => setCurrentAction('Pay')}>Pay Bills</button>

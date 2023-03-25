@@ -7,3 +7,8 @@
     padding: 10px;
     border-radius: 10px;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}

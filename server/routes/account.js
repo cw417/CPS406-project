@@ -40,7 +40,7 @@ routes.route("/account/get/:id").get(function (req, res) {
 // Create a new account. (The id is the customer's id that this account belongs to)
 routes.route("/account/add/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
-  const randomNum = Math.random().toString().substr(2, 8);
+  const randomNum = Math.random().toString().substr(2, 9);
   const timestamp = Date.now().toString().substr(6, 10);
     let myobj = {
       _id: randomNum + timestamp,
