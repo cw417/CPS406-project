@@ -36,7 +36,7 @@ export default function Transfer(props) {
             {selectedFromAccount
               ? `${selectedFromAccount.accountType} Account - ${selectedFromAccount.id}`
               : "{displayFromAccount"}
-          }</DropdownMenu.Trigger>
+          </DropdownMenu.Trigger>
           <DropdownMenu.Content
             className={DropdownStyles.Content}
             align="start"
