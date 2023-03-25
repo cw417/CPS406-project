@@ -5,7 +5,7 @@ import { emailCheck, userCheck } from '../lib/validate'
 import { useNavigate } from 'react-router-dom'
 import Customer from '../objects/Customer'
 import { NavLink } from 'react-router-dom'
-
+import logo from "../images/Logo.png";
 export default function SignUp() {
 
     const navigate = useNavigate()
@@ -96,6 +96,9 @@ export default function SignUp() {
         <>
             <div className={styles.container}>
                 <form className={styles.signup_form} onSubmit={formik.handleSubmit}>
+                <div className={styles.center}>
+              <img src={logo} height= "50"  alt="The Reserve" />
+              </div>
                     <input
                         type="text"
                         className={styles.input}

@@ -5,7 +5,7 @@ import { userCheck } from '../lib/validate'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
-
+import logo from "../images/Logo.png";
 export default function LoginForm() {
 
     const navigate = useNavigate();
@@ -49,7 +49,12 @@ export default function LoginForm() {
     return (
         <>
             <div className={styles.container}>
+            
                 <form className={styles.login_form} onSubmit={formik.handleSubmit}>
+                <div className={styles.center}>
+              <img src={logo} height= "50"  alt="The Reserve" />
+
+              </div>
                     <input
                         type="text"
                         className={styles.input}
