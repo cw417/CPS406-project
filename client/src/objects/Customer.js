@@ -13,6 +13,15 @@ export default class Customer {
       chequing: chequing,
       savings: savings
     }
+    this.payees = []
+  }
+
+  addPayee(payee) {
+    this.payees.push(payee)
+  }
+
+  removePayee(payee) {
+    this.payees.remove(payee)
   }
 
   setId(id) {
