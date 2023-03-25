@@ -177,8 +177,8 @@ export default function SignUp() {
                     {formik.errors.confirm_email && formik.touched.confirm_email ? <span className={styles.error}>{formik.errors.confirm_email}</span> : <></>}
 
                     <button type="submit" className={styles.submit}>Sign Up</button>
-                    <div>
-                        Already Have An Account? <NavLink to='/login'>Login</NavLink>
+                    <div className={styles.signup}>
+                        Already Have An Account? <NavLink to='/login' className={styles.button}>Login</NavLink>
                     </div>
                 </form>
             </div>
