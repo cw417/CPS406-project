@@ -37,7 +37,7 @@ export default function QuickActions(props) {
                 </div>
                 {currentAction === 'Deposit' ? <Deposit sAccounts={savingAccounts} cAccounts={chequingAccounts}/> : <></>}
                 {currentAction === 'Transfer' ? <Transfer sAccounts={savingAccounts} cAccounts={chequingAccounts} /> : <></>}
-                {currentAction === 'Pay' ? <PayBills/> : <></>}
+                {currentAction === 'Pay' ? <PayBills sAccounts={savingAccounts} cAccounts={chequingAccounts}/> : <></>}
             </div>
         </>
     );
