@@ -110,7 +110,8 @@ export default function Transfer(props) {
           <div>
             <label>Amount: </label>
           </div>
-          <div>$
+          <div>
+            <span>$ </span>
             <input
               ref={amountRef}
               type="text"
