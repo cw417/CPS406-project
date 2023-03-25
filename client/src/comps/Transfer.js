@@ -124,7 +124,7 @@ export default function Transfer(props) {
               onClick={handleTransfer}
               className={TransferStyles.FormButton}
             >
-              Finish
+              Make transfer
             </button>{" "}
           </div>
         </div>
