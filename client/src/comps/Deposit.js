@@ -18,7 +18,7 @@ export default function Deposit(props) {
         if (depositAmount > -1 && selectedAccount !== null) {
             const transaction = new Transaction(depositAmount, selectedAccount.accountType,
                 selectedAccount.id, "Cheque", "Deposit");
-            selectedAccount.setAccountBalance(Number(selectedAccount.accountBalance + parseInt(depositAmount)));
+            selectedAccount.setAccountBalance(Number(selectedAccount.accountBalance + parseFloat(depositAmount)));
             selectedAccount.addTransaction(transaction);
             selectedAccount.updateAccount();
         }

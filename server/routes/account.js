@@ -43,7 +43,7 @@ routes.route("/account/add/:id").post(function (req, response) {
     let myobj = {
       accountType: req.body.accountType,
       customerId: req.params.id,
-      accountBalance: 0,
+      accountBalance: 0.00,
       maxTransferAmount: 1000,
       transactionHistory: [],
     };

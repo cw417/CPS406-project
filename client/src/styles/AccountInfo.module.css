@@ -1,0 +1,19 @@
+.container {
+    background-color: #950740;
+    width: 800px;
+    min-height: 400px;
+    height: fit-content;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.transaction {
+    display: flex;
+    margin: 5px;
+    justify-content: space-between;
+}
