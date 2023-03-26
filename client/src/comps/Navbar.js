@@ -4,7 +4,6 @@ import logo from '../images/Logo.png'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-
 export default function Navbar() {
   
   const navigate = useNavigate()
@@ -17,6 +16,7 @@ export default function Navbar() {
 
   const [ customer, setCustomer ] = useState(null)
   const userId = localStorage.getItem('userId')
+  const admin = localStorage.getItem('admin')
 
   function getCustomer() {
     axios.get(`http://localhost:5000/customer/${userId}`).then(response => {
@@ -36,7 +36,7 @@ export default function Navbar() {
                 <NavLink to="/"><img src={logo} height='50' alt='The Reserve'/></NavLink>
             </div>
             <div className={styles.right_navbar}>
-              {customer !== null ? 
+              {customer !== null || admin === "true" ? 
               <>
                 <NavLink className={styles.right_navbar_item} to="/dashboard">Dashboard</NavLink>
                 <a className={styles.right_navbar_item} onClick={signOut}>Sign Out</a>

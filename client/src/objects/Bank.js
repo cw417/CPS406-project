@@ -10,6 +10,12 @@ export default class Bank {
     this.customers = customersList;
   }
 
+  async getCustomers() {
+    const response = await fetch('http://localhost:5000/customer/');
+    const data = await response.json()
+    return data
+  }
+
   async getAccount(accountId) {
     const response = await fetch(`http://localhost:5000/account/get/${accountId}`)
     const data = await response.json()

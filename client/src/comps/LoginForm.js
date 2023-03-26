@@ -32,16 +32,19 @@ export default function LoginForm() {
         return axios.get("http://localhost:5000/customer").then(response => {
             if (values.username === 'admin' && values.password === 'adminpw') {
                 localStorage.setItem('admin', "true")
-                navigate('/');
+                navigate('/admin');
             } else {
                 for (var i = 0; i < response.data.length; i++) {
                     if (response.data[i].username === values.username){
-                        if (values.password === response.data[i].password)
+                        if (values.password === response.data[i].password) {
                             localStorage.setItem('admin', "false")
                             localStorage.setItem('userId', response.data[i]._id)
                             navigate('/dashboard');
+                            return;
+                        }
                     }
-                }  
+                }
+                alert("Invalid Password")
             }
         })
     }
