@@ -40,7 +40,9 @@ routes.route('/customer/add').post(function (req, response) {
     accounts: {
       chequing: [],
       savings: []
-    }
+    },
+    payees: [],
+    contacts: []
   };
   db_connect.collection('customers').insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -51,7 +53,6 @@ routes.route('/customer/add').post(function (req, response) {
  
 // Update a customer by id.
 routes.route('/update/:id').post(function (req, response) {
-  console.log('editing')
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
@@ -65,7 +66,9 @@ routes.route('/update/:id').post(function (req, response) {
       accounts: {
         chequing: req.body.accounts.chequing,
         savings: req.body.accounts.savings 
-      }
+      },
+      payees: req.body.payees,
+      contacts: req.body.contacts
     },
   };
   db_connect

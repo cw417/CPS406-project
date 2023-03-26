@@ -17,7 +17,7 @@ export default function Dashboard() {
       var data = response.data
       var custObject = new Customer(data.username, data.first, data.last, 
         data.address, data.email, data.password, data.accounts.chequing, data.accounts.savings,
-        userId)
+        data.payees, data.contacts, data._id)
       setCustomer(custObject)
     })
   }

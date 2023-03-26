@@ -4,7 +4,8 @@ import { useState } from 'react'
 import styles from "../styles/Deposit.module.css"
 import { NavLink } from 'react-router-dom';
 
-export default function PayBills(props) {   
+export default function PayBills(props) {
+    const customer = props.customer   
     const sAccounts = props.sAccounts
     const cAccounts = props.cAccounts
     const accounts = sAccounts.concat(cAccounts)
