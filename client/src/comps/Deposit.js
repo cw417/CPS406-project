@@ -92,7 +92,7 @@ export default function Deposit(props) {
               onClick={makeDeposit}
               className={TransferStyles.FormButton}
             >
-              Make Deposit
+              Make deposit
             </button>
           </div>
         </div>
