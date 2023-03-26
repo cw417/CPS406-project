@@ -4,19 +4,23 @@ import TransferStyles from "../styles/Transfer.module.css";
 import { NavLink } from "react-router-dom";
 import { useRef, useState } from "react";
 import Transaction from "../objects/Transaction";
+import Bank from '../objects/Bank'
+import Account from "../objects/Account";
 
 export default function Transfer(props) {
   const customer = props.customer
   const [fromAccount, setFromAccount] = useState(null);
   const [displayFromAccount, setDisplayFromAccount] = useState("Select Account");
   const [toAccount, setToAccount] = useState(null);
+  const [isContact, setIsContact] = useState(false);
   const [displayToAccount, setDisplayToAccount] = useState(
-    "Select Account/Recipient"
+    "Select Account/Contact"
   );
   const sAccounts = props.sAccounts;
   const cAccounts = props.cAccounts;
   const accounts = sAccounts.concat(cAccounts);
   const amountRef = useRef();
+  const reserve = new Bank()
 
   function handleTransfer() {
     const amount = amountRef.current.value;
@@ -33,14 +37,36 @@ export default function Transfer(props) {
         fromAccount.id,
         "Transfer"
       );
-      const toTransaction = new Transaction(
-        amount,
-        toAccount.accountType,
-        toAccount.id,
-        fromAccount.id,
-        "Transfer"
-      );
-      fromAccount.transfer(toAccount, amount, fromTransaction, toTransaction);
+      if (isContact) {
+        reserve.getAccountByEmail(toAccount.email)
+        .then((data) => {
+          const toContact = new Account(data._id, data.accountType, data.customerId, data.accountBalance, data.maxTransferAmount, data.transactionHistory)
+          const fromTransaction = new Transaction(
+            amount,
+            fromAccount.accountType,
+            toContact.id,
+            fromAccount.id,
+            "Transfer"
+          );
+          const toTransaction = new Transaction(
+            amount,
+            'Saving',
+            toContact.id,
+            fromAccount.id,
+            "Transfer"
+          );
+          fromAccount.transfer(toContact, amount, fromTransaction, toTransaction);
+        })
+      } else {
+        const toTransaction = new Transaction(
+          amount,
+          toAccount.accountType,
+          toAccount.id,
+          fromAccount.id,
+          "Transfer"
+        );
+        fromAccount.transfer(toAccount, amount, fromTransaction, toTransaction);
+      }
     }
   }
 
@@ -85,7 +111,7 @@ export default function Transfer(props) {
               <DropdownMenu.Trigger className={DropdownStyles.Trigger}>
                 {displayToAccount}
               </DropdownMenu.Trigger>
-              <NavLink to="/contacts">&emsp;Add Recipient</NavLink>
+              <NavLink to="/contacts">&emsp;Add Contact</NavLink>
               <DropdownMenu.Content
                 className={DropdownStyles.Content}
                 align="start"
@@ -97,6 +123,7 @@ export default function Transfer(props) {
                       onSelect={() => {
                         setToAccount(account);
                         setDisplayToAccount(account.id);
+                        setIsContact(false);
                       }}
                     >
                       <p>
@@ -105,6 +132,22 @@ export default function Transfer(props) {
                       <p>{account.accountBalance}</p>
                     </DropdownMenu.Item>
                   );
+                })}
+                {customer.contacts.map((contact) => {
+                  return (
+                    <DropdownMenu.Item
+                      className={DropdownStyles.Item}
+                      onSelect={() => {
+                        setToAccount(contact);
+                        setDisplayToAccount(contact.name);
+                        setIsContact(true);
+                      }}
+                    >
+                      <p>
+                        Contact - {contact.name} - {contact.email}
+                      </p>
+                    </DropdownMenu.Item>
+                  );    
                 })}
               </DropdownMenu.Content>
             </DropdownMenu.Root>
