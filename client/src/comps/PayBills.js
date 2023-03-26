@@ -112,7 +112,7 @@ export default function PayBills(props) {
               onClick={payBill}
               className={TransferStyles.FormButton}
             >
-              Make Deposit
+              Make deposit
             </button>
           </div>
         </div>
