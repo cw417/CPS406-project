@@ -43,3 +43,8 @@
   justify-content: center;
   margin-top: auto;
 }
+
+.InputButton {
+  margin-top: 7px;
+  margin-bottom: 3px;
+}

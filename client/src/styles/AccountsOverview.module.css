@@ -1,37 +1,68 @@
 .container {
-    background-color: #950740;
-    width: 600px;
-    min-height: 400px;
-    height: fit-content;
-    margin: 25px;
-    padding: 10px;
-    border-radius: 10px;
+  background-color: #950740;
+  width: 600px;
+  height: 439px;
+  margin: 25px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.twoBlocks {
+    border: 5px;
 }
 
 .main_header {
-    font-size: small;
+  font-size: small;
 }
 
 .header {
-    font-size: x-small;
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .savings {
-    margin: 10px 0 10px 0;
-    font-size: x-small;
-    height: 150px;
+  margin: 10px 0 10px 0;
+  font-size: x-small;
+  height: 150px;
 }
 
 .chequing {
-    margin: 10px 0 10px 0;
-    font-size: x-small;
-    height: 150px;
+  margin: 10px 0 10px 0;
+  font-size: x-small;
+  height: 150px;
 }
 
 .account {
-    display: flex;
-    justify-content: space-between;
-    margin: 5px 0 5px 0;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0 5px 0;
+  padding: 10px;
+}
+.pushToLeft {
+    text-align: right;
+}
+
+.viewTrans {
+font-size: 11px;
+}
+
+.scrollable_div {
+  overflow: auto;
+  height: 140px;
+  scrollbar-width: thin;
+  scrollbar-color: #1A1A1D;
+}
+
+.scrollable_div::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable_div::-webkit-scrollbar-thumb {
+  background-color: #4E4E50;
+  border-radius: 10px;
+}
+
+.scrollable_div::-webkit-scrollbar-thumb:hover {
+  background-color: #C3073F;
 }

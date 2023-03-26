@@ -30,15 +30,14 @@ export default function Deposit(props) {
     <>
       <div className={TransferStyles.Form}>
         <div className={TransferStyles.FormElement}>
-          <div>Upload your cheque</div>
+          <div>Upload your cheque:</div>
           <div>
             <div>
-              <span>Front: </span>
-              <input type="file" placeholder="Add Image" />
-            </div>
-            <div>
-              <span>Back: </span>
-              <input type="file" placeholder="Add Image" />
+              <input
+                type="file"
+                placeholder="Add Image"
+                className={TransferStyles.InputButton}
+              />
             </div>
           </div>
         </div>
@@ -52,24 +51,26 @@ export default function Deposit(props) {
               className={DropdownStyles.Content}
               align="start"
             >
-              {accounts.map((account) => {
-                return (
-                  <>
-                    <DropdownMenu.Item
-                      className={DropdownStyles.Item}
-                      onSelect={() => {
-                        setDisplayedAccount(account.id);
-                        setSelectedAccount(account);
-                      }}
-                    >
-                      <p>
-                        {account.accountType} Account - {account.id}
-                      </p>
-                      <p>${account.accountBalance}</p>
-                    </DropdownMenu.Item>
-                  </>
-                );
-              })}
+              <div style={{ overflow: "auto", maxHeight: "130px" }}>
+                {accounts.map((account) => {
+                  return (
+                    <>
+                      <DropdownMenu.Item
+                        className={DropdownStyles.Item}
+                        onSelect={() => {
+                          setDisplayedAccount(account.id);
+                          setSelectedAccount(account);
+                        }}
+                      >
+                        <p>
+                          {account.accountType} Account - {account.id}
+                        </p>
+                        <p>${account.accountBalance}</p>
+                      </DropdownMenu.Item>
+                    </>
+                  );
+                })}
+              </div>
             </DropdownMenu.Content>
           </DropdownMenu.Root>
         </div>

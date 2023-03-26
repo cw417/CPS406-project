@@ -58,24 +58,26 @@ export default function PayBills(props) {
                 className={DropdownStyles.Content}
                 align="start"
               >
-                {accounts.map((account) => {
-                  return (
-                    <>
-                      <DropdownMenu.Item
-                        className={DropdownStyles.Item}
-                        onSelect={() => {
-                          setDisplayedAccount(account.id);
-                          setSelectedAccount(account);
-                        }}
-                      >
-                        <p>
-                          {account.accountType} Account - {account.id}
-                        </p>
-                        <p>${account.accountBalance}</p>
-                      </DropdownMenu.Item>
-                    </>
-                  );
-                })}
+                <div style={{ overflow: "auto", maxHeight: "130px" }}>
+                  {accounts.map((account) => {
+                    return (
+                      <>
+                        <DropdownMenu.Item
+                          className={DropdownStyles.Item}
+                          onSelect={() => {
+                            setDisplayedAccount(account.id);
+                            setSelectedAccount(account);
+                          }}
+                        >
+                          <p>
+                            {account.accountType} Account - {account.id}
+                          </p>
+                          <p>${account.accountBalance}</p>
+                        </DropdownMenu.Item>
+                      </>
+                    );
+                  })}
+                </div>
               </DropdownMenu.Content>
             </DropdownMenu.Root>
           </div>
@@ -92,23 +94,25 @@ export default function PayBills(props) {
                 className={DropdownStyles.Content}
                 align="start"
               >
-                {customer.payees.map((payee) => {
-                  return (
-                    <>
-                      <DropdownMenu.Item
-                        className={DropdownStyles.Item}
-                        onSelect={() => {
-                          setDisplayedPayee(payee.name);
-                          setSelectedPayee(payee);
-                        }}
-                      >
-                        <p>
-                          {payee.name} - {payee.accountNumber}
-                        </p>
-                      </DropdownMenu.Item>
-                    </>
-                  );
-                })}
+                <div style={{ overflow: "auto", maxHeight: "130px" }}>
+                  {customer.payees.map((payee) => {
+                    return (
+                      <>
+                        <DropdownMenu.Item
+                          className={DropdownStyles.Item}
+                          onSelect={() => {
+                            setDisplayedPayee(payee.name);
+                            setSelectedPayee(payee);
+                          }}
+                        >
+                          <p>
+                            {payee.name} - {payee.accountNumber}
+                          </p>
+                        </DropdownMenu.Item>
+                      </>
+                    );
+                  })}
+                </div>
               </DropdownMenu.Content>
             </DropdownMenu.Root>
           </div>

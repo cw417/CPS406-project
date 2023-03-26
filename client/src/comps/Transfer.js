@@ -84,22 +84,24 @@ export default function Transfer(props) {
                 className={DropdownStyles.Content}
                 align="start"
               >
-                {accounts.map((account) => {
-                  return (
-                    <DropdownMenu.Item
-                      className={DropdownStyles.Item}
-                      onSelect={() => {
-                        setFromAccount(account);
-                        setDisplayFromAccount(account.id);
-                      }}
-                    >
-                      <p>
-                        {account.accountType} Account - {account.id}
-                      </p>
-                      <p>{account.accountBalance}</p>
-                    </DropdownMenu.Item>
-                  );
-                })}
+                <div style={{ overflow: "auto", maxHeight: "130px" }}>
+                  {accounts.map((account) => {
+                    return (
+                      <DropdownMenu.Item
+                        className={DropdownStyles.Item}
+                        onSelect={() => {
+                          setFromAccount(account);
+                          setDisplayFromAccount(account.id);
+                        }}
+                      >
+                        <p>
+                          {account.accountType} Account - {account.id}
+                        </p>
+                        <p>${account.accountBalance}</p>
+                      </DropdownMenu.Item>
+                    );
+                  })}
+                </div>
               </DropdownMenu.Content>
             </DropdownMenu.Root>
           </div>
@@ -116,23 +118,25 @@ export default function Transfer(props) {
                 className={DropdownStyles.Content}
                 align="start"
               >
-                {accounts.map((account) => {
-                  return (
-                    <DropdownMenu.Item
-                      className={DropdownStyles.Item}
-                      onSelect={() => {
-                        setToAccount(account);
-                        setDisplayToAccount(account.id);
-                        setIsContact(false);
-                      }}
-                    >
-                      <p>
-                        {account.accountType} Account - {account.id}
-                      </p>
-                      <p>{account.accountBalance}</p>
-                    </DropdownMenu.Item>
-                  );
-                })}
+                <div style={{ overflow: "auto", maxHeight: "130px" }}>
+                  {accounts.map((account) => {
+                    return (
+                      <DropdownMenu.Item
+                        className={DropdownStyles.Item}
+                        onSelect={() => {
+                          setToAccount(account);
+                          setDisplayToAccount(account.id);
+                          setIsContact(false);
+                        }}
+                      >
+                        <p>
+                          {account.accountType} Account - {account.id}
+                        </p>
+                        <p>${account.accountBalance}</p>
+                      </DropdownMenu.Item>
+                    );
+                  })}
+                </div>
                 {customer.contacts.map((contact) => {
                   return (
                     <DropdownMenu.Item
@@ -147,7 +151,7 @@ export default function Transfer(props) {
                         Contact - {contact.name} - {contact.email}
                       </p>
                     </DropdownMenu.Item>
-                  );    
+                  );
                 })}
               </DropdownMenu.Content>
             </DropdownMenu.Root>
