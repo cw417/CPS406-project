@@ -7,9 +7,12 @@ export default function AccountsOverview(props) {
   const [chequingAccounts, setChequingAccounts] = useState([]);
   const [savingAccounts, setSavingAccounts] = useState([]);
 
-    async function openAccount(type) {
-      
-    customer.openAccount(type);
+  async function openAccount(type) {
+    if (savingAccounts.length + chequingAccounts.length > 8){
+      alert("Account Limit Reached");
+    } else {
+      customer.openAccount(type);
+    }
   }
 
   async function getAccounts() {

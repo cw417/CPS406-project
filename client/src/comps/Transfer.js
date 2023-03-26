@@ -26,12 +26,13 @@ export default function Transfer(props) {
     const amount = amountRef.current.value;
     if (
       amount > 0 &&
+      amount <= fromAccount.maxTransferAmount &&
       fromAccount !== null &&
       toAccount !== null &&
       fromAccount !== toAccount
     ) {
       const fromTransaction = new Transaction(
-        amount,
+        -amount,
         fromAccount.accountType,
         toAccount.id,
         fromAccount.id,
@@ -42,7 +43,7 @@ export default function Transfer(props) {
         .then((data) => {
           const toContact = new Account(data._id, data.accountType, data.customerId, data.accountBalance, data.maxTransferAmount, data.transactionHistory)
           const fromTransaction = new Transaction(
-            amount,
+            -amount,
             fromAccount.accountType,
             toContact.id,
             fromAccount.id,

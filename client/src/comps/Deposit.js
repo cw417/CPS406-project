@@ -14,7 +14,7 @@ export default function Deposit(props) {
   const [depositAmount, setDepositAmount] = useState(0);
 
   function makeDeposit() {
-    if (depositAmount > 0 && selectedAccount !== null) {
+    if (depositAmount > 0 && depositAmount <= 10000 && selectedAccount !== null) {
       const transaction = new Transaction(
         depositAmount,
         selectedAccount.accountType,
@@ -23,6 +23,8 @@ export default function Deposit(props) {
         "Deposit"
       );
       selectedAccount.deposit(depositAmount, transaction);
+    } else {
+      alert("Invalid Deposit - Amount Must No Exceed $10000");
     }
   }
 

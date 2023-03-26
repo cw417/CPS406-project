@@ -36,7 +36,7 @@
 .account {
   background-color:  #1A1A1D;
   border-radius: 10px;
-  font-size: 13px;
+  font-size: 16px;
   display: flex;
   justify-content: space-between;
   margin: 5px 0 5px 0;
@@ -47,7 +47,7 @@
 }
 
 .viewTrans {
-font-size: 11px;
+font-size: 14px;
 }
 
 .scrollable_div {

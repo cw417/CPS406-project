@@ -25,7 +25,7 @@ export default function PayBills(props) {
       reserve.getAccount(selectedPayee.accountNumber).then((data) => {
         const toAccount = new Account(data._id, data.accountType, data.customerId, data.accountBalance, data.maxTransferAmount, data.transactionHistory)
         const fromTransaction = new Transaction(
-        payAmount,
+        -payAmount,
         selectedAccount.accountType,
         toAccount.id,
         selectedAccount.id,
