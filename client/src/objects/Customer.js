@@ -1,7 +1,7 @@
 import Account from "./Account";
 
 export default class Customer {
-  constructor(username, first, last, address, email, password, chequing, savings, payees, contacts, id = "") {
+  constructor(username, first, last, address, email, password, chequing, savings, payees = [], contacts = [], id = "") {
     this.id = id;
     this.username = username;
     this.first = first;
