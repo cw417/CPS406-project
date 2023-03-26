@@ -41,7 +41,7 @@ export default function AccountsOverview(props) {
                 <>
                   <div className={styles.account} key={sAccount.id}>
                     <div>
-                      <span>{sAccount.id}</span>
+                      <span>Acc. Number:{sAccount.id}</span>
                     </div>
                     <div className={styles.pushToLeft}>
                       <p>${sAccount.accountBalance}</p>
@@ -74,7 +74,7 @@ export default function AccountsOverview(props) {
                 <>
                   <div className={styles.account} key={cAccount.id}>
                     <div>
-                      <span>{cAccount.id}</span>
+                      <span>Acc. Number: {cAccount.id}</span>
                     </div>
                     <div className={styles.pushToLeft}>
                       <p>${cAccount.accountBalance}</p>
