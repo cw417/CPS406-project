@@ -7,7 +7,8 @@ export default function AccountsOverview(props) {
   const [chequingAccounts, setChequingAccounts] = useState([]);
   const [savingAccounts, setSavingAccounts] = useState([]);
 
-  async function openAccount(type) {
+    async function openAccount(type) {
+      
     customer.openAccount(type);
   }
 
@@ -33,7 +34,12 @@ export default function AccountsOverview(props) {
         <div className={styles.savings}>
           <div className={styles.header}>
             <h1>Savings Accounts</h1>
-            <button onClick={() => openAccount("Saving")}>Open Account</button>
+            <button
+              onClick={() => openAccount("Saving")}
+              className={styles.btn_black}
+            >
+              Open Account
+            </button>
           </div>
           <div className={styles.scrollable_div}>
             {savingAccounts.map((sAccount) => {
@@ -64,7 +70,10 @@ export default function AccountsOverview(props) {
         <div className={styles.chequing}>
           <div className={styles.header}>
             <h1>Chequing Accounts</h1>
-            <button onClick={() => openAccount("Chequing")}>
+            <button
+              onClick={() => openAccount("Chequing")}
+              className={styles.btn_black}
+            >
               Open Account
             </button>
           </div>
@@ -74,7 +83,7 @@ export default function AccountsOverview(props) {
                 <>
                   <div className={styles.account} key={cAccount.id}>
                     <div>
-                      <span>Acc. Number: {cAccount.id}</span>
+                      <p>Acc. Number: {cAccount.id}</p>
                     </div>
                     <div className={styles.pushToLeft}>
                       <p>${cAccount.accountBalance}</p>
