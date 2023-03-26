@@ -70,7 +70,6 @@ export default function SignUp() {
         console.log("creating new user");
         const newCustomer = new Customer(values.username, values.first, values.last, values.address, values.email, values.password, [], [])
         createUser(newCustomer);
-        newCustomer.openAccount('Saving')
       }
 
     async function createUser(newCustomer) {
@@ -89,7 +88,7 @@ export default function SignUp() {
           window.alert(error);
           return;
         });
-
+        newCustomer.openAccount('Saving');
         navigate('/login');
       }
 
