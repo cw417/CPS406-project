@@ -6,6 +6,7 @@ import { useState } from "react";
 import Transaction from "../objects/Transaction";
 import Bank from '../objects/Bank'
 import Account from "../objects/Account";
+import { useNavigate } from 'react-router-dom';
 
 export default function PayBills(props) {
   const customer = props.customer   
@@ -13,6 +14,7 @@ export default function PayBills(props) {
   const cAccounts = props.cAccounts
   const accounts = sAccounts.concat(cAccounts)
   const reserve = new Bank()
+  const navigate = useNavigate();
   
   const [displayedAccount, setDisplayedAccount] = useState('Select Bank Account')
   const [selectedAccount, setSelectedAccount] = useState(null)
@@ -40,6 +42,7 @@ export default function PayBills(props) {
       );
       selectedAccount.transfer(toAccount, payAmount, fromTransaction, toTransaction);
       })
+      navigate(0);
     }
   }
 

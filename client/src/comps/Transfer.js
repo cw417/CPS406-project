@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import Transaction from "../objects/Transaction";
 import Bank from '../objects/Bank'
 import Account from "../objects/Account";
+import { useNavigate } from "react-router-dom";
 
 export default function Transfer(props) {
   const customer = props.customer
@@ -21,6 +22,7 @@ export default function Transfer(props) {
   const accounts = sAccounts.concat(cAccounts);
   const amountRef = useRef();
   const reserve = new Bank()
+  const navigate = useNavigate();
 
   function handleTransfer() {
     const amount = amountRef.current.value;
@@ -68,6 +70,7 @@ export default function Transfer(props) {
         );
         fromAccount.transfer(toAccount, amount, fromTransaction, toTransaction);
       }
+      navigate(0);
     }
   }
 

@@ -1,17 +1,19 @@
 import styles from "../styles/AccountsOverview.module.css";
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function AccountsOverview(props) {
   const customer = props.customer;
   const [chequingAccounts, setChequingAccounts] = useState([]);
   const [savingAccounts, setSavingAccounts] = useState([]);
+  const navigate = useNavigate();
 
   async function openAccount(type) {
     if (savingAccounts.length + chequingAccounts.length > 8){
       alert("Account Limit Reached");
     } else {
       customer.openAccount(type);
+      navigate(0);
     }
   }
 
@@ -50,7 +52,7 @@ export default function AccountsOverview(props) {
                 <>
                   <div className={styles.account} key={sAccount.id}>
                     <div>
-                      <span>Acc. Number:{sAccount.id}</span>
+                      <span>Acc. Number: {sAccount.id}</span>
                     </div>
                     <div className={styles.pushToLeft}>
                       <p>${sAccount.accountBalance}</p>

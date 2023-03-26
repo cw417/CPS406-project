@@ -3,6 +3,7 @@ import DropdownStyles from "../styles/DropdownMenu.module.css";
 import { useState } from "react";
 import Transaction from "../objects/Transaction";
 import TransferStyles from "../styles/Transfer.module.css";
+import { useNavigate } from 'react-router-dom'
 
 export default function Deposit(props) {
   const sAccounts = props.sAccounts;
@@ -12,6 +13,7 @@ export default function Deposit(props) {
   const [displayedAccount, setDisplayedAccount] = useState("Select Account");
   const [selectedAccount, setSelectedAccount] = useState(null);
   const [depositAmount, setDepositAmount] = useState(0);
+  const navigate = useNavigate();
 
   function makeDeposit() {
     if (depositAmount > 0 && depositAmount <= 10000 && selectedAccount !== null) {
@@ -23,6 +25,7 @@ export default function Deposit(props) {
         "Deposit"
       );
       selectedAccount.deposit(depositAmount, transaction);
+      navigate(0);
     } else {
       alert("Invalid Deposit - Amount Must No Exceed $10000");
     }
