@@ -1,9 +1,11 @@
-import styles from "../styles/AddRecipient.module.css";
+import styles from "../styles/Contact.module.css";
 import { useState } from "react";
+import { accountCheck } from "../lib/validate";
 
-export default function AddPayee() {
+export default function AddPayee(props) {
   const [payeeName, setPayeeName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
+  const customer = props.customer
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -13,10 +15,14 @@ export default function AddPayee() {
       );
       return;
     }
-    if (!/^\d+$/.test(accountNumber)) {
-      alert("Invalid account number. Account number can only contain digits.");
-      return;
-    }
+    accountCheck(accountNumber).then((result) => {
+      if (result === false){
+        alert("Account Number Does Not Exist")
+        return;
+      } else {
+        customer.addPayee({name: payeeName, accountNumber: accountNumber})
+      }
+      })
   };
 
   return (

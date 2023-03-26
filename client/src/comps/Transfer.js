@@ -6,9 +6,9 @@ import { useRef, useState } from "react";
 import Transaction from "../objects/Transaction";
 
 export default function Transfer(props) {
+  const customer = props.customer
   const [fromAccount, setFromAccount] = useState(null);
-  const [displayFromAccount, setDisplayFromAccount] =
-    useState("Select Account");
+  const [displayFromAccount, setDisplayFromAccount] = useState("Select Account");
   const [toAccount, setToAccount] = useState(null);
   const [displayToAccount, setDisplayToAccount] = useState(
     "Select Account/Recipient"

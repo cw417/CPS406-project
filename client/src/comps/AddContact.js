@@ -1,11 +1,12 @@
-import styles from "../styles/AddRecipient.module.css";
+import styles from "../styles/Contact.module.css";
 import { useState } from "react";
+import { emailCheck } from "../lib/validate";
 
-export default function AddPayee() {
+export default function AddContact(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const customer = props.customer
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -13,16 +14,20 @@ export default function AddPayee() {
       alert("Email does not match the confirm email.");
       return;
     }
-    if (!/^[0-9]{10}$/.test(phoneNumber)) {
-      alert("Invalid phone number format.");
-      return;
-    }
-  };
+    emailCheck(email).then((result) => {
+      if (result === false){
+        alert("Account with this email does not exist")
+        return;
+      } else {
+        customer.addContact({name: name, email: email})
+      }
+      })
+  }
 
   return (
     <div className={styles.outerFrame}>
       <div style={{ textAlign: "center" }}>
-        <p style={{ fontWeight: "bold", fontSize: "30px" }}>Add Recipient</p>
+        <p style={{ fontWeight: "bold", fontSize: "30px" }}>Add Contact</p>
       </div>
       <div>
         <form onSubmit={handleSubmit} className={styles.Form}>
@@ -48,14 +53,6 @@ export default function AddPayee() {
               type="email"
               value={confirmEmail}
               onChange={(e) => setConfirmEmail(e.target.value)}
-            />
-          </label>
-          <label className={styles.FormLabel}>
-            Phone Number:
-            <input
-              type="tel"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </label>
           <button className={styles.FormButton} type="submit">

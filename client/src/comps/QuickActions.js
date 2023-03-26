@@ -36,8 +36,8 @@ export default function QuickActions(props) {
                     <button className={styles.button} onClick={() => setCurrentAction('Deposit')}>Deposit</button>
                 </div>
                 {currentAction === 'Deposit' ? <Deposit sAccounts={savingAccounts} cAccounts={chequingAccounts}/> : <></>}
-                {currentAction === 'Transfer' ? <Transfer sAccounts={savingAccounts} cAccounts={chequingAccounts} /> : <></>}
-                {currentAction === 'Pay' ? <PayBills sAccounts={savingAccounts} cAccounts={chequingAccounts}/> : <></>}
+                {currentAction === 'Transfer' ? <Transfer customer={customer} sAccounts={savingAccounts} cAccounts={chequingAccounts} /> : <></>}
+                {currentAction === 'Pay' ? <PayBills customer={customer} sAccounts={savingAccounts} cAccounts={chequingAccounts}/> : <></>}
             </div>
         </>
     );

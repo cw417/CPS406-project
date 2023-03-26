@@ -3,19 +3,19 @@ import DropdownStyles from "../styles/DropdownMenu.module.css";
 import TransferStyles from "../styles/Transfer.module.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-// import styles from "../styles/Deposit.module.css";
 
 export default function PayBills(props) {
-  const sAccounts = props.sAccounts;
-  const cAccounts = props.cAccounts;
-  const accounts = sAccounts.concat(cAccounts);
-  const payees = [{ id: 1242, name: "Walmart" }];
-
-  const [displayedAccount, setDisplayedAccount] = useState("Select Account");
-  const [selectedAccount, setSelectedAccount] = useState(null);
+  const customer = props.customer   
+  const sAccounts = props.sAccounts
+  const cAccounts = props.cAccounts
+  const accounts = sAccounts.concat(cAccounts)
+  const payees = [{id: 1242, name: "Walmart"}];
+  
+  const [displayedAccount, setDisplayedAccount] = useState('Select Bank Account')
+  const [selectedAccount, setSelectedAccount] = useState(null)
   const [payAmount, setPayAmount] = useState(0);
-  const [displayedPayee, setDisplayedPayee] = useState("Select Payee");
-  const [selectedPayee, setSelectedPayee] = useState(null);
+  const [displayedPayee, setDisplayedPayee] = useState('Select Payee')
+  const [selectedPayee, setSelectedPayee] = useState(null)
 
   function payBill() {
     if (payAmount > 0 && selectedAccount !== null) {

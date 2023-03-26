@@ -1,7 +1,7 @@
 import Account from "./Account";
 
 export default class Customer {
-  constructor(username, first, last, address, email, password, chequing, savings, id = "") {
+  constructor(username, first, last, address, email, password, chequing, savings, payees, contacts, id = "") {
     this.id = id;
     this.username = username;
     this.first = first;
@@ -12,16 +12,30 @@ export default class Customer {
     this.accounts = {
       chequing: chequing,
       savings: savings
-    }
-    this.payees = []
+    };
+    this.payees = payees;
+    this.contacts = contacts;
+  }
+
+  addContact(contact) {
+    this.contacts.push(contact)
+    this.updateCustomer()
+  }
+
+  removeContact(contact) {
+    this.contacts.remove(contact)
+    this.updateCustomer()
   }
 
   addPayee(payee) {
+    console.log("Adding PAyee")
     this.payees.push(payee)
+    this.updateCustomer()
   }
 
   removePayee(payee) {
     this.payees.remove(payee)
+    this.updateCustomer()
   }
 
   setId(id) {
@@ -100,7 +114,9 @@ export default class Customer {
         accounts: {
           chequing: this.accounts.chequing,
           savings: this.accounts.savings
-        }
+        },
+        payees : this.payees,
+        contacts: this.contacts
       }),
       headers: {
         'Content-Type': 'application/json'
