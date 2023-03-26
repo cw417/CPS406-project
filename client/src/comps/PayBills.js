@@ -3,13 +3,16 @@ import DropdownStyles from "../styles/DropdownMenu.module.css";
 import TransferStyles from "../styles/Transfer.module.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import Transaction from "../objects/Transaction";
+import Bank from '../objects/Bank'
+import Account from "../objects/Account";
 
 export default function PayBills(props) {
   const customer = props.customer   
   const sAccounts = props.sAccounts
   const cAccounts = props.cAccounts
   const accounts = sAccounts.concat(cAccounts)
-  const payees = [{id: 1242, name: "Walmart"}];
+  const reserve = new Bank()
   
   const [displayedAccount, setDisplayedAccount] = useState('Select Bank Account')
   const [selectedAccount, setSelectedAccount] = useState(null)
@@ -19,7 +22,24 @@ export default function PayBills(props) {
 
   function payBill() {
     if (payAmount > 0 && selectedAccount !== null) {
-      console.log("Pay");
+      reserve.getAccount(selectedPayee.accountNumber).then((data) => {
+        const toAccount = new Account(data._id, data.accountType, data.customerId, data.accountBalance, data.maxTransferAmount, data.transactionHistory)
+        const fromTransaction = new Transaction(
+        payAmount,
+        selectedAccount.accountType,
+        toAccount.id,
+        selectedAccount.id,
+        "Payment"
+      );
+      const toTransaction = new Transaction(
+        payAmount,
+        'Saving',
+        toAccount.id,
+        selectedAccount.id,
+        "Payment"
+      );
+      selectedAccount.transfer(toAccount, payAmount, fromTransaction, toTransaction);
+      })
     }
   }
 
@@ -72,18 +92,18 @@ export default function PayBills(props) {
                 className={DropdownStyles.Content}
                 align="start"
               >
-                {payees.map((payee) => {
+                {customer.payees.map((payee) => {
                   return (
                     <>
                       <DropdownMenu.Item
                         className={DropdownStyles.Item}
                         onSelect={() => {
-                          setDisplayedPayee(payee.id);
+                          setDisplayedPayee(payee.name);
                           setSelectedPayee(payee);
                         }}
                       >
                         <p>
-                          {payee.name} - {payee.id}
+                          {payee.name} - {payee.accountNumber}
                         </p>
                       </DropdownMenu.Item>
                     </>
