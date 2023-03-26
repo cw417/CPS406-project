@@ -22,8 +22,12 @@
   font-size: 1.0rem;
   font-weight: bold;
   padding: 10px 20px;
+}
+.options {
+  display: flex;
+  justify-content: space-between;
   margin-top: 20px;
   margin-bottom: 5x;
-  margin-left: 12px;
-  margin-right: 12px;
+  margin-left:60px;
+  margin-right:60px;
 }
