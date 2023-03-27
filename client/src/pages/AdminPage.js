@@ -42,7 +42,7 @@ export default function AdminPage() {
   }
 
   useEffect(() => {
-    if (admin !== "false") {getCustomers()} else {navigate('/login')}
+    if (admin !== "false" && admin !== null) {getCustomers()} else {navigate('/login')}
   }, [])
 
   if (customers === null) {
