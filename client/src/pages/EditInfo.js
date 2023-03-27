@@ -6,10 +6,10 @@ export default function EditInfo() {
     return (
         <div className={styles.div}>
             <Navbar/>
-            <div className={styles.container}>
-                <div className={styles.bigheader}>
+            <div className={styles.bigheader}>
                     Account Information - Account Number Here
                 </div>
+            <div className={styles.container}>
                 <div className={styles.box1}>
                     <div className={styles.titles}>
                     Change Name
@@ -17,7 +17,7 @@ export default function EditInfo() {
                     <div className={styles.points}>
                         <p>Current Account Name:</p>
                         <label for="accountName">New Account Name: </label>
-                        <input type="text" id="accountName" name="accountName" placeholder="Enter New Account Name: " size="30"/>
+                        <input type="text" id="accountName" name="accountName" placeholder="Enter New Account Name: " size="20"/>
                     </div>
                 </div>
             </div>
@@ -64,8 +64,9 @@ export default function EditInfo() {
                     </div>
                 </div>
             </div>
+            <div className={styles.submitbutton}>
+            <   button class="confirmbutton">Confirm Changes</button>
+            </div>
         </div>
     )
-
-
 }

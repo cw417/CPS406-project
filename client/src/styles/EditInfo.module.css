@@ -4,6 +4,7 @@
 }
 
 .bigheader {
+
     padding: 30px;
     text-align: left;
     font-size: 30px;
@@ -14,7 +15,7 @@
     background: #950740;
     height: fit-content;
     min-height: 150px;
-    width: 1000px;
+    width: 500px;
     border-radius: 30px;
     margin-top: 15px;
 
@@ -34,14 +35,42 @@
 
 }   
 
-.input[type=text] {
+input[type=text] {
     width: 400px;
     padding: 12px 20px;
     margin: 8px;
     box-sizing: border-box;
+    border-radius: 8px;
 }
 
 .container {
     padding: 20px;
+    display: flex;
     justify-content: center;
+}
+
+.confirmbutton {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+
+}
+
+.submitbutton {
+    position: fixed;
+    border-radius: 10px;
+    background: blue;
+    height: 25px;
+    width: 150px;
+    padding: 25px;
+    bottom: 0;
+    right: 0;
+    margin-right: 45px;
+    margin-bottom: 50px;
+
 }
