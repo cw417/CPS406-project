@@ -75,10 +75,6 @@ export default class Customer {
         this.accounts.savings.push(data.insertedId)
       }
     })
-    .catch(error => {
-      window.alert(error);
-      return;
-    });
     this.updateCustomer()
   }
 
