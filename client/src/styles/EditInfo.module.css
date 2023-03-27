@@ -1,0 +1,47 @@
+.div {
+    background: #1A1A1D;
+   
+}
+
+.bigheader {
+    padding: 30px;
+    text-align: left;
+    font-size: 30px;
+
+}
+
+.box1 {
+    background: #950740;
+    height: fit-content;
+    min-height: 150px;
+    width: 1000px;
+    border-radius: 30px;
+    margin-top: 15px;
+
+}
+
+.titles {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.points {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+
+}   
+
+.input[type=text] {
+    width: 400px;
+    padding: 12px 20px;
+    margin: 8px;
+    box-sizing: border-box;
+}
+
+.container {
+    padding: 20px;
+    justify-content: center;
+}
