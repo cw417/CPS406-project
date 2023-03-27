@@ -37,8 +37,8 @@ export default function AdminPage() {
   }
 
   function deleteCustomer() {
-    console.log(customer)
     customer.removeCustomer()
+    navigate(0);
   }
 
   useEffect(() => {

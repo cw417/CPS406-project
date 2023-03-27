@@ -7,7 +7,7 @@ import AdminPage from './pages/AdminPage';
 import SignUp from './pages/SignUp';
 import Account from './pages/Account';
 import Contacts from './pages/Contacts';
-import EditInfo from './pages/EditInfo';
+import Edit from './pages/Edit';
 
 export default function App() {
   return (
@@ -20,7 +20,7 @@ export default function App() {
         <Route path='/admin' element={<AdminPage />} />
         <Route path='/accounts/:aNum' element={<Account />} />
         <Route path='/contacts' element={<Contacts />} />
-        <Route path='/EditInfo' element={<EditInfo />} />
+        <Route path='/edit' element={<Edit />} />
       </Routes>
     </div>
   );
