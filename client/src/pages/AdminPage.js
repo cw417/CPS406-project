@@ -34,24 +34,9 @@ export default function AdminPage() {
     return (
       <div>
         <Navbar />
-        <div className='title'>Admin</div>
-        <div>{customers.map((customer) => {
-          if (customer.username !== 'admin') {
-            return(
-              <>
-                <div>
-                  {customer._id}
-                  {customer.first}
-                  {customer.last}
-                  {customer.username}
-                  {customer.email}
-                  {customer.address}
-                </div>
-              </>
-            )
-          }
-        })}
-        </div>
+        <div className='title'>Admin Page</div>
+        <input type="text" />
+        <button>Search</button>
       </div>
     )
   }
