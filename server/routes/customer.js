@@ -81,12 +81,12 @@ routes.route('/update/:id').post(function (req, response) {
 });
 
 // Remove a customer by id.
-routes.route('/update/:id').post(function (req, res) {
+routes.route('/remove/:id').delete(function (req, res) {
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId(req.params.id) };
+  let myquery = { _id: ObjectId(req.params.id)};
   db_connect
     .collection('customers')
-    .deleteOne(myquery).then((data) => res.json(data))
+    .deleteOne(myquery).then((data) => res.json(data));
 });
 
 module.exports = routes;

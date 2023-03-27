@@ -2,12 +2,27 @@
     text-align:center;
     padding: 20px;
 }
+
+.container {
+    margin: 0 auto;
+}
+.ParentAdminContainer {
+    display: flex;
+    width: 50%;
+  margin: 0 auto;
+}
 .AdminContainer {
   background-color: #950740;
-  width: fit-content;
+  width: 530px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 20px;
+}
+
+.CustomerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .input {
   border-radius: 8px;

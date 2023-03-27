@@ -6,11 +6,12 @@ import styles from '../styles/AdminPage.module.css'
 import AccountsOverview from '../comps/AccountsOverview'
 import Customer from '../objects/Customer'
 import QuickActions from '../comps/QuickActions'
+import { MdDeleteForever } from 'react-icons/md'
 
 export default function AdminPage() {
 
   const [ customers, setCustomers ] = useState(null)
-  const admin = sessionStorage.getItem('admin')
+  const admin = localStorage.getItem('admin')
   const navigate = useNavigate();
   const reserve = new Bank();
   const [emailSearch, setEmailSearch] = useState(null)
@@ -23,7 +24,6 @@ export default function AdminPage() {
   }
 
   function getCustomer() {
-    console.log(emailSearch)
     for (let i = 0; i < customers.length; i++) {
       if (customers[i].email === emailSearch) {
         const tempObject = new Customer(customers[i].username, customers[i].first, customers[i].last, 
@@ -36,13 +36,14 @@ export default function AdminPage() {
     setCustomer(null)
   }
 
-  useEffect(() => {
-    if (admin !== "false") {getCustomers()}
-  }, [])
-
-  if (admin === 'false') {
-    navigate('/login')
+  function deleteCustomer() {
+    console.log(customer)
+    customer.removeCustomer()
   }
+
+  useEffect(() => {
+    if (admin !== "false") {getCustomers()} else {navigate('/login')}
+  }, [])
 
   if (customers === null) {
     return (
@@ -53,26 +54,27 @@ export default function AdminPage() {
     return (
       <>
         <Navbar />
-        <div>
+        <div className={styles.container}>
           <div className={styles.title}>
-            <h1>🛠️Admin Page</h1></div>
-          <div>
+            <h1>🛠️Admin Page</h1>
+          <h4>Number of users: {customers.length}</h4>
+          </div>
+          <div className={styles.ParentAdminContainer}>
             <div className={styles.AdminContainer}>
-              <input autoFocus placeholder="Enter the customer email" className={styles.input} type="text" onChange={(event) => {console.log(event.target.value);setEmailSearch(event.target.value)}}/>
+              <input autoFocus placeholder="Enter the customer email" className={styles.input} type="text" onChange={(event) => setEmailSearch(event.target.value)}/>
               <button className={styles.button} onClick={() => {getCustomer()}}>Go</button>
-              {customer !== null ? 
+            </div>
+          </div>
+          <div className={styles.CustomerContainer}>
+            {customer !== null ? 
               <>
                 <div className={styles.customer_display}>
-                  <AccountsOverview customer={customer}/> 
+                  <MdDeleteForever onClick={() => {deleteCustomer()}} size={100}/>
+                  <AccountsOverview customer={customer}/>
                   <QuickActions customer={customer}/>
                 </div>
               </>:
               <></>}
-            </div>
-            
-          </div>
-          <div>
-          {/* throw customer stuff here */}
           </div>
         </div>
       </>

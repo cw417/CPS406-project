@@ -1,7 +1,6 @@
 import Navbar from '../comps/Navbar';
 import styles from "../styles/EditInfo.module.css"
 
-
 export default function EditInfo() {
     return (
         <div className={styles.div}>
@@ -64,9 +63,7 @@ export default function EditInfo() {
                     </div>
                 </div>
             </div>
-          
-                <button class="confirmbutton" className={styles.buttoncolor}>Confirm Changes</button>
-            
+            <button class="confirmbutton" className={styles.buttoncolor}>Confirm Changes</button>
         </div>
     )
 }

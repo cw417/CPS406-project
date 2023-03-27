@@ -119,6 +119,11 @@ export default class Customer {
         'Content-Type': 'application/json'
       },
     })
+  }
 
+  async removeCustomer() {
+    await fetch(`http://localhost:5000/remove/${this.id}`, {
+      method: 'DELETE',
+    })
   }
 }
