@@ -38,7 +38,15 @@ export default function Navbar() {
             <div className={styles.right_navbar}>
               {customer !== null || admin === "true" ? 
               <>
-                <NavLink className={styles.right_navbar_item} to="/dashboard">Dashboard</NavLink>
+                {admin !== "true" ? 
+                <>
+                  <NavLink className={styles.right_navbar_item} to="/dashboard">Dashboard</NavLink>
+                  <NavLink className={styles.right_navbar_item} to="/edit">Account Settings</NavLink>
+                </>
+                : 
+                <>
+                  <NavLink className={styles.right_navbar_item} to="/admin">Dashboard</NavLink>
+                </>}
                 <a className={styles.right_navbar_item} onClick={signOut}>Sign Out</a>
               </>
               :

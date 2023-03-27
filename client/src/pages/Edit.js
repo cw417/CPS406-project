@@ -15,21 +15,23 @@ export default function Edit() {
     const [newPassword, setNewPassword] = useState(null);
     const [confirmNewPassword, setConfirmNewPassword] = useState(null);
     const [oldPassword, setOldPassword] = useState(null);
+    const navigate = useNavigate();
 
     function updateAccount() {
-        if (newEmail !== null) {
+        if ((/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i).test(newEmail)) {
             customer.email = newEmail
         }
-        if (newName !== null) {
+        if (newName !== null && newName !== '') {
             customer.username = newName
         }
-        if (newAddress !== null) {
+        if (newAddress !== null && newAddress !== '') {
             customer.address = newAddress
         }
-        if (newPassword !== null && confirmNewPassword === newPassword && oldPassword === customer.password) {
+        if ((/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/).test(newPassword) && confirmNewPassword === newPassword && oldPassword === customer.password) {
             customer.password = newPassword
         }
         customer.updateCustomer()
+        navigate(0);
     }
 
     async function getCustomer() {
@@ -51,8 +53,6 @@ export default function Edit() {
         setCustomer(custObject);
         });
     }
-
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (userId != null) {
