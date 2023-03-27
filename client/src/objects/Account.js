@@ -22,15 +22,15 @@ export default class Account {
   }
 
   withdraw(amount, transaction) {
-    if (amount < this.accountBalance) {
-      this.accountBalance -= amount
+    if (amount <= this.accountBalance) {
+      this.accountBalance -= parseFloat(amount)
       this.addTransaction(transaction)
       this.updateAccount()
     }
   }
 
   transfer(sendTo, amount, transaction, sendTransaction) {
-    if (amount < this.accountBalance) {
+    if (amount <= this.accountBalance) {
       this.withdraw(amount, transaction)
       sendTo.deposit(amount, sendTransaction)
     }
@@ -75,4 +75,9 @@ export default class Account {
       },
     });
   }
+
+  async deleteAccount() {
+    await fetch(`http://localhost:5000/account/remove/${this.id}`)
+  }
+
 }

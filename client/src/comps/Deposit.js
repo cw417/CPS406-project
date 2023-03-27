@@ -27,7 +27,7 @@ export default function Deposit(props) {
       selectedAccount.deposit(depositAmount, transaction);
       navigate(0);
     } else {
-      alert("Invalid Deposit - Amount Must No Exceed $10000");
+      alert("Invalid Deposit - Amount Must Not Exceed $10000 or Account Is Not Selected");
     }
   }
 
@@ -87,7 +87,7 @@ export default function Deposit(props) {
             <span>$ </span>
             <input
               type="number"
-              onChange={(event) => setDepositAmount(event.target.value)}
+              onChange={(event) => {setDepositAmount(event.target.value); console.log("Changing")}}
               className={TransferStyles.FormInput}
               placeholder="0.00"
             />
