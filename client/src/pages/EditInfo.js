@@ -17,7 +17,7 @@ export default function EditInfo() {
                     <div className={styles.points}>
                         <p>Current Account Name:</p>
                         <label for="accountName">New Account Name: </label>
-                        <input type="text" id="accountName" name="accountName" placeholder="Enter New Account Name: " size="20"/>
+                        <input className={styles.input} type="text" id="accountName" name="accountName" placeholder="Enter New Account Name: " size="20"/>
                     </div>
                 </div>
             </div>
@@ -28,13 +28,13 @@ export default function EditInfo() {
                     </div>
                     <div className={styles.points}>
                     <label for="oldPass">Old Password: </label>
-                    <input type="text" id="oldPass" name="oldPass" placeholder="Enter Old Password: "/>
+                    <input className={styles.input} type="text" id="oldPass" name="oldPass" placeholder="Enter Old Password: "/>
 
                     <label for="newPass">New Password: </label>
-                    <input type="text" id="newPass" name="newPass" placeholder="Enter New Password: "/>
+                    <input className={styles.input} type="text" id="newPass" name="newPass" placeholder="Enter New Password: "/>
 
                     <label for="newPass">Re-enter New Password: </label>
-                    <input type="text" id="newPass" name="newPass" placeholder="Re-enter New Password: "/>
+                    <input className={styles.input} type="text" id="newPass" name="newPass" placeholder="Re-enter New Password: "/>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@ export default function EditInfo() {
                     <div className={styles.points}>
                         <p> Current Email Address: </p>
                         <label for="email">New Email Address: </label>
-                        <input type="text" id="email" name="email" placeholder="Enter new Email Address"/>
+                        <input className={styles.input} type="text" id="email" name="email" placeholder="Enter new Email Address"/>
                     </div>
                 </div>
             </div>
@@ -60,12 +60,12 @@ export default function EditInfo() {
                     <div className={styles.points}>
                         <p> Current Home Address: </p>
                         <label for="address">New Home Address: </label>
-                        <input type="text" id="home" name="home" placeholder="Enter new Home Address"/>
+                        <input className={styles.input} type="text" id="home" name="home" placeholder="Enter new Home Address"/>
                     </div>
                 </div>
             </div>
             <div className={styles.submitbutton}>
-            <   button class="confirmbutton">Confirm Changes</button>
+                <button class="confirmbutton">Confirm Changes</button>
             </div>
         </div>
     )

@@ -1,0 +1,43 @@
+.title {
+    text-align:center;
+    padding: 20px;
+}
+.AdminContainer {
+  background-color: #950740;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 20px;
+}
+.input {
+  border-radius: 8px;
+  padding: 12px 20px;
+  outline: none;
+  border: none;
+  font-size:20px;
+  width: 400px;
+  margin: 8px;
+  box-sizing: border-box;
+}
+
+.button {
+  background-color: #1A1A1D;
+  color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  outline: none;
+  border: none;
+  font-size:14px;
+}
+
+.button:hover {
+    background-color:#4E4E50
+}
+
+.customer_display {
+    display: flex;
+    background-color: #1A1A1D;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

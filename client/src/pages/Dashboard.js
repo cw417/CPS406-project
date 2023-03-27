@@ -53,10 +53,8 @@ export default function Dashboard() {
     <>
       <Navbar />
       <div className={styles.container}>
-        <div className={styles.container}>
-          <AccountsOverview customer={customer} />
-          <QuickActions customer={customer} />
-        </div>
+        <AccountsOverview customer={customer} />
+        <QuickActions customer={customer} />
       </div>
     </>
   );
