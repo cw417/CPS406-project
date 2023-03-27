@@ -31,7 +31,6 @@ export default function AdminPage() {
       <h1>Loading...</h1>
     </>)
   } else {
-    console.log(customers)
     return (
       <div>
         <Navbar />
@@ -41,6 +40,7 @@ export default function AdminPage() {
             return(
               <>
                 <div>
+                  {customer._id}
                   {customer.first}
                   {customer.last}
                   {customer.username}
