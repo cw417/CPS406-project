@@ -23,37 +23,39 @@ export default function AccountInfo(props) {
         )
     }
 
-    return(
-        <>
-            <div className={styles.container}>
-                <div className={styles.header}>
-                    <p>{account.accountType} Account - {account._id}</p>
-                    <p>Current Balance: ${account.accountBalance}</p>
-                </div>
-                <hr/>
-                <div className={styles.header}>
-                    <p>Date</p>
-                    <p>To</p>
-                    <p>From</p>
-                    <p>Description</p>
-                    <p>Amount</p>
-                </div>
-                <div className={styles.body}>
-                    {account.transactionHistory.map((transaction) => {
-                        return(
-                            <>
-                                <div className={styles.transaction}>
-                                    <p>{transaction.date}</p>
-                                    <p>{transaction.to}</p>
-                                    <p>{transaction.from}</p>
-                                    <p>{transaction.type}</p>
-                                    <p>{transaction.amount}</p>
-                                </div>
-                            </>
-                        )
-                    })}
-                </div>
-            </div>
-        </>
-    )
+    return (
+      <>
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <p>
+              {account.accountType} Account - {account._id}
+            </p>
+            <p>Current Balance: ${account.accountBalance}</p>
+          </div>
+          <hr />
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>To</th>
+                <th>From</th>
+                <th>Description</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {account.transactionHistory.map((transaction) => (
+                <tr key={transaction.id} className={styles.row}>
+                  <td>{transaction.date}</td>
+                  <td>{transaction.to}</td>
+                  <td>{transaction.from}</td>
+                  <td>{transaction.type}</td>
+                  <td>{transaction.amount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </>
+    );
 }
