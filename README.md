@@ -1,17 +1,5 @@
 # CPS406-project
 
-## TODO
-
-- admin edit transaction history
-  - fix implementation of account total editing
-- user contact list for transactions
-- error handling
-  - mostly input checking
-- OOP stuff
-  - encapsulation for customer account editing
-
-
-
   ## How to get the project running
 
   - Open terminal and change directory into the client folder and type npm install first and then type npm start and the homepage should load and pop up in your default browser.
