@@ -64,9 +64,9 @@ export default function EditInfo() {
                     </div>
                 </div>
             </div>
-            <div className={styles.submitbutton}>
-                <button class="confirmbutton">Confirm Changes</button>
-            </div>
+          
+                <button class="confirmbutton" className={styles.buttoncolor}>Confirm Changes</button>
+            
         </div>
     )
 }

@@ -61,18 +61,23 @@
 
 }
 
-.submitbutton {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    background: blue;
-    height: 25px;
-    width: 150px;
-    padding: 25px;
-    bottom: 0;
-    right: 0;
-    margin-right: 45px;
-    margin-bottom: 50px;
+
+.buttoncolor{
+
+
+position: fixed;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 10px;
+background: #950740;
+color: white;
+height: 25px;
+width: 150px;
+padding: 25px;
+bottom: 0;
+right: 0;
+margin-right: 45px;
+margin-bottom: 50px;
+font-weight: bold;
 }
