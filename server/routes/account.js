@@ -37,6 +37,15 @@ routes.route("/account/get/:id").get(function (req, res) {
     .findOne(myquery).then((data) => res.json(data))
 });
 
+// Delete a specific account
+routes.route("/account/remove/:id").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { _id: req.params.id};
+  db_connect
+    .collection("accounts")
+    .deleteOne(myquery).then((data) => res.json(data))
+});
+
 // Create a new account. (The id is the customer's id that this account belongs to)
 routes.route("/account/add/:id").post(function (req, response) {
   let db_connect = dbo.getDb();

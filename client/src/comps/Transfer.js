@@ -7,6 +7,7 @@ import Transaction from "../objects/Transaction";
 import Bank from '../objects/Bank'
 import Account from "../objects/Account";
 import { useNavigate } from "react-router-dom";
+import { MdDeleteForever } from 'react-icons/md'
 
 export default function Transfer(props) {
   const customer = props.customer
@@ -72,6 +73,11 @@ export default function Transfer(props) {
       }
       navigate(0);
     }
+  }
+
+  function deleteContact(contact) {
+    customer.removeContact(contact)
+    navigate(0);
   }
 
   return (
@@ -140,7 +146,6 @@ export default function Transfer(props) {
                       </DropdownMenu.Item>
                     );
                   })}
-                </div>
                 {customer.contacts.map((contact) => {
                   return (
                     <DropdownMenu.Item
@@ -154,9 +159,11 @@ export default function Transfer(props) {
                       <p>
                         Contact - {contact.name} - {contact.email}
                       </p>
+                      <MdDeleteForever onClick={() => deleteContact(contact)}/>
                     </DropdownMenu.Item>
                   );
                 })}
+                </div>
               </DropdownMenu.Content>
             </DropdownMenu.Root>
           </div>

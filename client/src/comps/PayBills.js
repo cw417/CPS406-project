@@ -7,6 +7,7 @@ import Transaction from "../objects/Transaction";
 import Bank from '../objects/Bank'
 import Account from "../objects/Account";
 import { useNavigate } from 'react-router-dom';
+import { MdDeleteForever } from 'react-icons/md'
 
 export default function PayBills(props) {
   const customer = props.customer   
@@ -44,6 +45,11 @@ export default function PayBills(props) {
       })
       navigate(0);
     }
+  }
+
+  function deletePayee(payee) {
+    customer.removePayee(payee)
+    navigate(0);
   }
 
   return (
@@ -111,6 +117,7 @@ export default function PayBills(props) {
                           <p>
                             {payee.name} - {payee.accountNumber}
                           </p>
+                          <MdDeleteForever onClick={() => deletePayee(payee)}/>
                         </DropdownMenu.Item>
                       </>
                     );

@@ -23,18 +23,19 @@ export default class Customer {
   }
 
   removeContact(contact) {
-    this.contacts.remove(contact)
+    const index = this.contacts.indexOf(contact)
+    this.contacts.splice(index)
     this.updateCustomer()
   }
 
   addPayee(payee) {
-    console.log("Adding PAyee")
     this.payees.push(payee)
     this.updateCustomer()
   }
 
   removePayee(payee) {
-    this.payees.remove(payee)
+    const index = this.payees.indexOf(payee)
+    this.payees.splice(index)
     this.updateCustomer()
   }
 
