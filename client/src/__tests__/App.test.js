@@ -4,6 +4,8 @@ import AddPayee from '../comps/AddPayee';
 import App from '../App'
 import { BrowserRouter } from 'react-router-dom';
 import Homepage from '../pages/Homepage';
+import LoginForm from '../comps/LoginForm';
+import SignupForm from "../comps/SignupForm"
 
 /* SETUP */
 
@@ -41,4 +43,17 @@ test('renders AddContact component', () => {
 
 test('renders AddPayee component', () => {
   render(<AddPayee />);
+});
+
+test('renders LoginForm component', () => {
+  <BrowserRouter>
+  render(<LoginForm />);
+  </BrowserRouter>
+  
+});
+test('renders Signup component', () => {
+  <BrowserRouter>
+  render(<SignupForm />);
+  </BrowserRouter>
+  
 });
