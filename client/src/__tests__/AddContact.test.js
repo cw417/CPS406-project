@@ -40,4 +40,4 @@ jest.mock("../lib/validate");
 
         expect(emailInput).toEqual(confirmEmailInput);
 
-    })
+    });
