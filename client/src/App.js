@@ -16,11 +16,11 @@ export default function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<SignUp />} />
         <Route exact path="/" element={<Homepage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/admin" element={<AdminPage />} />
         <Route path="/accounts/:aNum" element={<Account />} />
-        <Route path="/contacts" element={<Contacts />} />
-        <Route path="/edit" element={<Edit />} />
+        <Route exact path="/contacts" element={<Contacts />} />
+        <Route exact path="/edit" element={<Edit />} />
       </Routes>
     </div>
   );

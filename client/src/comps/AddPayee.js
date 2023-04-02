@@ -1,11 +1,13 @@
 import styles from "../styles/Contact.module.css";
 import { useState } from "react";
 import { accountCheck } from "../lib/validate";
+import { useNavigate } from 'react-router-dom'
 
 export default function AddPayee(props) {
   const [payeeName, setPayeeName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const customer = props.customer;
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,6 +23,9 @@ export default function AddPayee(props) {
         return;
       } else {
         customer.addPayee({ name: payeeName, accountNumber: accountNumber });
+        setTimeout(function() {
+          navigate('/dashboard');
+        }, 1000);
       }
     });
   };

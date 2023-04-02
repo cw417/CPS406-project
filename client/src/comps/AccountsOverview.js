@@ -9,7 +9,7 @@ export default function AccountsOverview(props) {
   const navigate = useNavigate();
 
   async function openAccount(type) {
-    if (savingAccounts.length + chequingAccounts.length > 8) {
+    if (savingAccounts.length + chequingAccounts.length >= 8) {
       alert("Account Limit Reached");
     } else {
       customer.openAccount(type);

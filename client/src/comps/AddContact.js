@@ -1,12 +1,14 @@
 import styles from "../styles/Contact.module.css";
 import { useState } from "react";
 import { emailCheck } from "../lib/validate";
+import { useNavigate } from 'react-router-dom'
 
 export default function AddContact(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
   const customer = props.customer;
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,6 +22,9 @@ export default function AddContact(props) {
         return;
       } else {
         customer.addContact({ name: name, email: email });
+        setTimeout(function() {
+          navigate('/dashboard');
+        }, 1000);
       }
     });
   };
