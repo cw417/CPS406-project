@@ -1,62 +1,62 @@
 .container {
-    display: flex;
-    justify-content: center;
-    height: 600px;
-    width: 600px;
-    margin: auto;
+  display: flex;
+  justify-content: center;
+  height: 600px;
+  width: 600px;
+  margin: auto;
 }
 
 .signup_form {
-    display: flex;
-    flex-direction: column;
-    width: 500px;
-    background-color: #6F2232;
-    padding: 50px;
-    border-radius: 20px;
-    gap: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  background-color: #6f2232;
+  padding: 50px;
+  border-radius: 20px;
+  gap: 5px;
 }
 
 .input {
-    border: 1px solid;
-    border-radius: 8px;
-    height: 40px;
-    padding-left: 5px;
+  border: 1px solid;
+  border-radius: 8px;
+  height: 40px;
+  padding-left: 5px;
 }
 
 .submit {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    border: 1px solid black;
-    font-size: medium;
-    background-color:  #4E4E50;
-    color: white;
-    padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid black;
+  font-size: medium;
+  background-color: #4e4e50;
+  color: white;
+  padding: 8px;
 }
 
 .error {
-    color: red;
+  color: red;
 }
-.button{
-    position: relative;
-    display: inline-block;
-    padding: 5px;
-    background-color: white;
-    color: #0e0101;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 8px;
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 5px;
+  background-color: white;
+  color: #0e0101;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
 }
 .signup {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .center {
-    text-align: center;
-  }
+  text-align: center;
+}

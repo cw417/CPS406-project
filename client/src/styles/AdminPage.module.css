@@ -1,14 +1,14 @@
 .title {
-    text-align:center;
-    padding: 20px;
+  text-align: center;
+  padding: 20px;
 }
 
 .container {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 .ParentAdminContainer {
-    display: flex;
-    width: 50%;
+  display: flex;
+  width: 50%;
   margin: 0 auto;
 }
 .AdminContainer {
@@ -29,30 +29,30 @@
   padding: 12px 20px;
   outline: none;
   border: none;
-  font-size:20px;
+  font-size: 20px;
   width: 400px;
   margin: 8px;
   box-sizing: border-box;
 }
 
 .button {
-  background-color: #1A1A1D;
+  background-color: #1a1a1d;
   color: #fff;
   border-radius: 20px;
   padding: 20px;
   outline: none;
   border: none;
-  font-size:14px;
+  font-size: 14px;
 }
 
 .button:hover {
-    background-color:#4E4E50
+  background-color: #4e4e50;
 }
 
 .customer_display {
-    display: flex;
-    background-color: #1A1A1D;
-    border-radius: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  background-color: #1a1a1d;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

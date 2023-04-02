@@ -1,83 +1,74 @@
 .div {
-    background: #1A1A1D;
-   
+  background: #1a1a1d;
 }
 
 .bigheader {
-
-    padding: 30px;
-    text-align: left;
-    font-size: 30px;
-
+  padding: 30px;
+  text-align: left;
+  font-size: 30px;
 }
 
 .box1 {
-    background: #950740;
-    height: fit-content;
-    min-height: 150px;
-    width: 500px;
-    border-radius: 30px;
-    margin-top: 15px;
-
+  background: #950740;
+  height: fit-content;
+  min-height: 150px;
+  width: 500px;
+  border-radius: 30px;
+  margin-top: 15px;
 }
 
 .titles {
-    text-align: center;
-    font-weight: bold;
-    padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
 }
 
 .points {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
 
-}   
-
-.input[type=text] {
-    width: 400px;
-    padding: 12px 20px;
-    margin: 8px;
-    box-sizing: border-box;
-    border-radius: 8px;
+.input[type="text"] {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px;
+  box-sizing: border-box;
+  border-radius: 8px;
 }
 
 .container {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .confirmbutton {
-    display: inline-block;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    border-radius: px;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
-
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
 }
 
-
-.buttoncolor{
-
-
-position: fixed;
-display: flex;
-justify-content: center;
-align-items: center;
-border-radius: 10px;
-background: #950740;
-color: white;
-height: 25px;
-width: 150px;
-padding: 25px;
-bottom: 0;
-right: 0;
-margin-right: 45px;
-margin-bottom: 50px;
-font-weight: bold;
+.buttoncolor {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #950740;
+  color: white;
+  height: 25px;
+  width: 150px;
+  padding: 25px;
+  bottom: 0;
+  right: 0;
+  margin-right: 45px;
+  margin-bottom: 50px;
+  font-weight: bold;
 }

@@ -4,15 +4,16 @@ import TransferStyles from "../styles/Transfer.module.css";
 import { NavLink } from "react-router-dom";
 import { useRef, useState } from "react";
 import Transaction from "../objects/Transaction";
-import Bank from '../objects/Bank'
+import Bank from "../objects/Bank";
 import Account from "../objects/Account";
 import { useNavigate } from "react-router-dom";
-import { MdDeleteForever } from 'react-icons/md'
+import { MdDeleteForever } from "react-icons/md";
 
 export default function Transfer(props) {
-  const customer = props.customer
+  const customer = props.customer;
   const [fromAccount, setFromAccount] = useState(null);
-  const [displayFromAccount, setDisplayFromAccount] = useState("Select Account");
+  const [displayFromAccount, setDisplayFromAccount] =
+    useState("Select Account");
   const [toAccount, setToAccount] = useState(null);
   const [isContact, setIsContact] = useState(false);
   const [displayToAccount, setDisplayToAccount] = useState(
@@ -22,7 +23,7 @@ export default function Transfer(props) {
   const cAccounts = props.cAccounts;
   const accounts = sAccounts.concat(cAccounts);
   const amountRef = useRef();
-  const reserve = new Bank()
+  const reserve = new Bank();
   const navigate = useNavigate();
 
   function handleTransfer() {
@@ -42,9 +43,15 @@ export default function Transfer(props) {
         "Transfer"
       );
       if (isContact) {
-        reserve.getAccountByEmail(toAccount.email)
-        .then((data) => {
-          const toContact = new Account(data._id, data.accountType, data.customerId, data.accountBalance, data.maxTransferAmount, data.transactionHistory)
+        reserve.getAccountByEmail(toAccount.email).then((data) => {
+          const toContact = new Account(
+            data._id,
+            data.accountType,
+            data.customerId,
+            data.accountBalance,
+            data.maxTransferAmount,
+            data.transactionHistory
+          );
           const fromTransaction = new Transaction(
             -amount,
             fromAccount.accountType,
@@ -54,13 +61,18 @@ export default function Transfer(props) {
           );
           const toTransaction = new Transaction(
             amount,
-            'Saving',
+            "Saving",
             toContact.id,
             fromAccount.id,
             "Transfer"
           );
-          fromAccount.transfer(toContact, amount, fromTransaction, toTransaction);
-        })
+          fromAccount.transfer(
+            toContact,
+            amount,
+            fromTransaction,
+            toTransaction
+          );
+        });
       } else {
         const toTransaction = new Transaction(
           amount,
@@ -76,7 +88,7 @@ export default function Transfer(props) {
   }
 
   function deleteContact(contact) {
-    customer.removeContact(contact)
+    customer.removeContact(contact);
     navigate(0);
   }
 
@@ -146,23 +158,25 @@ export default function Transfer(props) {
                       </DropdownMenu.Item>
                     );
                   })}
-                {customer.contacts.map((contact) => {
-                  return (
-                    <DropdownMenu.Item
-                      className={DropdownStyles.Item}
-                      onSelect={() => {
-                        setToAccount(contact);
-                        setDisplayToAccount(contact.name);
-                        setIsContact(true);
-                      }}
-                    >
-                      <p>
-                        Contact - {contact.name} - {contact.email}
-                      </p>
-                      <MdDeleteForever onClick={() => deleteContact(contact)}/>
-                    </DropdownMenu.Item>
-                  );
-                })}
+                  {customer.contacts.map((contact) => {
+                    return (
+                      <DropdownMenu.Item
+                        className={DropdownStyles.Item}
+                        onSelect={() => {
+                          setToAccount(contact);
+                          setDisplayToAccount(contact.name);
+                          setIsContact(true);
+                        }}
+                      >
+                        <p>
+                          Contact - {contact.name} - {contact.email}
+                        </p>
+                        <MdDeleteForever
+                          onClick={() => deleteContact(contact)}
+                        />
+                      </DropdownMenu.Item>
+                    );
+                  })}
                 </div>
               </DropdownMenu.Content>
             </DropdownMenu.Root>

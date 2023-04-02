@@ -3,15 +3,15 @@ import AddPayee from "../comps/AddPayee";
 import { accountCheck } from "../lib/validate";
 jest.mock("../lib/validate");
 describe("AddPayee", () => {
-    let spy;
+  let spy;
 
-    beforeEach(() => {
-      spy = jest.spyOn(window, 'alert').mockImplementation(() => {});
-    });
-  
-    afterEach(() => {
-      spy.mockRestore();
-    });
+  beforeEach(() => {
+    spy = jest.spyOn(window, "alert").mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    spy.mockRestore();
+  });
 
   test("renders the Add Payee form", () => {
     const { getByLabelText, getByText } = render(<AddPayee customer={{}} />);
@@ -24,31 +24,31 @@ describe("AddPayee", () => {
     expect(submitButton).toBeInTheDocument();
   });
 
- 
-  it('should display an alert message if an invalid account number is entered', () => {
+  it("should display an alert message if an invalid account number is entered", () => {
     accountCheck.mockResolvedValue(false);
     const spyi = jest.spyOn(window, "alert").mockImplementation(() => {});
     const { getByLabelText, getByText } = render(<AddPayee customer={{}} />);
-    const payeeNameInput = getByLabelText('Payee Name:');
-    const accountNumberInput = getByLabelText('Account Number:');
+    const payeeNameInput = getByLabelText("Payee Name:");
+    const accountNumberInput = getByLabelText("Account Number:");
 
-    fireEvent.change(payeeNameInput, { target: { value: 'abc' } });
-    fireEvent.change(accountNumberInput, { target: { value: '123456' } });
+    fireEvent.change(payeeNameInput, { target: { value: "abc" } });
+    fireEvent.change(accountNumberInput, { target: { value: "123456" } });
 
-    fireEvent.submit(getByText('Complete'));
+    fireEvent.submit(getByText("Complete"));
     expect(accountCheck).toHaveBeenCalledWith("123456");
-    
   });
-  it('should display an alert message if an invalid payee name is entered', () => {
+  it("should display an alert message if an invalid payee name is entered", () => {
     const { getByLabelText, getByText } = render(<AddPayee customer={{}} />);
-    const payeeNameInput = getByLabelText('Payee Name:');
-    const accountNumberInput = getByLabelText('Account Number:');
+    const payeeNameInput = getByLabelText("Payee Name:");
+    const accountNumberInput = getByLabelText("Account Number:");
 
-    fireEvent.change(payeeNameInput, { target: { value: '123' } });
-    fireEvent.change(accountNumberInput, { target: { value: '123456' } });
+    fireEvent.change(payeeNameInput, { target: { value: "123" } });
+    fireEvent.change(accountNumberInput, { target: { value: "123456" } });
 
-    fireEvent.submit(getByText('Complete'));
+    fireEvent.submit(getByText("Complete"));
 
-    expect(spy).toHaveBeenCalledWith('Invalid payee name. Payee name can only contain letters, spaces, and hyphens.');
+    expect(spy).toHaveBeenCalledWith(
+      "Invalid payee name. Payee name can only contain letters, spaces, and hyphens."
+    );
   });
 });

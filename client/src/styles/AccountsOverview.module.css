@@ -8,7 +8,7 @@
 }
 
 .twoBlocks {
-    border: 5px;
+  border: 5px;
 }
 
 .main_header {
@@ -34,7 +34,7 @@
 }
 
 .account {
-  background-color:  #1A1A1D;
+  background-color: #1a1a1d;
   border-radius: 10px;
   font-size: 16px;
   display: flex;
@@ -43,18 +43,18 @@
   padding: 10px;
 }
 .pushToLeft {
-    text-align: right;
+  text-align: right;
 }
 
 .viewTrans {
-font-size: 14px;
+  font-size: 14px;
 }
 
 .scrollable_div {
   overflow: auto;
   height: 140px;
   scrollbar-width: thin;
-  scrollbar-color: #1A1A1D;
+  scrollbar-color: #1a1a1d;
   padding-right: 5px;
 }
 
@@ -63,7 +63,7 @@ font-size: 14px;
 }
 
 .scrollable_div::-webkit-scrollbar-thumb {
-  background-color: #4E4E50;
+  background-color: #4e4e50;
   border-radius: 10px;
 }
 
@@ -83,10 +83,10 @@ font-size: 14px;
 }
 
 .btn_black {
-  background-color: #1A1A1D;
+  background-color: #1a1a1d;
   color: #fff;
 }
 
 .btn_black:hover {
-  background-color: #4E4E50;
+  background-color: #4e4e50;
 }

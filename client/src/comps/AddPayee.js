@@ -5,7 +5,7 @@ import { accountCheck } from "../lib/validate";
 export default function AddPayee(props) {
   const [payeeName, setPayeeName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
-  const customer = props.customer
+  const customer = props.customer;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,13 +16,13 @@ export default function AddPayee(props) {
       return;
     }
     accountCheck(accountNumber).then((result) => {
-      if (result === false){
-        alert("Account Number Does Not Exist")
+      if (result === false) {
+        alert("Account Number Does Not Exist");
         return;
       } else {
-        customer.addPayee({name: payeeName, accountNumber: accountNumber})
+        customer.addPayee({ name: payeeName, accountNumber: accountNumber });
       }
-      })
+    });
   };
 
   return (

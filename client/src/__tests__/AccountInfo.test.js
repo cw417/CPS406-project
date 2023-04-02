@@ -1,52 +1,49 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import AccountInfo from '../comps/AccountInfo';
-import Bank from '../objects/Bank';
-import { BrowserRouter } from 'react-router-dom';
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import AccountInfo from "../comps/AccountInfo";
+import Bank from "../objects/Bank";
+import { BrowserRouter } from "react-router-dom";
 
-
-
-
-describe('AccountInfo', () => {
-    let mockAccount;
-    beforeEach(() => {
+describe("AccountInfo", () => {
+  let mockAccount;
+  beforeEach(() => {
     const mockAccount = {
-      _id: '123',
-      accountType: 'Chequing',
-      customerId: '456',
+      _id: "123",
+      accountType: "Chequing",
+      customerId: "456",
       accountBalance: 100,
       maxTransferAmount: 1000,
       transactionHistory: [
         {
-          id: '789',
-          date: '2022-04-01',
-          to: 'Jane Doe',
-          from: 'John Smith',
-          type: 'Transfer',
+          id: "789",
+          date: "2022-04-01",
+          to: "Jane Doe",
+          from: "John Smith",
+          type: "Transfer",
           amount: 50,
         },
         {
-          id: '012',
-          date: '2022-03-31',
-          to: '',
-          from: 'John Smith',
-          type: 'Deposit',
+          id: "012",
+          date: "2022-03-31",
+          to: "",
+          from: "John Smith",
+          type: "Deposit",
           amount: 100,
         },
       ],
-     
     };
-  
+
     const mockNavigate = jest.fn();
-  
-   
-     
-    });
-  
-    it('renders correctly when account is null', () => {
-      render(<BrowserRouter><AccountInfo accountId="123" /></BrowserRouter>);
-      expect(screen.getByText(/loading/i)).toBeInTheDocument();
-    });
+  });
+
+  it("renders correctly when account is null", () => {
+    render(
+      <BrowserRouter>
+        <AccountInfo accountId="123" />
+      </BrowserRouter>
+    );
+    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+  });
   /*
     it('renders correctly when account is not null', () => {
       jest.spyOn(global, 'fetch').mockResolvedValueOnce({
@@ -73,4 +70,3 @@ describe('AccountInfo', () => {
     });
     */
 });
-

@@ -6,7 +6,7 @@ export default function AddContact(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
-  const customer = props.customer
+  const customer = props.customer;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,14 +15,14 @@ export default function AddContact(props) {
       return;
     }
     emailCheck(email).then((result) => {
-      if (result === false){
-        alert("Account with this email does not exist")
+      if (result === false) {
+        alert("Account with this email does not exist");
         return;
       } else {
-        customer.addContact({name: name, email: email})
+        customer.addContact({ name: name, email: email });
       }
-      })
-  }
+    });
+  };
 
   return (
     <div className={styles.outerFrame}>

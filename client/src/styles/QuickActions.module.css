@@ -18,8 +18,8 @@
   border-radius: 50px;
   border-color: white;
   background-color: #950740;
-  color:white;
-  font-size: 1.0rem;
+  color: white;
+  font-size: 1rem;
   font-weight: bold;
   padding: 10px 20px;
 }
@@ -29,6 +29,6 @@
   justify-content: space-between;
   margin-top: 20px;
   margin-bottom: 5x;
-  margin-left:60px;
-  margin-right:60px;
+  margin-left: 60px;
+  margin-right: 60px;
 }

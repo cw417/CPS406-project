@@ -4,51 +4,65 @@ import TransferStyles from "../styles/Transfer.module.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Transaction from "../objects/Transaction";
-import Bank from '../objects/Bank'
+import Bank from "../objects/Bank";
 import Account from "../objects/Account";
-import { useNavigate } from 'react-router-dom';
-import { MdDeleteForever } from 'react-icons/md'
+import { useNavigate } from "react-router-dom";
+import { MdDeleteForever } from "react-icons/md";
 
 export default function PayBills(props) {
-  const customer = props.customer   
-  const sAccounts = props.sAccounts
-  const cAccounts = props.cAccounts
-  const accounts = sAccounts.concat(cAccounts)
-  const reserve = new Bank()
+  const customer = props.customer;
+  const sAccounts = props.sAccounts;
+  const cAccounts = props.cAccounts;
+  const accounts = sAccounts.concat(cAccounts);
+  const reserve = new Bank();
   const navigate = useNavigate();
-  
-  const [displayedAccount, setDisplayedAccount] = useState('Select Bank Account')
-  const [selectedAccount, setSelectedAccount] = useState(null)
+
+  const [displayedAccount, setDisplayedAccount] = useState(
+    "Select Bank Account"
+  );
+  const [selectedAccount, setSelectedAccount] = useState(null);
   const [payAmount, setPayAmount] = useState(0);
-  const [displayedPayee, setDisplayedPayee] = useState('Select Payee')
-  const [selectedPayee, setSelectedPayee] = useState(null)
+  const [displayedPayee, setDisplayedPayee] = useState("Select Payee");
+  const [selectedPayee, setSelectedPayee] = useState(null);
 
   function payBill() {
     if (payAmount > 0 && selectedAccount !== null) {
       reserve.getAccount(selectedPayee.accountNumber).then((data) => {
-        const toAccount = new Account(data._id, data.accountType, data.customerId, data.accountBalance, data.maxTransferAmount, data.transactionHistory)
+        const toAccount = new Account(
+          data._id,
+          data.accountType,
+          data.customerId,
+          data.accountBalance,
+          data.maxTransferAmount,
+          data.transactionHistory
+        );
         const fromTransaction = new Transaction(
-        -payAmount,
-        selectedAccount.accountType,
-        toAccount.id,
-        selectedAccount.id,
-        "Payment"
-      );
-      const toTransaction = new Transaction(
-        payAmount,
-        'Saving',
-        toAccount.id,
-        selectedAccount.id,
-        "Payment"
-      );
-      selectedAccount.transfer(toAccount, payAmount, fromTransaction, toTransaction);
-      })
+          -payAmount,
+          selectedAccount.accountType,
+          toAccount.id,
+          selectedAccount.id,
+          "Payment"
+        );
+        const toTransaction = new Transaction(
+          payAmount,
+          "Saving",
+          toAccount.id,
+          selectedAccount.id,
+          "Payment"
+        );
+        selectedAccount.transfer(
+          toAccount,
+          payAmount,
+          fromTransaction,
+          toTransaction
+        );
+      });
       navigate(0);
     }
   }
 
   function deletePayee(payee) {
-    customer.removePayee(payee)
+    customer.removePayee(payee);
     navigate(0);
   }
 
@@ -117,7 +131,7 @@ export default function PayBills(props) {
                           <p>
                             {payee.name} - {payee.accountNumber}
                           </p>
-                          <MdDeleteForever onClick={() => deletePayee(payee)}/>
+                          <MdDeleteForever onClick={() => deletePayee(payee)} />
                         </DropdownMenu.Item>
                       </>
                     );

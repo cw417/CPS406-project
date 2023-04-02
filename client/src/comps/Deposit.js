@@ -3,7 +3,7 @@ import DropdownStyles from "../styles/DropdownMenu.module.css";
 import { useState } from "react";
 import Transaction from "../objects/Transaction";
 import TransferStyles from "../styles/Transfer.module.css";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 export default function Deposit(props) {
   const sAccounts = props.sAccounts;
@@ -16,7 +16,11 @@ export default function Deposit(props) {
   const navigate = useNavigate();
 
   function makeDeposit() {
-    if (depositAmount > 0 && depositAmount <= 10000 && selectedAccount !== null) {
+    if (
+      depositAmount > 0 &&
+      depositAmount <= 10000 &&
+      selectedAccount !== null
+    ) {
       const transaction = new Transaction(
         depositAmount,
         selectedAccount.accountType,
@@ -27,7 +31,9 @@ export default function Deposit(props) {
       selectedAccount.deposit(depositAmount, transaction);
       navigate(0);
     } else {
-      alert("Invalid Deposit - Amount Must Not Exceed $10000 or Account Is Not Selected");
+      alert(
+        "Invalid Deposit - Amount Must Not Exceed $10000 or Account Is Not Selected"
+      );
     }
   }
 
@@ -87,7 +93,10 @@ export default function Deposit(props) {
             <span>$ </span>
             <input
               type="number"
-              onChange={(event) => {setDepositAmount(event.target.value); console.log("Changing")}}
+              onChange={(event) => {
+                setDepositAmount(event.target.value);
+                console.log("Changing");
+              }}
               className={TransferStyles.FormInput}
               placeholder="0.00"
             />

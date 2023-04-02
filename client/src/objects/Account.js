@@ -16,30 +16,30 @@ export default class Account {
   }
 
   deposit(amount, transaction) {
-    this.accountBalance += parseFloat(amount)
+    this.accountBalance += parseFloat(amount);
     this.addTransaction(transaction);
     this.updateAccount();
   }
 
   withdraw(amount, transaction) {
     if (amount <= this.accountBalance) {
-      this.accountBalance -= parseFloat(amount)
-      this.addTransaction(transaction)
-      this.updateAccount()
+      this.accountBalance -= parseFloat(amount);
+      this.addTransaction(transaction);
+      this.updateAccount();
     }
   }
 
   transfer(sendTo, amount, transaction, sendTransaction) {
     if (amount <= this.accountBalance) {
-      this.withdraw(amount, transaction)
-      sendTo.deposit(amount, sendTransaction)
+      this.withdraw(amount, transaction);
+      sendTo.deposit(amount, sendTransaction);
     }
   }
 
   setAccountBalance(newVal) {
     this.accountBalance = newVal;
   }
-  
+
   addTransaction(transaction) {
     this.transactionHistory.push(transaction.getInfo());
   }
@@ -75,7 +75,6 @@ export default class Account {
   }
 
   async deleteAccount() {
-    await fetch(`http://localhost:5000/account/remove/${this.id}`)
+    await fetch(`http://localhost:5000/account/remove/${this.id}`);
   }
-
 }
