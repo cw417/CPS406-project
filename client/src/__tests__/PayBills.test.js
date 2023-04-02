@@ -1,10 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import Transfer from '../comps/Transfer';
 import Customer from '../objects/Customer'
 import Account from '../objects/Account';
+import PayBills from '../comps/PayBills';
 
-describe('Transfer', () => {
+describe('PayBills', () => {
   const testCustomer = new Customer(
     'testUser',
     'testFirst',
@@ -30,22 +30,22 @@ describe('Transfer', () => {
       []
     );
 
-  test('renders Transfer component', () => {
-    render(<BrowserRouter><Transfer customer={testCustomer} sAccounts={[sAccount]} cAccounts={[cAccount]} /></BrowserRouter>);
+  test('renders PayBills component', () => {
+    render(<BrowserRouter><PayBills customer={testCustomer} sAccounts={[sAccount]} cAccounts={[cAccount]} /></BrowserRouter>);
     expect(screen.getByText(/from:/i)).toBeInTheDocument();
     expect(screen.getByText(/to:/i)).toBeInTheDocument();
     expect(screen.getByText(/amount:/i)).toBeInTheDocument();
-    expect(screen.getByText(/make transfer/i)).toBeInTheDocument();
+    expect(screen.getByText(/make payment/i)).toBeInTheDocument();
   });
 
   test('displays accounts', () => {
-    render(<BrowserRouter><Transfer customer={testCustomer} sAccounts={[sAccount]} cAccounts={[cAccount]} /></BrowserRouter>);
-    expect(screen.getByText("Select Account")).toBeInTheDocument();
-    expect(screen.getByText("Select Account/Contact")).toBeInTheDocument();
+    render(<BrowserRouter><PayBills customer={testCustomer} sAccounts={[sAccount]} cAccounts={[cAccount]} /></BrowserRouter>);
+    expect(screen.getByText('Select Bank Account')).toBeInTheDocument();
+    expect(screen.getByText('Select Payee')).toBeInTheDocument();
   })
 
   test('updates transfer amount when user types in input field', () => {
-    render(<BrowserRouter><Transfer customer={testCustomer} sAccounts={[sAccount]} cAccounts={[cAccount]} /></BrowserRouter>);
+    render(<BrowserRouter><PayBills customer={testCustomer} sAccounts={[sAccount]} cAccounts={[cAccount]} /></BrowserRouter>);
     fireEvent.change(screen.getByPlaceholderText(/0.00/i), {
       target: { value: '100' },
     });
@@ -53,9 +53,9 @@ describe('Transfer', () => {
   });
 
   test('accounts are selectable', () => {
-    render(<BrowserRouter><Transfer customer={testCustomer} sAccounts={[sAccount]} cAccounts={[cAccount]} /></BrowserRouter>);
-    fireEvent.click(screen.getByText('Select Account'));
+    render(<BrowserRouter><PayBills customer={testCustomer} sAccounts={[sAccount]} cAccounts={[cAccount]} /></BrowserRouter>);
+    fireEvent.click(screen.getByText('Select Bank Account'));
     //expect(screen.getByText('1234')).toBeInTheDocument();
   })
 
-});
+})
