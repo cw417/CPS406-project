@@ -44,4 +44,18 @@ describe('Transfer', () => {
     expect(screen.getByText("Select Account/Contact")).toBeInTheDocument();
   })
 
+  test('updates transfer amount when user types in input field', () => {
+    render(<BrowserRouter><Transfer customer={testCustomer} sAccounts={[sAccount]} cAccounts={[cAccount]} /></BrowserRouter>);
+    fireEvent.change(screen.getByPlaceholderText(/0.00/i), {
+      target: { value: '100' },
+    });
+    expect(screen.getByDisplayValue(/100/i)).toBeInTheDocument();
+  });
+
+  test('', () => {
+    render(<BrowserRouter><Transfer customer={testCustomer} sAccounts={[sAccount]} cAccounts={[cAccount]} /></BrowserRouter>);
+    fireEvent.click(screen.getByText('Select Account'));
+    //expect(screen.getByText('1234')).toBeInTheDocument();
+  })
+
 });
