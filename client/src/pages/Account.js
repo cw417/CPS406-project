@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import Navbar from "../comps/Navbar"
 import AccountInfo from "../comps/AccountInfo"
 import styles from '../styles/Account.module.css'

@@ -1,13 +1,11 @@
 import LoginForm from "../comps/LoginForm"
 import styles from '../styles/Login.module.css'
 import Navbar from '../comps/Navbar'
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import Bank from '../objects/Bank'
 import { useNavigate } from "react-router-dom"
 
 export default function Login() {
-
-    const [bank, setBank] = useState(new Bank());
     const userId = localStorage.getItem('userId')
     const navigate = useNavigate()
     
@@ -23,9 +21,8 @@ export default function Login() {
         }
     
         const customers = await response.json();
-        const newBank = new Bank('The Reserve');
-        newBank.setCustomers(customers)
-        setBank(newBank)
+        const reserve = new Bank();
+        reserve.setCustomers(customers)
       }
       getCustomers();
     }, [])

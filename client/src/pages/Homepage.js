@@ -1,6 +1,6 @@
 import HomeNavbar from "../comps/HomeNavbar";
 import styles from "../styles/HomePage.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import desktopMan from "../images/man_on_desktop.png";
 
 export default function Homepage() {

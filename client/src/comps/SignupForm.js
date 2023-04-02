@@ -6,9 +6,12 @@ import { useNavigate } from 'react-router-dom'
 import Customer from '../objects/Customer'
 import { NavLink } from 'react-router-dom'
 import logo from "../images/Logo.png";
+import Bank from '../objects/Bank'
+
 export default function SignUp() {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const reserve = new Bank();
 
     const formik = useFormik({
         initialValues: {
@@ -66,29 +69,12 @@ export default function SignUp() {
          * Savings account is set to 0.
          * Transaction history is set to an empty array.
          */
-        console.log(values)
-        console.log("creating new user");
         const newCustomer = new Customer(values.username, values.first, values.last, values.address, values.email, values.password, [], [])
         createUser(newCustomer);
       }
 
     async function createUser(newCustomer) {
-
-        console.log(`Adding: ${newCustomer.username}`);
-        await fetch('http://localhost:5000/customer/add', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newCustomer),
-        }).then(response => response.json()).then((data) => {
-            newCustomer.setId(data.insertedId)
-        })
-        .catch(error => {
-          window.alert(error);
-          return;
-        });
-        newCustomer.openAccount('Saving');
+        reserve.registerUser(newCustomer)
         navigate('/login');
       }
 

@@ -6,9 +6,12 @@ import axios from "axios"
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import logo from "../images/Logo.png";
+import Bank from '../objects/Bank'
+
 export default function LoginForm() {
 
     const navigate = useNavigate();
+    const reserve = new Bank();
 
     const formik = useFormik({
         initialValues: {
@@ -28,23 +31,12 @@ export default function LoginForm() {
     })
 
     async function onSubmit(values) {
-        
-        return axios.get("http://localhost:5000/customer").then(response => {
-            if (values.username === 'admin' && values.password === 'adminpw') {
-                localStorage.setItem('admin', "true")
-                navigate('/admin');
-            } else {
-                for (var i = 0; i < response.data.length; i++) {
-                    if (response.data[i].username === values.username){
-                        if (values.password === response.data[i].password) {
-                            localStorage.setItem('admin', "false")
-                            localStorage.setItem('userId', response.data[i]._id)
-                            navigate('/dashboard');
-                            return;
-                        }
-                    }
-                }
-                alert("Invalid Password")
+        reserve.login(values.username, values.password)
+        .then(response => {
+            if (response === 'admin') {
+                navigate('/admin')
+            } else if (response === 'customer') {
+                navigate('/dashboard')
             }
         })
     }

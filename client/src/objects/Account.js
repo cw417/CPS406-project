@@ -59,8 +59,6 @@ export default class Account {
   }
 
   async updateAccount() {
-    console.log('Update')
-    console.log(this.transactionHistory)
     await fetch(`http://localhost:5000/account/update/${this.id}`, {
       method: "POST",
       body: JSON.stringify({

@@ -1,9 +1,9 @@
 import Navbar from '../comps/Navbar';
 import styles from "../styles/Edit.module.css"
-import axios from 'axios'
 import { useState, useEffect } from 'react';
 import Customer from '../objects/Customer'
 import { useNavigate } from 'react-router-dom';
+import Bank from '../objects/Bank'
 
 export default function Edit() {
 
@@ -16,6 +16,7 @@ export default function Edit() {
     const [confirmNewPassword, setConfirmNewPassword] = useState(null);
     const [oldPassword, setOldPassword] = useState(null);
     const navigate = useNavigate();
+    const reserve = new Bank();
 
     function updateAccount() {
         if ((/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i).test(newEmail)) {
@@ -35,23 +36,12 @@ export default function Edit() {
     }
 
     async function getCustomer() {
-        axios.get(`http://localhost:5000/customer/${userId}`).then((response) => {
-        var data = response.data;
-        var custObject = new Customer(
-            data.username,
-            data.first,
-            data.last,
-            data.address,
-            data.email,
-            data.password,
-            data.accounts.chequing,
-            data.accounts.savings,
-            data.payees,
-            data.contacts,
-            data._id
-        );
-        setCustomer(custObject);
-        });
+        reserve.getCustomer(userId).then(data => {
+            var custObject = new Customer(data.username, data.first, data.last, 
+                data.address, data.email, data.password, data.accounts.chequing, data.accounts.savings,
+                data.payees, data.contacts, userId)
+            setCustomer(custObject)
+        })
     }
 
     useEffect(() => {
