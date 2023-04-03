@@ -8,6 +8,7 @@ export default function AccountsOverview(props) {
   const [savingAccounts, setSavingAccounts] = useState([]);
   const navigate = useNavigate();
 
+  // Create a customer account
   async function openAccount(type) {
     if (savingAccounts.length + chequingAccounts.length >= 8) {
       alert("Account Limit Reached");
@@ -17,6 +18,7 @@ export default function AccountsOverview(props) {
     }
   }
 
+  // Retrieve the customers accounts
   async function getAccounts() {
     customer.getAccounts().then((accounts) => {
       setChequingAccounts(accounts.cAccounts);

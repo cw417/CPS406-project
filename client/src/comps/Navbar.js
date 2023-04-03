@@ -6,7 +6,8 @@ import axios from "axios";
 
 export default function Navbar() {
   const navigate = useNavigate();
-
+  
+  // Delete the customer token from local storage
   function signOut() {
     localStorage.removeItem("userId");
     localStorage.removeItem("admin");
@@ -17,6 +18,7 @@ export default function Navbar() {
   const userId = localStorage.getItem("userId");
   const admin = localStorage.getItem("admin");
 
+  // Retrieve the customer data
   function getCustomer() {
     axios.get(`http://localhost:5000/customer/${userId}`).then((response) => {
       setCustomer(response.data);

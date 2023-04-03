@@ -26,6 +26,7 @@ export default function Transfer(props) {
   const reserve = new Bank();
   const navigate = useNavigate();
 
+  // Check amount and accounts before completing transfer
   function handleTransfer() {
     const amount = amountRef.current.value;
     if (
@@ -35,6 +36,7 @@ export default function Transfer(props) {
       toAccount !== null &&
       fromAccount !== toAccount
     ) {
+      // Create Transaction Objects
       const fromTransaction = new Transaction(
         -amount,
         fromAccount.accountType,
@@ -43,6 +45,7 @@ export default function Transfer(props) {
         "Transfer"
       );
       if (isContact) {
+        // Retrieve the account associated with the contact email and update Account and Transaction Objects
         reserve.getAccountByEmail(toAccount.email).then((data) => {
           const toContact = new Account(
             data._id,
@@ -81,12 +84,14 @@ export default function Transfer(props) {
           fromAccount.id,
           "Transfer"
         );
+        // Complete a transfer from the customers account
         fromAccount.transfer(toAccount, amount, fromTransaction, toTransaction);
       }
       navigate(0);
     }
   }
 
+  // Remove a contact from the customer object
   function deleteContact(contact) {
     customer.removeContact(contact);
     navigate(0);

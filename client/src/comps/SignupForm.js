@@ -73,8 +73,8 @@ export default function SignUp() {
   function onSubmit(values) {
     /**
      * Create a new customer object with the current input values, and add it to the database.
-     * Chequing accounts is set to 0.
-     * Savings account is set to 0.
+     * Chequing accounts is set to [].
+     * Savings account is set to [].
      * Transaction history is set to an empty array.
      */
     const newCustomer = new Customer(
@@ -90,6 +90,7 @@ export default function SignUp() {
     createUser(newCustomer);
   }
 
+  // Register a user in the Bank object 
   async function createUser(newCustomer) {
     reserve.registerUser(newCustomer);
     navigate("/login");

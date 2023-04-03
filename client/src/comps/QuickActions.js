@@ -9,6 +9,8 @@ export default function QuickActions(props) {
   const [chequingAccounts, setChequingAccounts] = useState([]);
   const [savingAccounts, setSavingAccounts] = useState([]);
 
+
+  // Retrieve all the customers accounts
   async function getAccounts() {
     customer.getAccounts().then((accounts) => {
       setChequingAccounts(accounts.cAccounts);

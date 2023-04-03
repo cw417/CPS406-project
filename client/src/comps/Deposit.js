@@ -15,12 +15,14 @@ export default function Deposit(props) {
   const [depositAmount, setDepositAmount] = useState(0);
   const navigate = useNavigate();
 
+  // Validate deposit amount and account
   function makeDeposit() {
     if (
       depositAmount > 0 &&
       depositAmount <= 10000 &&
       selectedAccount !== null
     ) {
+      // Create a transaction object
       const transaction = new Transaction(
         depositAmount,
         selectedAccount.accountType,
@@ -28,6 +30,7 @@ export default function Deposit(props) {
         "Cheque",
         "Deposit"
       );
+      // Pass deposit info to the selected account
       selectedAccount.deposit(depositAmount, transaction);
       navigate(0);
     } else {

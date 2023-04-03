@@ -9,6 +9,7 @@ export default function AddPayee(props) {
   const customer = props.customer;
   const navigate = useNavigate();
 
+  // Run on form submission and ensure inputs are valid
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!/^[-a-zA-Z\s]+$/.test(payeeName)) {
@@ -22,6 +23,7 @@ export default function AddPayee(props) {
         alert("Account Number Does Not Exist");
         return;
       } else {
+        // Add a payee to the customer object and navigate to dashboard
         customer.addPayee({ name: payeeName, accountNumber: accountNumber });
         setTimeout(function() {
           navigate('/dashboard');

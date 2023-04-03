@@ -2,7 +2,6 @@ import styles from "../styles/LoginForm.module.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { userCheck } from "../lib/validate";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import logo from "../images/Logo.png";
@@ -28,6 +27,7 @@ export default function LoginForm() {
     onSubmit,
   });
 
+  // Run after form validation and redirect to the user to the correct page
   async function onSubmit(values) {
     reserve.login(values.username, values.password).then((response) => {
       if (response === "admin") {

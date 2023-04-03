@@ -17,10 +17,12 @@ export default function AccountInfo(props) {
     getAccountInfo(accountId);
   }, []);
 
+  // Get the account info from the bank
   async function getAccountInfo(accountId) {
     bank.getAccount(accountId).then((data) => setAccount(data));
   }
-
+  
+  // Delete a customer account and take the user to the dashboard
   function deleteAccount() {
     const accountObject = new Account(
       account._id,

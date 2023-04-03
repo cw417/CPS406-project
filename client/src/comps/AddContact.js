@@ -10,6 +10,7 @@ export default function AddContact(props) {
   const customer = props.customer;
   const navigate = useNavigate()
 
+  // Run on form submission and ensure inputs are valid
   const handleSubmit = (event) => {
     event.preventDefault();
     if (email !== confirmEmail) {
@@ -21,6 +22,7 @@ export default function AddContact(props) {
         alert("Account with this email does not exist");
         return;
       } else {
+        // Add a contact to the customer object and navigate to dashboard
         customer.addContact({ name: name, email: email });
         setTimeout(function() {
           navigate('/dashboard');

@@ -24,10 +24,13 @@ export default function PayBills(props) {
   const [payAmount, setPayAmount] = useState(0);
   const [displayedPayee, setDisplayedPayee] = useState("Select Payee");
   const [selectedPayee, setSelectedPayee] = useState(null);
-
+  
+  // Check payment amount and if a valid account is selected
   function payBill() {
     if (payAmount > 0 && selectedAccount !== null) {
+      // Retrieve the account from the bank
       reserve.getAccount(selectedPayee.accountNumber).then((data) => {
+        // Create Account and Transaction Objects
         const toAccount = new Account(
           data._id,
           data.accountType,
@@ -50,6 +53,7 @@ export default function PayBills(props) {
           selectedAccount.id,
           "Payment"
         );
+        // Sends required objects to Account object to make a transfer
         selectedAccount.transfer(
           toAccount,
           payAmount,
