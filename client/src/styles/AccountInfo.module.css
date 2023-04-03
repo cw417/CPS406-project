@@ -39,3 +39,13 @@
   background-color: #950740;
   border-radius: 10px;
 }
+
+.button {
+  border-radius: 50px;
+  border-color: white;
+  background-color: #950740;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 10px;
+}

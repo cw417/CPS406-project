@@ -10,6 +10,8 @@ export default function AccountInfo(props) {
   const bank = new Bank();
   const [account, setAccount] = useState(null);
   const navigate = useNavigate();
+  const [filter, setFilter] = useState(365)
+  const currentDate = new Date();
 
   useEffect(() => {
     getAccountInfo(accountId);
@@ -58,6 +60,9 @@ export default function AccountInfo(props) {
           </p>
           <p>Current Balance: ${account.accountBalance}</p>
         </div>
+        <button className={styles.button} onClick={() => {setFilter(3)}}>Filter Last 3 Days</button>
+        <button className={styles.button} onClick={() => {setFilter(10)}}>Filter Last 7 Days</button>
+        <button className={styles.button} onClick={() => {setFilter(30)}}>Filter Last 30 Days</button>
         <hr />
         <table className={styles.table}>
           <thead>
@@ -71,6 +76,7 @@ export default function AccountInfo(props) {
           </thead>
           <tbody>
             {account.transactionHistory.map((transaction) => (
+              parseInt((currentDate -(new Date(transaction.date))) / (1000 * 60 * 60 * 24)) <= filter ?
               <tr key={transaction.id} className={styles.row}>
                 <td>{transaction.date}</td>
                 <td>{transaction.to}</td>
@@ -78,6 +84,9 @@ export default function AccountInfo(props) {
                 <td>{transaction.type}</td>
                 <td>{transaction.amount}</td>
               </tr>
+              :  
+              <>
+              </>
             ))}
           </tbody>
         </table>
