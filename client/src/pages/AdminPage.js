@@ -8,8 +8,14 @@ import Customer from "../objects/Customer";
 import QuickActions from "../comps/QuickActions";
 import { MdDeleteForever } from "react-icons/md";
 
+const intialCustomers = [
+  new Customer('test1', 'test1', 'test1', 'test1', 'test1', 'test1', [], []), 
+  new Customer('test2', 'test2', 'test2', 'test2', 'test2', 'test2', [], []), 
+  new Customer('test3', 'test3', 'test3', 'test3', 'test3', 'test3', [], [])
+]
+
 export default function AdminPage() {
-  const [customers, setCustomers] = useState(null);
+  const [customers, setCustomers] = useState(intialCustomers);
   const admin = localStorage.getItem("admin");
   const navigate = useNavigate();
   const reserve = new Bank();
@@ -58,13 +64,13 @@ export default function AdminPage() {
     }
   }, []);
 
-  if (customers === null) {
-    return (
-      <>
-        <h1>Loading...</h1>
-      </>
-    );
-  } else {
+  //if (customers === null) {
+  //  return (
+  //    <>
+  //      <h1>Loading...</h1>
+  //    </>
+  //  );
+  //} else {
     return (
       <>
         <Navbar />
@@ -113,5 +119,5 @@ export default function AdminPage() {
         </div>
       </>
     );
-  }
+//  }
 }
