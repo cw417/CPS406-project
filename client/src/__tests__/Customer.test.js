@@ -70,4 +70,8 @@ describe("Customer", () => {
     customer.removePayee(payee);
     expect(customer.payees).not.toContain(payee);
   });
+
+  test("customer delete function works", () => {
+    customer.delete
+  })
 });
