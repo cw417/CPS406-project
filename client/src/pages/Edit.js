@@ -5,8 +5,10 @@ import Customer from "../objects/Customer";
 import { useNavigate } from "react-router-dom";
 import Bank from "../objects/Bank";
 
+const intialCustomer = new Customer('', '', '', '', '', '', [], []);
+
 export default function Edit() {
-  const [customer, setCustomer] = useState(null);
+  const [customer, setCustomer] = useState(intialCustomer);
   const userId = localStorage.getItem("userId");
   const [newEmail, setNewEmail] = useState(null);
   const [newName, setNewName] = useState(null);
@@ -36,6 +38,7 @@ export default function Edit() {
     ) {
       customer.password = newPassword;
     }
+    console.log(customer);
     customer.updateCustomer();
     navigate(0);
   }
@@ -67,13 +70,13 @@ export default function Edit() {
     }
   }, []);
 
-  if (customer === null) {
-    return (
-      <>
-        <h1>Loading...</h1>
-      </>
-    );
-  }
+  //if (customer === null) {
+  //  return (
+  //    <>
+  //      <h1>Loading...</h1>
+  //    </>
+  //  );
+  //}
 
   return (
     <div className={styles.div}>
@@ -86,7 +89,7 @@ export default function Edit() {
           <div className={styles.titles}>Change Name</div>
           <div className={styles.points}>
             <p>Current Account Name: {customer.username}</p>
-            <label for="accountName">New Account Name: </label>
+            <label htmlFor="accountName">New Account Name: </label>
             <input
               onChange={(event) => setNewName(event.target.value)}
               className={styles.input}
@@ -103,7 +106,7 @@ export default function Edit() {
         <div className={styles.box1}>
           <div className={styles.titles}>Change Password</div>
           <div className={styles.points}>
-            <label for="oldPass">Old Password: </label>
+            <label htmlFor="oldPass">Old Password: </label>
             <input
               onChange={(event) => setOldPassword(event.target.value)}
               className={styles.input}
@@ -113,7 +116,7 @@ export default function Edit() {
               placeholder="Enter Old Password: "
             />
 
-            <label for="newPass">New Password: </label>
+            <label htmlFor="newPass">New Password: </label>
             <input
               onChange={(event) => setNewPassword(event.target.value)}
               className={styles.input}
@@ -123,7 +126,7 @@ export default function Edit() {
               placeholder="Enter New Password: "
             />
 
-            <label for="newPass">Re-enter New Password: </label>
+            <label htmlFor="newPass">Re-enter New Password: </label>
             <input
               onChange={(event) => setConfirmNewPassword(event.target.value)}
               className={styles.input}
@@ -141,7 +144,7 @@ export default function Edit() {
           <div className={styles.titles}>Change Email Address</div>
           <div className={styles.points}>
             <p> Current Email Address: {customer.email}</p>
-            <label for="email">New Email Address: </label>
+            <label htmlFor="email">New Email Address: </label>
             <input
               onChange={(event) => setNewEmail(event.target.value)}
               className={styles.input}
@@ -159,7 +162,7 @@ export default function Edit() {
           <div className={styles.titles}>Change Home Address</div>
           <div className={styles.points}>
             <p> Current Home Address: {customer.address}</p>
-            <label for="address">New Home Address: </label>
+            <label htmlFor="address">New Home Address: </label>
             <input
               onChange={(event) => setNewAddress(event.target.value)}
               className={styles.input}

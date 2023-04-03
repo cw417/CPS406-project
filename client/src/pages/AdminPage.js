@@ -96,14 +96,14 @@ export default function AdminPage() {
             {customer !== null ? (
               <>
                 <div className={styles.customer_display}>
+                  <AccountsOverview customer={customer} />
+                  <QuickActions customer={customer} />
                   <MdDeleteForever
                     onClick={() => {
                       deleteCustomer();
                     }}
                     size={100}
                   />
-                  <AccountsOverview customer={customer} />
-                  <QuickActions customer={customer} />
                 </div>
               </>
             ) : (

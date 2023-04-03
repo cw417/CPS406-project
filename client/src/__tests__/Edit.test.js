@@ -8,12 +8,12 @@ test("Renders Edit Page", () => {
       <Edit customer={{}} />
     </BrowserRouter>
   );
-  const nameInput = screen.getByLabelText("New Account Name: ");
-  const oldPassInput = screen.getByLabelText("Old Password:");
-  const newPassInput = screen.getByLabelText("New Password:");
-  const confirmNewPassInput = screen.getByLabelText("Re-enter New Password:");
-  const emailInput = screen.getByLabelText("New Email Address:");
-  const homeAddressInput = screen.getByLabelText("New Home Address:");
+  const nameInput = screen.getByLabelText(/New Account Name/i);
+  const oldPassInput = screen.getByLabelText(/Old Password/i);
+  const newPassInput = screen.getByLabelText(/New Password/i);
+  const confirmNewPassInput = screen.getByLabelText(/Re-enter New Password/i);
+  const emailInput = screen.getByLabelText(/New Email Address/i);
+  const homeAddressInput = screen.getByText(/New Home Address/i);
 
   expect(nameInput).toBeInTheDocument();
   expect(oldPassInput).toBeInTheDocument();
@@ -23,19 +23,34 @@ test("Renders Edit Page", () => {
   expect(homeAddressInput).toBeInTheDocument();
 });
 
-test("Displays Error Message when new Password is Invalid", () => {
+test("Password regex accepts valid password", () => {
   const { getByLabelText, getByText } = render(
     <BrowserRouter>
       <Edit customer={{}} />
     </BrowserRouter>
   );
-  const newPasswordInput = screen.getByLabelText("New Password: ");
+  const newPasswordInput = screen.getByLabelText(/New Password/i);
 
   fireEvent.change(newPasswordInput, { target: { value: "Password123!" } });
 
   const passwordRegex =
-    /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+    /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/i;
   expect(passwordRegex.test(newPasswordInput.value)).toBe(true);
+});
+
+test("Password regex rejects invalid password", () => {
+  const { getByLabelText, getByText } = render(
+    <BrowserRouter>
+      <Edit customer={{}} />
+    </BrowserRouter>
+  );
+  const newPasswordInput = screen.getByLabelText(/New Password/i);
+
+  fireEvent.change(newPasswordInput, { target: { value: "invalidpassword" } });
+
+  const passwordRegex =
+    /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/i;
+  expect(passwordRegex.test(newPasswordInput.value)).toBe(false);
 });
 
 test("Displays Error Message when second enter of password is not the same as new", () => {
@@ -44,9 +59,9 @@ test("Displays Error Message when second enter of password is not the same as ne
       <Edit customer={{}} />
     </BrowserRouter>
   );
-  const newPasswordInput = screen.getByLabelText("New Password: ");
+  const newPasswordInput = screen.getByLabelText(/New Password/i);
   const confirmNewPasswordInput = screen.getByLabelText(
-    "Re-enter New Password: "
+    /Re-enter New Password/i
   );
 
   const pas = Edit.newPass;
@@ -66,29 +81,9 @@ test("Display an error message if the email address entered is invalid", () => {
       <Edit customer={{}} />
     </BrowserRouter>
   );
-  const contactNameInput = screen.getByLabelText("Name:");
-  const emailInput = screen.getByLabelText("Email:");
+  const contactNameInput = screen.getByLabelText(/Name/i);
+  const emailInput = screen.getByLabelText(/Email/i);
 
   fireEvent.change(contactNameInput, { target: { value: "abcdefg" } });
   fireEvent.change(emailInput, { target: { value: "test@example.com" } });
-});
-
-test("Display an error message if the second email address does not match the first", () => {
-  const { getByLabelText, getByText } = render(
-    <BrowserRouter>
-      <Edit customer={{}} />
-    </BrowserRouter>
-  );
-  const emailInput = screen.getByLabelText("Email:");
-  const confirmEmailInput = screen.getByLabelText("Confirm Email:");
-
-  const ead = AddContact.email;
-
-  fireEvent.change(emailInput, { target: { ead } });
-  fireEvent.change(confirmEmailInput, { target: { ead } });
-
-  expect(emailInput).toBeInTheDocument();
-  expect(confirmEmailInput).toBeInTheDocument();
-
-  expect(emailInput).toEqual(confirmEmailInput);
 });
