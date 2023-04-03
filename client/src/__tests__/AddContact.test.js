@@ -1,9 +1,10 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import AddContact from "../comps/AddContact";
+import { BrowserRouter } from 'react-router-dom';
 jest.mock("../lib/validate");
 
 test("Render the Add Contact component", () => {
-  const { getByLabelText, getByText } = render(<AddContact customer={{}} />);
+  const { getByLabelText, getByText } = render(<BrowserRouter><AddContact customer={{}} /></BrowserRouter>);
   const contactNameInput = screen.getByLabelText("Name:");
   const emailInput = screen.getByLabelText("Email:");
   const completeButton = screen.getByText("Complete");
@@ -14,7 +15,7 @@ test("Render the Add Contact component", () => {
 });
 
 test("Display an error message if the email address entered is invalid", () => {
-  const { getByLabelText, getByText } = render(<AddContact customer={{}} />);
+  const { getByLabelText, getByText } = render(<BrowserRouter><AddContact customer={{}} /></BrowserRouter>);
   const contactNameInput = screen.getByLabelText("Name:");
   const emailInput = screen.getByLabelText("Email:");
 
@@ -25,7 +26,7 @@ test("Display an error message if the email address entered is invalid", () => {
 });
 
 test("Display an error message if the second email address does not match the first", () => {
-  const { getByLabelText, getByText } = render(<AddContact customer={{}} />);
+  const { getByLabelText, getByText } = render(<BrowserRouter><AddContact customer={{}} /></BrowserRouter>);
   const emailInput = screen.getByLabelText("Email:");
   const confirmEmailInput = screen.getByLabelText("Confirm Email:");
 

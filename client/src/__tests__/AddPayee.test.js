@@ -1,6 +1,7 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import AddPayee from "../comps/AddPayee";
 import { accountCheck } from "../lib/validate";
+import { BrowserRouter } from 'react-router-dom';
 jest.mock("../lib/validate");
 describe("AddPayee", () => {
   let spy;
@@ -14,7 +15,7 @@ describe("AddPayee", () => {
   });
 
   test("renders the Add Payee form", () => {
-    const { getByLabelText, getByText } = render(<AddPayee customer={{}} />);
+    const { getByLabelText, getByText } = render(<BrowserRouter><AddPayee customer={{}} /></BrowserRouter>);
     const payeeNameInput = screen.getByLabelText("Payee Name:");
     const accountNumberInput = screen.getByLabelText("Account Number:");
     const submitButton = screen.getByText("Complete");
@@ -27,7 +28,7 @@ describe("AddPayee", () => {
   it("should display an alert message if an invalid account number is entered", () => {
     accountCheck.mockResolvedValue(false);
     const spyi = jest.spyOn(window, "alert").mockImplementation(() => {});
-    const { getByLabelText, getByText } = render(<AddPayee customer={{}} />);
+    const { getByLabelText, getByText } = render(<BrowserRouter><AddPayee customer={{}} /></BrowserRouter>);
     const payeeNameInput = getByLabelText("Payee Name:");
     const accountNumberInput = getByLabelText("Account Number:");
 
@@ -38,7 +39,7 @@ describe("AddPayee", () => {
     expect(accountCheck).toHaveBeenCalledWith("123456");
   });
   it("should display an alert message if an invalid payee name is entered", () => {
-    const { getByLabelText, getByText } = render(<AddPayee customer={{}} />);
+    const { getByLabelText, getByText } = render(<BrowserRouter><AddPayee customer={{}} /></BrowserRouter>);
     const payeeNameInput = getByLabelText("Payee Name:");
     const accountNumberInput = getByLabelText("Account Number:");
 
