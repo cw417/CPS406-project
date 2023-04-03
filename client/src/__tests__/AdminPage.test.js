@@ -10,4 +10,8 @@ describe('Tests for AdminPage', () => {
     render(<BrowserRouter><AdminPage /></BrowserRouter>);
   });
 
+  test('admin search bar renders', async () => {
+    render(<BrowserRouter><AdminPage /></BrowserRouter>);
+    expect(screen.getByPlaceholderText(/enter the customer email/i)).toBeInTheDocument();
+  });
 });
