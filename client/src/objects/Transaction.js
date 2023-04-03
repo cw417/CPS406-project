@@ -1,6 +1,7 @@
 import { v4 as uuid4 } from "uuid";
 
 export default class Transaction {
+  // Sets the initial values for the object
   constructor(amount, accountType, to, from, type) {
     const currentDate = new Date();
     const currentDay = currentDate.getDate();
@@ -28,7 +29,7 @@ export default class Transaction {
     this.to = to;
     this.from = from;
   }
-
+  // returns part of the attributes
   getInfo() {
     return {
       date: this.date,

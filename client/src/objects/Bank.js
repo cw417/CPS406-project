@@ -1,11 +1,13 @@
 import axios from "axios";
 
 export default class Bank {
+  // Sets the initial values for the object
   constructor(name = "The Reserve") {
     this.name = name;
     this.customers = [];
   }
 
+  //  registers the newCustomer
   async registerUser(newCustomer) {
     return await fetch("http://localhost:5000/customer/add", {
       method: "POST",
@@ -20,7 +22,7 @@ export default class Bank {
         newCustomer.openAccount("Saving");
       });
   }
-
+// Checks for valid login credentials
   async login(username, password) {
     return await axios
       .get("http://localhost:5000/customer")
@@ -44,17 +46,18 @@ export default class Bank {
         }
       });
   }
-
+// set customer list
   setCustomers(customersList) {
     this.customers = customersList;
   }
-
+// get customers
   async getCustomers() {
     const response = await fetch("http://localhost:5000/customer/");
     const data = await response.json();
     return data;
   }
 
+  // get a single customer by id
   async getCustomer(userId) {
     return axios
       .get(`http://localhost:5000/customer/${userId}`)
@@ -63,6 +66,7 @@ export default class Bank {
       });
   }
 
+  // get account by id
   async getAccount(accountId) {
     const response = await fetch(
       `http://localhost:5000/account/get/${accountId}`
@@ -71,6 +75,7 @@ export default class Bank {
     return data;
   }
 
+  //  get account by email
   async getAccountByEmail(email) {
     return axios.get("http://localhost:5000/customer").then((response) => {
       for (var i = 0; i < response.data.length; i++) {

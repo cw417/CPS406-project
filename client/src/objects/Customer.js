@@ -1,6 +1,7 @@
 import Account from "./Account";
 
 export default class Customer {
+  // Sets the initial values for the object
   constructor(
     username,
     first,
@@ -29,32 +30,36 @@ export default class Customer {
     this.contacts = contacts;
   }
 
+  // Adds the contact into the list
   addContact(contact) {
     this.contacts.push(contact);
     this.updateCustomer();
   }
 
+  // Adds the contact from the list
   removeContact(contact) {
     const index = this.contacts.indexOf(contact);
     this.contacts.splice(index);
     this.updateCustomer();
   }
 
+  // Adds the payee into the list
   addPayee(payee) {
     this.payees.push(payee);
     this.updateCustomer();
   }
 
+  // Remove the payee into the list
   removePayee(payee) {
     const index = this.payees.indexOf(payee);
     this.payees.splice(index);
     this.updateCustomer();
   }
-
+  // set Id
   setId(id) {
     this.id = id;
   }
-
+  // get Id
   getId() {
     return this.id;
   }

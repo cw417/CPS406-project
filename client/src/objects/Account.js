@@ -1,4 +1,5 @@
 export default class Account {
+  // Sets the initial values for the object
   constructor(
     id,
     accountType,
@@ -15,12 +16,14 @@ export default class Account {
     this.transactionHistory = transactionHistory;
   }
 
+  // Make a transaction object and update the balance
   deposit(amount, transaction) {
     this.accountBalance += parseFloat(amount);
     this.addTransaction(transaction);
     this.updateAccount();
   }
 
+  // Make a transaction object and update the balance
   withdraw(amount, transaction) {
     if (amount <= this.accountBalance) {
       this.accountBalance -= parseFloat(amount);
@@ -29,25 +32,29 @@ export default class Account {
     }
   }
 
+  // Make a transaction object and update the balance
   transfer(sendTo, amount, transaction, sendTransaction) {
     if (amount <= this.accountBalance) {
       this.withdraw(amount, transaction);
       sendTo.deposit(amount, sendTransaction);
     }
   }
-
+  // set the account balance
   setAccountBalance(newVal) {
     this.accountBalance = newVal;
   }
-
+  
+  // Update the balance
   addTransaction(transaction) {
     this.transactionHistory.push(transaction.getInfo());
   }
 
+  // get Id
   getId() {
     return this.id;
   }
 
+  // get parts of the attributes
   getInfo() {
     return {
       accountType: this.accountType,
@@ -58,6 +65,7 @@ export default class Account {
     };
   }
 
+  // update account with given inputs
   async updateAccount() {
     await fetch(`http://localhost:5000/account/update/${this.id}`, {
       method: "POST",
@@ -74,6 +82,7 @@ export default class Account {
     });
   }
 
+  // delete an account
   async deleteAccount() {
     await fetch(`http://localhost:5000/account/remove/${this.id}`);
   }
