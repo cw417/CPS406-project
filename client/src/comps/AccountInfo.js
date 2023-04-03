@@ -75,7 +75,7 @@ export default function AccountInfo(props) {
             </tr>
           </thead>
           <tbody>
-            {account.transactionHistory.map((transaction) => (
+            {account.transactionHistory.reverse().map((transaction) => (
               parseInt((currentDate -(new Date(transaction.date))) / (1000 * 60 * 60 * 24)) <= filter ?
               <tr key={transaction.id} className={styles.row}>
                 <td>{transaction.date}</td>
