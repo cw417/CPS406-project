@@ -12,6 +12,8 @@ export default function AccountInfo(props) {
   const navigate = useNavigate();
   const [filter, setFilter] = useState(365)
   const currentDate = new Date();
+  const userId = localStorage.getItem("userId");
+  const admin = localStorage.getItem("admin");
 
   useEffect(() => {
     getAccountInfo(accountId);
@@ -40,12 +42,29 @@ export default function AccountInfo(props) {
     }
   }
 
+  function deleteTransaction(transaction) {
+    const accountObject = new Account(
+      account._id,
+      account.accountType,
+      account.customerId,
+      account.accountBalance,
+      account.maxTransferAmount,
+      account.transactionHistory
+    );
+    accountObject.removeTransaction(transaction)
+    navigate(`/accounts/${accountId}`);
+  }
+
   if (account === null) {
     return (
       <>
         <h1>Loading...</h1>
       </>
     );
+  }
+
+  if (userId !== account.customerId && admin === "false"){
+    navigate('/dashboard');
   }
 
   return (
@@ -74,6 +93,7 @@ export default function AccountInfo(props) {
               <th>From</th>
               <th>Description</th>
               <th>Amount</th>
+              {admin === "true" ? <th>Delete</th> : <></>}
             </tr>
           </thead>
           <tbody>
@@ -85,6 +105,7 @@ export default function AccountInfo(props) {
                 <td>{transaction.from}</td>
                 <td>{transaction.type}</td>
                 <td>{transaction.amount}</td>
+                {admin === "true" ? <td onClick={() => {deleteTransaction(transaction)}}>🗑️</td> : <></>}
               </tr>
               :  
               <>

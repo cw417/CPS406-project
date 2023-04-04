@@ -33,6 +33,7 @@
   text-align: left;
   padding: 10px;
   border-radius: 10px;
+  text-align: center;
 }
 
 .row:nth-child(even) {

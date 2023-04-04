@@ -44,9 +44,16 @@ export default class Account {
     this.accountBalance = newVal;
   }
   
-  // Update the balance
+  // Add a transaction
   addTransaction(transaction) {
     this.transactionHistory.push(transaction.getInfo());
+  }
+
+  // Remove a transaction
+  removeTransaction(transaction) {
+    const index = this.transactionHistory.indexOf(transaction);
+    this.transactionHistory.splice(index, 1);
+    this.updateAccount();
   }
 
   // get Id

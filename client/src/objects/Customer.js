@@ -39,7 +39,7 @@ export default class Customer {
   // Adds the contact from the list
   removeContact(contact) {
     const index = this.contacts.indexOf(contact);
-    this.contacts.splice(index);
+    this.contacts.splice(index, 1);
     this.updateCustomer();
   }
 
@@ -52,7 +52,7 @@ export default class Customer {
   // Remove the payee into the list
   removePayee(payee) {
     const index = this.payees.indexOf(payee);
-    this.payees.splice(index);
+    this.payees.splice(index, 1);
     this.updateCustomer();
   }
   // set Id
