@@ -28,6 +28,7 @@ export default function PayBills(props) {
   // Check payment amount and if a valid account is selected
   function payBill() {
     if (payAmount > 0 && selectedAccount !== null) {
+      console.log("paying")
       // Retrieve the account from the bank
       reserve.getAccount(selectedPayee.accountNumber).then((data) => {
         // Create Account and Transaction Objects
@@ -61,7 +62,7 @@ export default function PayBills(props) {
           toTransaction
         );
       });
-      navigate(0);
+      setTimeout(() => {navigate(0)}, 500)
     }
   }
 
