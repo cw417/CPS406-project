@@ -20,7 +20,7 @@ git clone https://github.com/cw417/CPS406-project.git
 
 3. Change into the newly created `CPS406-project` directory: 
 ```bash
-cd CPS406
+cd CPS406-project/
 ```
 
 4. Install dependencies in both the `client/` and `server/` folders:
