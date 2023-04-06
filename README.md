@@ -1,9 +1,5 @@
 # CPS406 Project - The Reserve
 
-## TODO
-
-- Pay Bills does not remove money from account or add to transactionHistory
-
 ## Index
 
 - [Installation](#installation)
