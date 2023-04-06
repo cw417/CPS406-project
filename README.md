@@ -6,7 +6,6 @@
 
 ## Index
 
-- [About](#about)
 - [Installation](#installation)
 - [Usage](#usage)
 
@@ -59,7 +58,9 @@ npm start
 
 ## Usage
 
-- To use The Reserve, you will first need to create an account:
+To use The Reserve, you will first need to create an account.
+
+### Create Account
 
 1. Click the red "Get Started" button on the homepage to navigate to the Account Creation page.
 
@@ -73,50 +74,79 @@ npm start
 
 6. The "Quick Actions" menu displays the available options of Transfer, Pay Bills, and Deposit. The menu is set to Deposit by default, so this is the action displayed on the page when it is first loaded.
 
-- **Deposit**
-  1. Ensure that the Quick Actions menu has selected the Deposit option. 
-  2. Enter the file containing the cheque to be deposited.
-  3. Select the account to deposit to.
-  4. Enter the amount of the deposit.
-  5. Click the "Make deposit" button to complete the deposit.
-  6. The money will now be visible in the relevant account inside of the Account Overview section of the Customer Dashboard.
+### Deposit
 
-- **Transfer** 
-  1. Ensure that the Quick Actions menu has selected the Transfer option. 
-  2. Select the sender account under the "From" dropdown menu.
-  3. Select the receiver account under the "To" dropdown menu.
-  4. Enter the amount to transfer. 
-  5. Click the "Make transfer" button to complete the transfer.
+1. Ensure that the Quick Actions menu has selected the Deposit option. 
 
-- **Add Contact**
-  1. Ensure that the Quick Actions menu has selected the Transfer option. 
-  2. Click the "Add Contact" button to navigate to the Add Payee/Contact page.
-  3. Enter the name of the contact.
-  4. Enter the email of the contact.
-  5. Confirm the email of the contact.
-  6. Click the "Complete" button to add the contact.
-  - Test contact:
-  ```
-  Name: Test Account
-  Email: Tester@test.com
-  ```
+2. Enter the file containing the cheque to be deposited.
 
-- **Pay Bills**
-  1. Ensure that the Quick Actions menu has selected the Pay Bills option. 
-  2. Select the sender account under the "From" dropdown menu.
-  3. Select the payee under the "To" dropdown menu.
-  4. Enter the amount to pay. 
-  5. Click the "Make payment" button to complete the transfer.
+3. Select the account to deposit to.
 
-- **Add Payee**
-  1. Ensure that the Quick Actions menu has selected the Pay Bills option. 
-  2. Click the "Add Payee" button to navigate to the Add Payee/Contact page.
-  3. Enter the payee name.
-  4. Enter the payee account number.
-  5. Click the "Complete" button to add the payee.
-  - Test payee:
-  ```
-  Payee Name: Test Account
-  Account Number: 5149511901452791
-  ```
+4. Enter the amount of the deposit.
+
+5. Click the "Make deposit" button to complete the deposit.
+
+6. The money will now be visible in the relevant account inside of the Account Overview section of the Customer Dashboard.
+
+### Transfer
+
+1. Ensure that the Quick Actions menu has selected the Transfer option. 
+
+2. Select the sender account under the "From" dropdown menu.
+
+3. Select the receiver account under the "To" dropdown menu.
+
+4. Enter the amount to transfer. 
+
+5. Click the "Make transfer" button to complete the transfer.
+
+### Pay Bills
+
+1. Ensure that the Quick Actions menu has selected the Pay Bills option. 
+
+2. Select the sender account under the "From" dropdown menu.
+
+3. Select the payee under the "To" dropdown menu.
+
+4. Enter the amount to pay. 
+
+5. Click the "Make payment" button to complete the transfer.
+
+### Add Contact
+
+1. Ensure that the Quick Actions menu has selected the Transfer option. 
+
+2. Click the "Add Contact" button to navigate to the Add Payee/Contact page.
+
+3. Enter the name of the contact.
+
+4. Enter the email of the contact.
+
+5. Confirm the email of the contact.
+
+6. Click the "Complete" button to add the contact.
+
+- Test contact:
+```
+Name: Test Account
+Email: Tester@test.com
+```
+
+### Add Payee
+
+1. Ensure that the Quick Actions menu has selected the Pay Bills option. 
+
+2. Click the "Add Payee" button to navigate to the Add Payee/Contact page.
+
+3. Enter the payee name.
+
+4. Enter the payee account number.
+
+5. Click the "Complete" button to add the payee.
+
+- Test payee:
+```
+Payee Name: Test Account
+Account Number: 5149511901452791
+```
 
