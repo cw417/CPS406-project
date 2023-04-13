@@ -87,7 +87,7 @@ export default function Transfer(props) {
         // Complete a transfer from the customers account
         fromAccount.transfer(toAccount, amount, fromTransaction, toTransaction);
       }
-      navigate(0);
+      setTimeout(() => {navigate(0)}, 500)
     }
   }
 
