@@ -10,9 +10,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userId != null) {
-      navigate("/dashboard");
-    }
+  
     async function getCustomers() {
       const response = await fetch(`http://localhost:5000/customer/`);
 
@@ -25,9 +23,10 @@ export default function Login() {
       const customers = await response.json();
       const reserve = new Bank();
       reserve.setCustomers(customers);
+    
     }
     getCustomers();
-  }, []);
+  }, [userId, navigate]);
 
   return (
     <>
